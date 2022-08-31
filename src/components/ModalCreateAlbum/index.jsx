@@ -10,21 +10,32 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-
-// const [open, setOpen] = useState(false);
-
-// const schema = yup.object().shape({});
-
-// const {
-//   register,
-//   handleSubmit,
-//   formState: { errors },
-// } = useForm({
-//   resolver: yupResolver(schema),
-// });
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const ModalAlbum = () => {
   const [isAlbum, setIsAlbum] = useState(false);
+
+  const schema = yup.object().shape({
+    music: yup.string().required("Música é obrigatório"),
+    name: yup.string().required("Nome é obrigatório"),
+    date: yup.string().required("Data é obrigatório"),
+    bio: yup.string().required("Bio é obrigatório"),
+    image: yup.string().required("Imagem é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const request = (data) => {
+    console.log(data)
+  }
 
   return (
     <div>
@@ -39,18 +50,18 @@ const ModalAlbum = () => {
               </ButtonModal>
             </div>
             <TitleModal>Criar Álbum</TitleModal>
-            <FormModal>
-              <InputModal type="text" placeholder="Música" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Nome" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="date" name="" id="" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Bio" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Imagem" />
-              <SpanModal>erro</SpanModal>
-              <ButtonCriar>Criar</ButtonCriar>
+            <FormModal onSubmit={handleSubmit(request)}>
+              <InputModal type="text" placeholder="Música" {...register("music")}/>
+              <SpanModal>{errors.music?.message}</SpanModal>
+              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <SpanModal>{errors.name?.message}</SpanModal>
+              <InputModal type="date" name="" id="" {...register("date")}/>
+              <SpanModal>{errors.date?.message}</SpanModal>
+              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <SpanModal>{errors.bio?.message}</SpanModal>
+              <InputModal type="text" placeholder="Imagem" {...register("image")}/>
+              <SpanModal>{errors.image?.message}</SpanModal>
+              <ButtonCriar type="submit">Criar</ButtonCriar>
             </FormModal>
           </div>
         </ModalExample>

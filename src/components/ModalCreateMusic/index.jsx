@@ -10,9 +10,28 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const CreateMusic = () => {
   const [isMusic, setIsMusic] = useState(false);
+
+  const schema = yup.object().shape({
+    name: yup.string().required("Nome é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const request = (data) => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -27,12 +46,14 @@ const CreateMusic = () => {
               </ButtonModal>
             </div>
             <TitleModal>Adicionar música</TitleModal>
-            <FormModal>
-              <InputModal type="text" placeholder="Nome" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Música" />
-              <SpanModal>erro</SpanModal>
-              <ButtonCriar>Criar</ButtonCriar>
+            <FormModal onSubmit={handleSubmit(request)}>
+              <InputModal
+                type="text"
+                placeholder="Nome"
+                {...register("name")}
+              />
+              <SpanModal>{errors.name?.message}</SpanModal>
+              <ButtonCriar type="submit">Criar</ButtonCriar>
             </FormModal>
           </div>
         </ModalExample>

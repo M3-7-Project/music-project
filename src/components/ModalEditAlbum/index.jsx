@@ -11,9 +11,31 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const EditAlbum = () => {
   const [isEditAlbum, setEditAlbum] = useState(false);
+
+  const schema = yup.object().shape({
+    name: yup.string().required("Nome é obrigatório"),
+    date: yup.string().required("Data é obrigatório"),
+    bio: yup.string().required("Bio é obrigatório"),
+    image: yup.string().required("Imagem é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const request = (data) => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -28,17 +50,17 @@ const EditAlbum = () => {
               </ButtonModal>
             </div>
             <TitleModal>Editar Álbum</TitleModal>
-            <FormModal>
-              <InputModal type="text" placeholder="Nome" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="date" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Bio" />
-              <SpanModal>erro</SpanModal>
-              <InputModal type="text" placeholder="Imagem de capa" />
-              <SpanModal>erro</SpanModal>
+            <FormModal onSubmit={handleSubmit(request)}>
+              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <SpanModal>{errors.name?.message}</SpanModal>
+              <InputModal type="date" {...register("date")}/>
+              <SpanModal>{errors.date?.message}</SpanModal>
+              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <SpanModal>{errors.bio?.message}</SpanModal>
+              <InputModal type="text" placeholder="Imagem de capa" {...register("image")}/>
+              <SpanModal>{errors.image?.message}</SpanModal>
               <div>
-                <ButtonCriar>Editar</ButtonCriar>
+                <ButtonCriar type="submit">Editar</ButtonCriar>
                 <ButtonDelete>Excluir</ButtonDelete>
               </div>
             </FormModal>
