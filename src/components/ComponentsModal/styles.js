@@ -74,3 +74,20 @@ export const TitleModal = styled.h2`
 
   margin: 1.875rem 0 1.25rem 0;
 `;
+
+export const ButtonDelete = styled.button`
+  width: 100%;
+  height: 2.5rem;
+
+  background-color: #A76CB2;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 3.125rem;
+
+  font-weight: 500;
+  font-size: 1.375rem;
+  color: #f8f9fa;
+
+  margin-bottom: 0.87rem;
+`
