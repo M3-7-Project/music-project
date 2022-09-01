@@ -3,7 +3,7 @@ import {} from "./styles";
 
 const Landing = () => {
   const doReq = async () => {
-    const retorno = await getProfileRequest(undefined, "name=Marcos");
+    const retorno = await getProfileRequest();
     console.log("~ retorno", retorno);
   };
 
