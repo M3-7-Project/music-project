@@ -175,7 +175,7 @@ export const getProfilesWithProductionsRequest = async (id) => {
   }
 };
 
-export const getProfilesWithInteractionsRequest = async = (id) => {
+export const getProfilesWithInteractionsRequest = async (id) => {
   const params = new URLSearchParams();
   params.append("_embed", "comments");
   params.append("_embed", "score");
@@ -187,5 +187,4 @@ export const getProfilesWithInteractionsRequest = async = (id) => {
   } catch (error) {
     return error;
   }
-}
-
+};
