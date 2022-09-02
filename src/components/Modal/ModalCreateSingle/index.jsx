@@ -1,24 +1,24 @@
 import { useState } from "react";
-import ModalExample from "../Modal";
 import { IoMdCloseCircle } from "react-icons/Io";
-import Logo from "../../assets/logoRedonda.svg";
+import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
-  ButtonDelete,
   ButtonModal,
   FormModal,
   InputModal,
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
+import ModalExample from "..";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const EditAlbum = () => {
-  const [isEditAlbum, setEditAlbum] = useState(false);
+const ModalSingle = () => {
+  const [isSingle, setIsSingle] = useState(false);
 
   const schema = yup.object().shape({
+    music: yup.string().required("Música é obrigatório"),
     name: yup.string().required("Nome é obrigatório"),
     date: yup.string().required("Data é obrigatório"),
     bio: yup.string().required("Bio é obrigatório"),
@@ -39,30 +39,41 @@ const EditAlbum = () => {
 
   return (
     <div>
-      <button onClick={() => setEditAlbum(true)}>Modal editar Album</button>
-      {isEditAlbum && (
+      <button onClick={() => setIsSingle(true)}>Modal Criar Single</button>
+      {isSingle && (
         <ModalExample>
           <div>
             <div>
               <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setEditAlbum(false)}>
+              <ButtonModal onClick={() => setIsSingle(false)}>
                 <IoMdCloseCircle size={23} />
               </ButtonModal>
             </div>
-            <TitleModal>Editar Álbum</TitleModal>
+            <TitleModal>Criar Single</TitleModal>
             <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <InputModal
+                type="text"
+                placeholder="Música"
+                {...register("music")}
+              />
+              <SpanModal>{errors.music?.message}</SpanModal>
+              <InputModal
+                type="text"
+                placeholder="Nome"
+                {...register("name")}
+              />
               <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" {...register("date")}/>
+              <InputModal type="date" {...register("date")} />
               <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <InputModal type="text" placeholder="Bio" {...register("bio")} />
               <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal type="text" placeholder="Imagem de capa" {...register("image")}/>
+              <InputModal
+                type="text"
+                placeholder="Imagem de capa"
+                {...register("image")}
+              />
               <SpanModal>{errors.image?.message}</SpanModal>
-              <div>
-                <ButtonCriar type="submit">Editar</ButtonCriar>
-                <ButtonDelete>Excluir</ButtonDelete>
-              </div>
+              <ButtonCriar type="submit">Criar</ButtonCriar>
             </FormModal>
           </div>
         </ModalExample>
@@ -71,4 +82,4 @@ const EditAlbum = () => {
   );
 };
 
-export default EditAlbum;
+export default ModalSingle;

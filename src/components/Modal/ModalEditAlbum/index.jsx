@@ -1,9 +1,10 @@
 import { useState } from "react";
-import ModalExample from "../Modal";
+import ModalExample from "..";
 import { IoMdCloseCircle } from "react-icons/Io";
-import Logo from "../../assets/logoRedonda.svg";
+import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
+  ButtonDelete,
   ButtonModal,
   FormModal,
   InputModal,
@@ -14,11 +15,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const ModalAlbum = () => {
-  const [isAlbum, setIsAlbum] = useState(false);
+const EditAlbum = () => {
+  const [isEditAlbum, setEditAlbum] = useState(false);
 
   const schema = yup.object().shape({
-    music: yup.string().required("Música é obrigatório"),
     name: yup.string().required("Nome é obrigatório"),
     date: yup.string().required("Data é obrigatório"),
     bio: yup.string().required("Bio é obrigatório"),
@@ -34,34 +34,35 @@ const ModalAlbum = () => {
   });
 
   const request = (data) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <div>
-      <button onClick={() => setIsAlbum(true)}>Modal Álbum</button>
-      {isAlbum && (
+      <button onClick={() => setEditAlbum(true)}>Modal editar Album</button>
+      {isEditAlbum && (
         <ModalExample>
           <div>
             <div>
               <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsAlbum(false)}>
+              <ButtonModal onClick={() => setEditAlbum(false)}>
                 <IoMdCloseCircle size={23} />
               </ButtonModal>
             </div>
-            <TitleModal>Criar Álbum</TitleModal>
+            <TitleModal>Editar Álbum</TitleModal>
             <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal type="text" placeholder="Música" {...register("music")}/>
-              <SpanModal>{errors.music?.message}</SpanModal>
               <InputModal type="text" placeholder="Nome" {...register("name")}/>
               <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" name="" id="" {...register("date")}/>
+              <InputModal type="date" {...register("date")}/>
               <SpanModal>{errors.date?.message}</SpanModal>
               <InputModal type="text" placeholder="Bio" {...register("bio")}/>
               <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal type="text" placeholder="Imagem" {...register("image")}/>
+              <InputModal type="text" placeholder="Imagem de capa" {...register("image")}/>
               <SpanModal>{errors.image?.message}</SpanModal>
-              <ButtonCriar type="submit">Criar</ButtonCriar>
+              <div>
+                <ButtonCriar type="submit">Editar</ButtonCriar>
+                <ButtonDelete>Excluir</ButtonDelete>
+              </div>
             </FormModal>
           </div>
         </ModalExample>
@@ -70,4 +71,4 @@ const ModalAlbum = () => {
   );
 };
 
-export default ModalAlbum;
+export default EditAlbum;
