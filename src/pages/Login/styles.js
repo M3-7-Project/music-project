@@ -11,6 +11,7 @@ export const LoginStyled = styled.div`
   height: 100vh;
 
   background: url(${loginImg});
+  background-size: cover;
 
   .loginFormSection {
     display: flex;
