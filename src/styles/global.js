@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { DarkTheme } from "./theme";
 
 export const Global = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -47,5 +48,8 @@ export const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    :root{
+        ${DarkTheme}
     }
 `;
