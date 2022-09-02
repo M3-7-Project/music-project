@@ -1,8 +1,13 @@
-import {} from './styles';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import { Body } from './styles';
 
 const Landing = () => {
     return (
-        <></>
+        <Body>
+            <Header/>
+            <Footer/>
+        </Body>
     )
 }
 
