@@ -6,6 +6,7 @@ import Production from "../pages/Production";
 import Dashboard from "../pages/Dashboard";
 import { Navigate, Routes, Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
+import ModalTest from "../pages/ModalTest";
 
 const RoutesMain = () => {
   return (
@@ -25,6 +26,7 @@ const RoutesMain = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/modal-test" element={<ModalTest />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

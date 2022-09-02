@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { DarkTheme } from "./theme";
 
 export const Global = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -28,6 +29,10 @@ export const Global = createGlobalStyle`
     }
     body {
         line-height: 1;
+        font-family: 'Poppins', sans-serif;
+    }
+    body, input {
+        font-family: 'Poppins', sans-serif;
     }
     ol, ul {
         list-style: none;
@@ -43,5 +48,8 @@ export const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    :root{
+        ${DarkTheme}
     }
 `;
