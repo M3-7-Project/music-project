@@ -16,3 +16,21 @@ export const Img = styled.img`
  width: 100px;
  border-radius : 50%;
 `
+
+export const Button = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const MusicTimer = styled.div`
+
+`
+export const Constrols = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+`

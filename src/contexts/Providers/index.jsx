@@ -1,9 +1,12 @@
 import { UserProvider } from "../UserContext"
+import { MusicProvider } from "../UserContext/MusicContext";
 
 const Providers = ({children}) => {
     return (
         <UserProvider>
-            {children}
+            <MusicProvider>
+                {children}
+            </MusicProvider>
         </UserProvider>
     )
 }
