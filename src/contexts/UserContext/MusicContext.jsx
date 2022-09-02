@@ -8,6 +8,10 @@ export const MusicProvider = ({children}) => {
     const [musics, SetMusics] = useState([TrialMusic, TrialMusic2])
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentMusic, SetCurrentMusic] = useState(musics[0])
+    const [progress, setProgress] = useState({
+        progress: 0,
+        length: 0
+    })
 
     const audioElemt = useRef()
 
@@ -23,12 +27,50 @@ export const MusicProvider = ({children}) => {
         const duration = audioElemt.current.duration
         const currentTime = audioElemt.current.currentTime
 
-        console.log(duration, currentTime)
+        const music = {
+            progress: (currentTime/duration) * 100,
+            length: duration
+        }
+
+        setProgress(music)
+    }
+
+    const musicTime = useRef()
+
+    const changeTime = (event) => {
+        const width = musicTime.current.clientWidth
+        const offset = event.nativeEvent.offsetX
+
+        const musicProgress = (offset/width)*100
+
+        audioElemt.current.currentTime = (musicProgress/100) * progress.length
+    }
+
+    const skipBack = () => {
+        const index = musics.findIndex(element => element === currentMusic)
+        
+        index == 0 ? audioElemt.current.currentTime = 0 : SetCurrentMusic(musics[index-1])
+
+        audioElemt.current.currentTime = 0
+        setTimeout(()=> {
+            audioElemt.current.play()
+        }, 10)
+    }
+
+    const skipNext = () => {
+        const index = musics.findIndex(element => element === currentMusic)
+
+        index == musics.length-1 ? SetCurrentMusic(musics[0]) : SetCurrentMusic(musics[index+1])
+        
+        audioElemt.current.currentTime = 0
+        setTimeout(()=> {
+            audioElemt.current.play()
+        }, 10)
     }
     
 
     return (
-        <MusicContext.Provider value={{audioElemt, musics, play, isPlaying, currentMusic, onPlaying}}>
+        <MusicContext.Provider value={{audioElemt, musics, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext}}>
             {children}
         </MusicContext.Provider>
     )

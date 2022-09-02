@@ -25,9 +25,23 @@ export const Button = styled.button`
     align-items: center;
     justify-content: center;
 `
-
 export const MusicTimer = styled.div`
 
+`
+export const MusicNavigate = styled.div`
+    width: 50vw;
+    margin: 5px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: #212529;
+    cursor: pointer;
+`
+export const MusicBar = styled.div`
+    width: ${({width}) => width}%;
+    height: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #2453B1, 0 0 5px #8A268A;
+    background-image: linear-gradient(to right, var(--emphasis-0) , var(--emphasis-2));
 `
 export const Constrols = styled.div`
     display: flex;
