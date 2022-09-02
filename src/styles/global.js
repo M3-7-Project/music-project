@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { DarkTheme } from "./theme";
 
 export const Global = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -27,6 +28,8 @@ export const Global = createGlobalStyle`
     }
     body {
         min-height: 100%;
+        line-height: 1;
+        font-family: 'Poppins', sans-serif;
         ::-webkit-scrollbar {
             width: 4px;
         }
@@ -40,6 +43,9 @@ export const Global = createGlobalStyle`
         ::-webkit-scrollbar-thumb:hover {
         background: #555;
         }
+    }
+    body, input {
+        font-family: 'Poppins', sans-serif;
     }
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
@@ -59,5 +65,8 @@ export const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    :root{
+        ${DarkTheme}
     }
 `;
