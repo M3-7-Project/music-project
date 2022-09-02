@@ -28,7 +28,6 @@ export const InputModal = styled.input`
 
   outline: 0;
   margin-bottom: 0.3125rem;
-  padding-left: 0.4375rem;
 
   &::placeholder {
     font-weight: 300;
@@ -52,6 +51,25 @@ export const FormModal = styled.form`
   flex-direction: column;
 
   margin: 0 auto;
+
+    .css-1s2u09g-control{
+      width: 100%;
+      background-color: #272c31;
+      margin-bottom: .9375rem;
+    }
+    .css-1pahdxg-control{
+      width: 100%;
+      background-color: #272c31;
+      margin-bottom: .9375rem;
+    }
+
+    .css-1rhbuit-multiValue{
+      background-color: #6C757D;
+    }
+
+    .css-12jo7m5{
+      color: #fff;
+    }
 `;
 
 export const ButtonModal = styled.button`

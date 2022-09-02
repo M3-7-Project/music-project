@@ -3,6 +3,8 @@ import CreateMusic from "../../components/ModalCreateMusic";
 import ModalSingle from "../../components/ModalCreateSingle";
 import DeleteMusic from "../../components/ModalDeleteMusic";
 import EditAlbum from "../../components/ModalEditAlbum";
+import EditProducer from "../../components/ModalEditProducer";
+import EditProfile from "../../components/ModalEditProfile";
 import EditSingle from "../../components/ModalEditSingle";
 
 const ModalTest = () => {
@@ -14,6 +16,8 @@ const ModalTest = () => {
       <EditAlbum/>
       <CreateMusic/>
       <DeleteMusic/>
+      <EditProfile/>
+      <EditProducer/>
     </>
   );
 };
