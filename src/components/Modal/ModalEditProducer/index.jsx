@@ -2,14 +2,7 @@ import { useState } from "react";
 import ModalExample from "..";
 import Logo from "../../../assets/logoRedonda.svg";
 import { IoMdCloseCircle } from "react-icons/Io";
-import {
-  ButtonCriar,
-  ButtonModal,
-  FormModal,
-  InputModal,
-  SpanModal,
-  TitleModal,
-} from "../ComponentsModal/styles";
+import { ButtonCriar, ButtonModal, FormModal, InputModal, SpanModal, TitleModal } from "../ComponentsModal/styles";
 import Select from "react-select";
 
 const EditProducer = () => {
@@ -47,12 +40,7 @@ const EditProducer = () => {
               <InputModal type="text" placeholder="YouTube" />
               <InputModal type="text" placeholder="Foto do perfil" />
               <SpanModal>error</SpanModal>
-              <Select
-                options={options}
-                isMulti
-                className="basic-multi-select"
-                classNamePrefix="select"
-              />
+              <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select" />
               <ButtonCriar>Editar</ButtonCriar>
             </FormModal>
           </div>
