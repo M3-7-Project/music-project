@@ -11,6 +11,7 @@ import {
   TitleModal,
 } from "../ComponentsModal/styles";
 import Select from "react-select";
+import { useForm } from "react-hook-form";
 
 const EditProducer = () => {
   const [isProducer, setIsProducer] = useState(false);
@@ -20,6 +21,24 @@ const EditProducer = () => {
     { value: "teste2", label: "teste2" },
     { value: "teste3", label: "teste3" },
   ];
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const request = (data) => {
+    let newData = {}
+    Object.keys(data).forEach(item => {
+      if(!data[item] === ""){
+        newData = {...newData, item: data[item]}
+      }
+      // console.log(item + " " + data[item])
+    }
+    )
+    console.log(newData)
+  };
 
   return (
     <div>
@@ -34,19 +53,23 @@ const EditProducer = () => {
               </ButtonModal>
             </div>
             <TitleModal>Editar perfil</TitleModal>
-            <FormModal>
-              <InputModal type="text" placeholder="Nome" />
-              <SpanModal>error</SpanModal>
-              <InputModal type="text" placeholder="Nome artístico" />
-              <SpanModal>error</SpanModal>
-              <InputModal type="text" placeholder="Bio" />
-              <SpanModal>error</SpanModal>
-              <InputModal type="text" placeholder="Instagram" />
-              <InputModal type="text" placeholder="Página do facebook" />
-              <InputModal type="text" placeholder="Twitter" />
-              <InputModal type="text" placeholder="YouTube" />
-              <InputModal type="text" placeholder="Foto do perfil" />
-              <SpanModal>error</SpanModal>
+            <FormModal onSubmit={handleSubmit(request)}>
+              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Nome artístico" {...register("artistic_name")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Instagram" {...register("instagram")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Página do facebook" {...register("facebook")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Twitter" {...register("twitter")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="YouTube" {...register("youtube")}/>
+              <SpanModal></SpanModal>
+              <InputModal type="text" placeholder="Foto do perfil" {...register("profile_picture")}/>
+              <SpanModal></SpanModal>
               <Select
                 options={options}
                 isMulti

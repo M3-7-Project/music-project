@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ModalExample from "..";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
@@ -13,12 +14,13 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { userContext } from "../../../contexts/UserContext";
 import { createProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 
 const ModalAlbum = () => {
   const [isAlbum, setIsAlbum] = useState(false);
-  const { token, userId, profileId, parseDate } = useContext(userContext);
+  const { parseDate, productToken, productTokenId, productProfile } =
+    useContext(productsContext);
 
   const schema = yup.object().shape({
     preview: yup.string().required("Música é obrigatório"),
@@ -40,12 +42,19 @@ const ModalAlbum = () => {
     await createProductionRequest(
       {
         ...data,
-        userId: userId,
-        profileId: profileId,
+        userId: productTokenId(),
+        profileId: productProfile(),
         date: parseDate(data.date),
+        type: "album",
+        musics: [],
       },
-      token
-    ).then((res) => console.log(res));
+      productToken()
+    )
+      .then((res) => {
+        console.log(res);
+        toast.success("Álbum criado com sucesso!");
+      })
+      .catch(() => toast.error("Ocorreu um erro"));
   };
 
   return (

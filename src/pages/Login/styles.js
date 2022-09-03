@@ -1,17 +1,30 @@
 import styled from "styled-components";
+import loginImg from "../../assets/loginImage.jpg";
 
 export const LoginStyled = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding: 0 1rem;
+
   width: 100vw;
   height: 100vh;
-  background-color: #212529;
 
-  section {
-    width: 100%;
-    height: 100%;
+  background: url(${loginImg});
+  background-size: cover;
+
+  .loginFormSection {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    padding: 2rem;
+    box-shadow: 0 100% 40px 0 white;
+
+    background-color: var(--grey-00);
 
     div {
-      width: 40%;
       height: 100%;
       display: flex;
       align-items: center;
@@ -23,8 +36,6 @@ export const LoginStyled = styled.div`
       }
 
       h2 {
-        width: 25rem;
-        max-width: 100%;
         font-weight: 500;
         font-size: 1.375rem;
         color: #ffffff;
@@ -42,17 +53,23 @@ export const LoginStyled = styled.div`
         cursor: pointer;
       }
     }
+  }
 
-    div + div {
-      display: block;
-      width: 60%;
-      height: 100%;
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        margin: 0;
-      }
+  @media screen and (min-width: 900px) {
+    justify-content: initial;
+    padding: initial;
+
+    .loginFormSection {
+      width: 35rem;
+    }
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 900px) {
+    padding: initial;
+
+    .loginFormSection {
+      width: 30rem;
+      padding: 3rem;
     }
   }
 `;

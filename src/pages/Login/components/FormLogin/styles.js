@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const FormStyled = styled.form`
-  width: 25rem;
+  width: 100%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   input {
     width: 100%;
     height: 2.5rem;
+    color: var(--grey-03);
 
     background-color: #272c31;
     border: none;

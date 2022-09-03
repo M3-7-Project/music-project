@@ -1,19 +1,18 @@
-import { createContext, useEffect } from "react";
+import { createContext } from "react";
 
 export const userContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const token = localStorage.getItem("@onflow:token");
-  const userId = localStorage.getItem("@onflow:userId");
-  const profileId = localStorage.getItem("@onflow:profileId");
-
-  const parseDate = (data) => {
-    const date = data.split("-");
-    return Date.parse(new Date(date[0], date[1], date[2]));
+  const isTokenOnStorage = () => {
+    const token = localStorage.getItem("@onflow:token");
+    if (token === null) {
+      return false;
+    }
+    return true;
   };
 
   return (
-    <userContext.Provider value={{ token, userId, profileId, parseDate }}>
+    <userContext.Provider value={{ isTokenOnStorage }}>
       {children}
     </userContext.Provider>
   );

@@ -14,9 +14,14 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { updateProductionRequest } from "../../../services/api";
+import { useContext } from "react";
+import { productsContext } from "../../../contexts/ProductsContext";
+import toast from "react-hot-toast";
 
-const EditAlbum = () => {
+const EditAlbum = ({ id }) => {
   const [isEditAlbum, setEditAlbum] = useState(false);
+  const { productToken, parseDate } = useContext(productsContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
@@ -33,8 +38,23 @@ const EditAlbum = () => {
     resolver: yupResolver(schema),
   });
 
-  const request = (data) => {
-    console.log(data);
+  const request = async (data) => {
+    await updateProductionRequest(
+      id,
+      {
+        ...data,
+        date: parseDate(data.date),
+      },
+      productToken()
+    )
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Álbum editado com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (
@@ -51,13 +71,21 @@ const EditAlbum = () => {
             </div>
             <TitleModal>Editar Álbum</TitleModal>
             <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <InputModal
+                type="text"
+                placeholder="Nome"
+                {...register("name")}
+              />
               <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" {...register("date")}/>
+              <InputModal type="date" {...register("date")} />
               <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <InputModal type="text" placeholder="Bio" {...register("bio")} />
               <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal type="text" placeholder="Imagem de capa" {...register("image")}/>
+              <InputModal
+                type="text"
+                placeholder="Imagem de capa"
+                {...register("image")}
+              />
               <SpanModal>{errors.image?.message}</SpanModal>
               <div>
                 <ButtonCriar type="submit">Editar</ButtonCriar>
