@@ -1,51 +1,33 @@
-import React, { useState } from "react";
-import Logo from '../../assets/logo.svg';
-
-import { Container, Content, FormContainer, LoadingModal, ProfileContainer } from './styles';
-import MusicianForm from "./components/MusicianForm";
-import ListenerForm from "./components/ListenerForm";
+import {} from './styles';
 
 const Register = () => {
+    const schema = yup.object().shape({
+        /* 
+        MODELO DE SHAPE
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [profile, setProfile] = useState('musician');
+        example: yup.string().required('Exemplo obrigatório'), 
+        */
+    })
 
-    function handleProfile(e) {
-        setProfile(e.target.value);
-    }
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     return (
         <>
-            {isLoading && <LoadingModal>Carregando...</LoadingModal>}
-            <Container>
-                <Content>
-                    <FormContainer>
-                        <img src={Logo}></img>
-                        <h2>Criar uma nova conta</h2>
+            {/*
+            MODELO DE FORM
 
-                        <ProfileContainer>
-                            <label htmlFor='profile'>Qual o seu perfil?</label>
-                            <select
-                                name='profile'
-                                id='profile'
-                                className='styled-input'
-                                value={profile}
-                                onChange={handleProfile}
-                            >
-                                <option value='musician'>Músico</option>
-                                <option value='listener'>Ouvinte</option>
-                            </select>
-                        </ProfileContainer>
-                        
-                        {
-                            profile === 'musician' ?
-                                <MusicianForm setIsLoading={setIsLoading} />
-                                :
-                                <ListenerForm setIsLoading={setIsLoading} />
-                        }
-                    </FormContainer>
-                </Content>
-            </Container>
+            <form onSubmit={handleSubmit(onSubmitFunction)}>
+                <label htmlFor="example">Exemplo</label>
+                <input 
+                    type="text"
+                    id="example"
+                    {...register('example')}
+                />
+                <span>{errors.example?.message}</span>
+            </form>
+            */}
         </>
     )
 }

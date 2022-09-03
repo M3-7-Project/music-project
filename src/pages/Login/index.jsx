@@ -1,20 +1,40 @@
-import { LoginStyled } from "./styles";
-import FormLogin from "./components/FormLogin";
-import Logo from "../../assets/Subtract.svg";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup'
+
+import { } from './styles';
 
 const Login = () => {
-  return (
-    <LoginStyled>
-      <section className="loginFormSection">
-        <div>
-          <img src={Logo} alt="" />
-          <h2>Tenha acesso a essa experiência!</h2>
-          <FormLogin />
-          <a>Ainda não possui conta?</a>
-        </div>
-      </section>
-    </LoginStyled>
-  );
-};
+
+    const schema = yup.object().shape({
+        /* 
+        MODELO DE SHAPE
+
+        example: yup.string().required('Exemplo obrigatório'), 
+        */
+    })
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    return (
+        <>
+            {/*
+            MODELO DE FORM
+
+            <form onSubmit={handleSubmit(onSubmitFunction)}>
+                <label htmlFor="example">Exemplo</label>
+                <input 
+                    type="text"
+                    id="example"
+                    {...register('example')}
+                />
+                <span>{errors.example?.message}</span>
+            </form>
+            */}
+        </>
+    )
+}
 
 export default Login;
