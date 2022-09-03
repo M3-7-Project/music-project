@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Logo from '../../assets/logo.svg';
 
-import { Container, Content, FormContainer, ProfileContainer } from './styles';
+import { Container, Content, FormContainer, LoadingModal, ProfileContainer } from './styles';
 import MusicianForm from "./components/MusicianForm";
 import ListenerForm from "./components/ListenerForm";
 
 const Register = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const [profile, setProfile] = useState('musician');
 
     function handleProfile(e) {
@@ -15,6 +16,7 @@ const Register = () => {
 
     return (
         <>
+            {isLoading && <LoadingModal>Carregando...</LoadingModal>}
             <Container>
                 <Content>
                     <FormContainer>
@@ -37,9 +39,9 @@ const Register = () => {
                         
                         {
                             profile === 'musician' ?
-                                <MusicianForm />
+                                <MusicianForm setIsLoading={setIsLoading} />
                                 :
-                                <ListenerForm />
+                                <ListenerForm setIsLoading={setIsLoading} />
                         }
                     </FormContainer>
                 </Content>
