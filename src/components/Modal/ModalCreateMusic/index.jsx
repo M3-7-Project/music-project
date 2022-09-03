@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ModalExample from "..";
 import { IoMdCloseCircle } from "react-icons/Io";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
@@ -10,11 +13,9 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { getProductionRequest } from "../../../services/api";
 
-const CreateMusic = () => {
+const CreateMusic = ({id}) => {
   const [isMusic, setIsMusic] = useState(false);
 
   const schema = yup.object().shape({
@@ -29,7 +30,9 @@ const CreateMusic = () => {
     resolver: yupResolver(schema),
   });
 
-  const request = (data) => {
+  const request = async (data, id) => {
+    await getProductionRequest(3)
+    .then(res => console.log(res))
     console.log(data);
   };
 

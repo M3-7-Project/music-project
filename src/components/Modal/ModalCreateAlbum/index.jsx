@@ -1,6 +1,9 @@
-import { useState } from "react";
-import ModalExample from "..";
+import { useContext, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/Io";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import ModalExample from "..";
 import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
@@ -10,19 +13,19 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { userContext } from "../../../contexts/UserContext";
+import { createProductionRequest } from "../../../services/api";
 
 const ModalAlbum = () => {
   const [isAlbum, setIsAlbum] = useState(false);
+  const { token, userId, profileId, parseDate } = useContext(userContext);
 
   const schema = yup.object().shape({
-    music: yup.string().required("Música é obrigatório"),
+    preview: yup.string().required("Música é obrigatório"),
     name: yup.string().required("Nome é obrigatório"),
     date: yup.string().required("Data é obrigatório"),
     bio: yup.string().required("Bio é obrigatório"),
-    image: yup.string().required("Imagem é obrigatório"),
+    cover: yup.string().required("Imagem é obrigatório"),
   });
 
   const {
@@ -33,9 +36,17 @@ const ModalAlbum = () => {
     resolver: yupResolver(schema),
   });
 
-  const request = (data) => {
-    console.log(data)
-  }
+  const request = async (data) => {
+    await createProductionRequest(
+      {
+        ...data,
+        userId: userId,
+        profileId: profileId,
+        date: parseDate(data.date),
+      },
+      token
+    ).then((res) => console.log(res));
+  };
 
   return (
     <div>
@@ -51,16 +62,28 @@ const ModalAlbum = () => {
             </div>
             <TitleModal>Criar Álbum</TitleModal>
             <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal type="text" placeholder="Música" {...register("music")}/>
-              <SpanModal>{errors.music?.message}</SpanModal>
-              <InputModal type="text" placeholder="Nome" {...register("name")}/>
+              <InputModal
+                type="text"
+                placeholder="Música"
+                {...register("preview")}
+              />
+              <SpanModal>{errors.preview?.message}</SpanModal>
+              <InputModal
+                type="text"
+                placeholder="Nome"
+                {...register("name")}
+              />
               <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" name="" id="" {...register("date")}/>
+              <InputModal type="date" name="" id="" {...register("date")} />
               <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")}/>
+              <InputModal type="text" placeholder="Bio" {...register("bio")} />
               <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal type="text" placeholder="Imagem" {...register("image")}/>
-              <SpanModal>{errors.image?.message}</SpanModal>
+              <InputModal
+                type="text"
+                placeholder="Imagem"
+                {...register("cover")}
+              />
+              <SpanModal>{errors.cover?.message}</SpanModal>
               <ButtonCriar type="submit">Criar</ButtonCriar>
             </FormModal>
           </div>
