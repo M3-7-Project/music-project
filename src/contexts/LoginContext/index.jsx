@@ -14,7 +14,7 @@ export const LoginProvider = ({ children }) => {
 
       localStorage.clear();
       localStorage.setItem("@onflow:token", response.data.accessToken);
-      localStorage.setItem("@onflow:userdata", response.data.user);
+      localStorage.setItem("@onflow:user", JSON.stringify(response.data.user));
 
       navigate("/dashboard", { replace: true });
       toast.success("Login bem-sucedido.");

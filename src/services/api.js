@@ -5,6 +5,11 @@ const flowApi = axios.create({
   timeout: 10000,
 });
 
+export const userRequest = async (token, id) => {
+  const response = await flowApi.get(`/users/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+  return response;
+};
+
 export const registerRequest = async (registerData) => {
   const response = await flowApi.post("/register/", { ...registerData });
   return response;

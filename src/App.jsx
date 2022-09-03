@@ -1,7 +1,7 @@
-import Routes from './routes'
-import { Toaster } from 'react-hot-toast'
+import Routes from "./routes";
+import { Toaster } from "react-hot-toast";
 
-import { Global } from './styles/global'
+import { Global } from "./styles/global";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Toaster />
       <Routes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
