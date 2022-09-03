@@ -1,12 +1,11 @@
-import { LoginProvider } from "../LoginContext";
-import { UserProvider } from "../UserContext";
+import { UserProvider } from "../UserContext"
 
-const Providers = ({ children }) => {
-  return (
-    <UserProvider>
-      <LoginProvider>{children}</LoginProvider>
-    </UserProvider>
-  );
-};
+const Providers = ({children}) => {
+    return (
+        <UserProvider>
+            {children}
+        </UserProvider>
+    )
+}
 
 export default Providers;

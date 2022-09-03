@@ -1,13 +1,9 @@
-import {ModalStyled } from "./styles";
+import {} from './styles'
 
-const ModalExample = ({children }) => {
-  return (
-        <ModalStyled>
-          <div>
-            <div>{children}</div>
-          </div>
-        </ModalStyled>
-  );
-};
+const Modal = () => {
+    return (
+        <></>
+    )
+}
 
-export default ModalExample;
+export default Modal;
