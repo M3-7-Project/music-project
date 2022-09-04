@@ -14,7 +14,7 @@ const Header = () => {
                 <HeaderContainer>
                     <img src="../src/assets/header-logo.svg"/>
                     <div>
-                        <a onClick={() => handleRedirect('user-register')}>Cadastro</a>
+                        <a onClick={() => handleRedirect('register')}>Cadastro</a>
                         <a onClick={() => handleRedirect('login')}>Login</a>
                     </div>
                 </HeaderContainer>
