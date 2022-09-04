@@ -17,6 +17,10 @@ export const MusicianFormStyles = styled(DefaultForm)`
         margin-left: 2px;
         margin-right: 10px;
     }
+
+    button, a:hover {
+        cursor: pointer;
+    }
     
     #multi-select {
         border-radius: 8px 0 0 8px;

@@ -1,14 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { createProfileRequest, registerRequest } from '../../../../services/api';
-import { LoadingModal } from '../../styles';
 
 import { Button, MusicianFormStyles } from "./styles";
 
 const MusicianForm = ({setIsLoading}) => {
+
+    const navigate = useNavigate();
 
     const schema = yup.object().shape({
         name: yup.string().required('Nome obrigatório'),
@@ -30,6 +31,7 @@ const MusicianForm = ({setIsLoading}) => {
     });
 
     const onSubmit = ( data ) => {
+        setIsLoading(true);
         const registerRequestObj = createRegisterRequestObj(data);
         registerRequest(registerRequestObj)
             .then((res) => {
@@ -37,13 +39,17 @@ const MusicianForm = ({setIsLoading}) => {
                 const profileRequestObj = createProfileRequestObj(data, id);
                 createProfileRequest(profileRequestObj, accessToken)
                     .then((res) => {
-                        handleSuccesToast()
+                        setIsLoading(false);
+                        handleSuccesToast();
+                        navigate('/login');
                     })
                     .catch((err) => {
+                        setIsLoading(false);
                         handleFailToast();
                     })
             })
             .catch((err) => {
+                setIsLoading(false);
                 handleFailToast();
             })
     }
@@ -133,7 +139,9 @@ const MusicianForm = ({setIsLoading}) => {
 
                 <Button>Cadastrar</Button>
 
-                <a>Já possui conta?</a>
+                <a
+                    onClick={() => navigate('/login')}
+                >Já possui conta?</a>
 
             </MusicianFormStyles>
         </>
