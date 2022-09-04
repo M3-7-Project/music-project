@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Logo from '../../assets/logo.svg';
 
 import { Container, Content, FormContainer, LoadingModal, ProfileContainer } from './styles';
-import MusicianForm from "./components/MusicianForm";
-import ListenerForm from "./components/ListenerForm";
+import MusicianForm from './components/MusicianForm';
+import ListenerForm from './components/ListenerForm';
 
 const Register = () => {
 

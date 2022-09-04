@@ -1,14 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { createProfileRequest, registerRequest } from '../../../../services/api';
-import { LoadingModal } from '../../styles';
 
-import { Button, MusicianFormStyles } from "./styles";
+import { Button, MusicianFormStyles } from '../MusicianForm/styles';
 
 const ListenerForm = ({setIsLoading}) => {
+
+    const navigate = useNavigate();
 
     const schema = yup.object().shape({
         name: yup.string().required('Nome obrigatório'),
@@ -32,7 +33,8 @@ const ListenerForm = ({setIsLoading}) => {
                 createProfileRequest(profileRequestObj, accessToken)
                     .then((res) => {
                         setIsLoading(false);
-                        handleSuccesToast()
+                        handleSuccesToast();
+                        navigate('/login');
                     })
                     .catch((err) => {
                         setIsLoading(false);
@@ -84,24 +86,24 @@ const ListenerForm = ({setIsLoading}) => {
     return (
         <>
             <MusicianFormStyles onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" id="name" className="styled-input" placeholder="Nome" {...register('name')} />
+                <input type='text' id='name' className='styled-input' placeholder='Nome' {...register('name')} />
                 <span>{errors.name?.message}</span>
 
-                <input type="text" id="email" className="styled-input" placeholder="E-mail" {...register('email')} />
+                <input type='text' id='email' className='styled-input' placeholder='E-mail' {...register('email')} />
                 <span>{errors.email?.message}</span>
 
-                <input type="password" id="password" className="styled-input" placeholder="Senha" {...register('password')} />
+                <input type='password' id='password' className='styled-input' placeholder='Senha' {...register('password')} />
                 <span>{errors.password?.message}</span>
 
-                <input type="password" id="confirm-password" className="styled-input" placeholder="Confirme sua senha" {...register('confirmPassword')} />
+                <input type='password' id='confirm-password' className='styled-input' placeholder='Confirme sua senha' {...register('confirmPassword')} />
                 <span>{errors.confirmPassword?.message}</span>
 
-                <input type="text" id="image" className="styled-input" placeholder="Foto de perfil" {...register('image')} />
+                <input type='text' id='image' className='styled-input' placeholder='Foto de perfil' {...register('image')} />
                 <span></span>
 
                 <Button>Cadastrar</Button>
 
-                <a>Já possui conta?</a>
+                <Link to='/login'>Já possui conta?</Link>
 
             </MusicianFormStyles>
         </>
