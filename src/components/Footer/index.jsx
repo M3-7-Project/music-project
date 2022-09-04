@@ -3,7 +3,7 @@ import CircleButton from '../CircleButton/index'
 import Imagem from '../../assets/loginImage.jpg'
 import { BsFillPlayFill , BsHeart, BsSkipBackwardFill, BsSkipForwardFill, BsPauseFill} from "react-icons/bs";
 import { useContext } from 'react';
-import { MusicContext } from '../../contexts/UserContext/MusicContext';
+import { MusicContext } from '../../contexts/MusicContext/MusicContext';
 
 
 const Footer = () => {
