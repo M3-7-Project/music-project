@@ -14,9 +14,14 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { updateProductionRequest } from "../../../services/api";
+import { useContext } from "react";
+import { productsContext } from "../../../contexts/ProductsContext";
+import toast from "react-hot-toast";
 
-const EditSingle = () => {
+const EditSingle = ({ id }) => {
   const [isEditSingle, setIsEdit] = useState(false);
+  const { productToken, parseDate } = useContext(productsContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
@@ -32,8 +37,23 @@ const EditSingle = () => {
     resolver: yupResolver(schema),
   });
 
-  const request = (data) => {
-    console.log(data)
+  const request = async (data) => {
+    await updateProductionRequest(
+      id,
+      {
+        ...data,
+        date: parseDate(data.date),
+      },
+      productToken()
+    )
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Single editado com sucesso");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (

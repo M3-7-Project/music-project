@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { userContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const ProtectedRoutes = () => {
-  const { isTokenOnStorage } = useContext(userContext);
+  const { isTokenExistent, isFetching } = useContext(UserContext);
 
-  const isToken = isTokenOnStorage();
-
-  if (!isToken) {
+  if (!isTokenExistent && !isFetching) {
     return <Navigate to="/" />;
   }
-  return <Outlet />;
+  if (!isFetching) {
+    return <Outlet />;
+  }
 };
 
 export default ProtectedRoutes;

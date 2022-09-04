@@ -1,14 +1,15 @@
-import { UserProvider } from "../UserContext"
-import { MusicProvider } from "../UserContext/MusicContext";
+import { LoginProvider } from "../LoginContext";
+import { ProductsProvider } from "../ProductsContext";
+import { UserProvider } from "../UserContext";
 
-const Providers = ({children}) => {
-    return (
-        <UserProvider>
-            <MusicProvider>
-                {children}
-            </MusicProvider>
-        </UserProvider>
-    )
-}
+const Providers = ({ children }) => {
+  return (
+    <UserProvider>
+      <LoginProvider>
+        <ProductsProvider>{children}</ProductsProvider>
+      </LoginProvider>
+    </UserProvider>
+  );
+};
 
 export default Providers;
