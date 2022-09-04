@@ -1,8 +1,9 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { DarkTheme } from "./theme";
 
 export const Global = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    h1, h2, h3, h4, h5, h6, p, input, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
     del, dfn, em, img, ins, kbd, q, s, samp,
     small, strike, strong, sub, sup, tt, var,
@@ -22,16 +23,33 @@ export const Global = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
     }
-    article, aside, details, figcaption, figure, 
-    footer, header, hgroup, menu, nav, section {
-        display: block;
+    html{
+        height: 100%;
     }
     body {
+        min-height: 100%;
         line-height: 1;
         font-family: 'Poppins', sans-serif;
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #212529;
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-image: linear-gradient(180deg, #D0368A 0%, #708AD4 99%);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        }
     }
     body, input {
         font-family: 'Poppins', sans-serif;
+    }
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
     }
     ol, ul {
         list-style: none;
@@ -47,5 +65,8 @@ export const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    :root{
+        ${DarkTheme}
     }
 `;

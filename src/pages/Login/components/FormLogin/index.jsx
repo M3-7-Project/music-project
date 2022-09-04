@@ -3,10 +3,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { FormStyled } from "./styles";
+import Button from "../../../../components/Button";
+import { useContext } from "react";
+import { LoginContext } from "../../../../contexts/LoginContext";
 
 const FormLogin = () => {
+  const { handleLogin } = useContext(LoginContext);
+
   const schema = yup.object().shape({
-    email: yup.string().required("Email obrigatório"),
+    email: yup.string().required("Email obrigatório").email("Insira um email válido."),
     password: yup.string().required("Senha obrigatória"),
   });
 
@@ -18,27 +23,17 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  const requestLogin = (data) => {
-    console.log(data);
+  const doLogin = (data) => {
+    handleLogin(data);
   };
 
   return (
-    <FormStyled onSubmit={handleSubmit(requestLogin)}>
-      <input
-        type="text"
-        id="email"
-        placeholder="E-mail"
-        {...register("email")}
-      />
+    <FormStyled onSubmit={handleSubmit(doLogin)}>
+      <input type="text" id="email" placeholder="E-mail" {...register("email")} />
       <span>{errors.email?.message}</span>
-      <input
-        type="password"
-        id="password"
-        placeholder="Senha"
-        {...register("password")}
-      />
+      <input type="password" id="password" placeholder="Senha" {...register("password")} />
       <span>{errors.password?.message}</span>
-      <button type="submit">Login</button>
+      <Button type="submit" content="Login" />
     </FormStyled>
   );
 };
