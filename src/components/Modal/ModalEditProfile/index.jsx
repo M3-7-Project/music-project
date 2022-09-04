@@ -9,7 +9,7 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCloseCircle } from "react-icons/Io";
 
 const EditProfile = () => {
   const [isProfile, setIsProfile] = useState(false);

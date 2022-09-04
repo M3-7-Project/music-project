@@ -1,4 +1,4 @@
-import {Player, Img, Button, MusicNavigate, MusicBar, MusicTimer, Constrols} from './styles'
+import {Player, ContentPlayer, Img, Button, MusicNavigate, MusicBar, CircleNavigate, MusicTimer, TimerDiv, Constrols} from './styles'
 import CircleButton from '../CircleButton/index'
 import Imagem from '../../assets/loginImage.jpg'
 import { BsFillPlayFill , BsHeart, BsSkipBackwardFill, BsSkipForwardFill, BsPauseFill} from "react-icons/bs";
@@ -8,18 +8,23 @@ import { MusicContext } from '../../contexts/UserContext/MusicContext';
 
 const Footer = () => {
 
-    const {audioElemt, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext} = useContext(MusicContext)
+    const {audioElemt, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext, toMinute} = useContext(MusicContext)
 
     return (
         <Player>
             <Img src={Imagem} alt=''></Img>
-            <div>
+            <ContentPlayer>
                 <h4>Nome da música</h4>
                 <audio src={currentMusic} ref={audioElemt} onTimeUpdate={onPlaying} ></audio>
                 <MusicTimer>
                     <MusicNavigate onClick={changeTime} ref={musicTime}>
                         <MusicBar width={progress.progress || 0}/>
+                        { progress.progress > 0 ? <CircleNavigate/> : <></>}
                     </MusicNavigate>
+                    <TimerDiv>
+                        <p>{toMinute( progress.time)}</p>
+                        <p>{toMinute(progress.length)}</p>
+                    </TimerDiv>
                 </MusicTimer>
                 <Constrols>
                     <Button onClick={skipBack}>
@@ -38,7 +43,7 @@ const Footer = () => {
                         <BsSkipForwardFill color='var(--grey-03)' size={24}/>
                     </Button>
                 </Constrols>
-            </div>
+            </ContentPlayer>
             <CircleButton radius={50}>
                 <BsHeart color='var(--grey-03)' size={24}/>
             </CircleButton>

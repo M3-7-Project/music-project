@@ -10,6 +10,7 @@ export const MusicProvider = ({children}) => {
     const [currentMusic, SetCurrentMusic] = useState(musics[0])
     const [progress, setProgress] = useState({
         progress: 0,
+        time: 0,
         length: 0
     })
 
@@ -29,6 +30,7 @@ export const MusicProvider = ({children}) => {
 
         const music = {
             progress: (currentTime/duration) * 100,
+            time: currentTime,
             length: duration
         }
 
@@ -54,7 +56,7 @@ export const MusicProvider = ({children}) => {
         audioElemt.current.currentTime = 0
         setTimeout(()=> {
             audioElemt.current.play()
-        }, 10)
+        }, 1)
     }
 
     const skipNext = () => {
@@ -65,12 +67,24 @@ export const MusicProvider = ({children}) => {
         audioElemt.current.currentTime = 0
         setTimeout(()=> {
             audioElemt.current.play()
-        }, 10)
+        }, 1)
+    }
+
+    const toMinute = (number) => {
+        if(number){
+            const toSeconds = Math.round(number)
+            const minutes = Math.floor(toSeconds/60)
+
+            const seconds = toSeconds-(60*minutes)
+
+           return seconds<10 ? `${minutes}:0${seconds}` :`${minutes}:${seconds}`
+        }
+        return '0:00'
     }
     
 
     return (
-        <MusicContext.Provider value={{audioElemt, musics, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext}}>
+        <MusicContext.Provider value={{audioElemt, musics, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext, toMinute}}>
             {children}
         </MusicContext.Provider>
     )

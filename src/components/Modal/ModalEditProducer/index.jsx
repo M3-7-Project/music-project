@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalExample from "..";
 import Logo from "../../../assets/logoRedonda.svg";
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCloseCircle } from "react-icons/Io";
 import { ButtonCriar, ButtonModal, FormModal, InputModal, SpanModal, TitleModal } from "../ComponentsModal/styles";
 import Select from "react-select";
 
