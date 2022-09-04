@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ModalExample from "..";
 import { IoMdCloseCircle } from "react-icons/Io";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,
@@ -10,12 +13,17 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import {
+  getProductionRequest,
+  updateProductionRequest,
+} from "../../../services/api";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { productsContext } from "../../../contexts/ProductsContext";
 
-const CreateMusic = () => {
+const CreateMusic = ({ id }) => {
   const [isMusic, setIsMusic] = useState(false);
+  const { productToken } = useContext(productsContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
@@ -29,8 +37,24 @@ const CreateMusic = () => {
     resolver: yupResolver(schema),
   });
 
-  const request = (data) => {
-    console.log(data);
+  const request = async (data) => {
+    const musics = await getProductionRequest(id).then((res) => res.data.musics);
+
+    await updateProductionRequest(
+      id,
+      {
+        musics: [...musics, data.name],
+      },
+      productToken()
+    )
+      .then((res) => {
+        console.log(res);
+        toast.success("Música adiconada com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (

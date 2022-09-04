@@ -30,8 +30,8 @@ export const getProfileRequest = async (id = "", params = {}) => {
   return response;
 };
 
-export const updateProfileRequest = async (id, token) => {
-  const response = await flowApi.post(`/profiles/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+export const updateProfileRequest = async (id, updateData, token) => {
+  const response = await flowApi.patch(`/profiles/${id}`, updateData,{ headers: { Authorization: `Bearer ${token}` }});
   return response;
 };
 

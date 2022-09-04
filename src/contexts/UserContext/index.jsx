@@ -44,5 +44,9 @@ export const UserProvider = ({ children }) => {
     fetchUser(id);
   }, []);
 
-  return <UserContext.Provider value={{ isTokenExistent, isFetching, userInfo }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ isTokenExistent, isFetching, userInfo }}>
+      {children}
+    </UserContext.Provider>
+  );
 };

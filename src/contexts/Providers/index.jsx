@@ -1,10 +1,13 @@
 import { LoginProvider } from "../LoginContext";
+import { ProductsProvider } from "../ProductsContext";
 import { UserProvider } from "../UserContext";
 
 const Providers = ({ children }) => {
   return (
     <UserProvider>
-      <LoginProvider>{children}</LoginProvider>
+      <LoginProvider>
+        <ProductsProvider>{children}</ProductsProvider>
+      </LoginProvider>
     </UserProvider>
   );
 };
