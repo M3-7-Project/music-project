@@ -2,7 +2,7 @@ import { FooterContainer, FooterSection } from "./styles"
 import { AiFillInstagram } from 'react-icons/ai'
 import { BsFacebook, BsTwitter, BsYoutube } from 'react-icons/bs'
 
-const Footer = () => {
+const LandingFooter = () => {
   return (
     <>
       <FooterSection>
@@ -21,4 +21,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default LandingFooter
