@@ -6,10 +6,17 @@ export const MainContainer = styled.div`
   justify-content: space-between;
   margin: 90px auto;
   align-items: center;
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 50%;
+    margin-left: -201px;
+  }
 `
 
 export const TextContainer = styled.div`
-  width: 40%;
+  width: 50%;
   z-index: 1;
   color: #F8F9FA;
   font-family: 'Roboto';
@@ -31,12 +38,13 @@ export const TextContainer = styled.div`
 `
 
 export const BaloonsContainer = styled.div`
-  width: 40%;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   margin: 0 auto;
   gap: 57px;
+  z-index: 1;
 
   div {
     width: 370px;

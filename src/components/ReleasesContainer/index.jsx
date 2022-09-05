@@ -1,6 +1,6 @@
 import React from 'react'
 import { ArrowDiv, Container, Title } from './styles';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
 const ReleasesContainer = () => {
   
@@ -9,8 +9,8 @@ const ReleasesContainer = () => {
       <div>
         <Title>Nossos lançamentos mais aguardados</Title>
         <ArrowDiv>
-          <button><AiOutlineArrowLeft/></button>
-          <button><AiOutlineArrowRight/></button>
+          <button><AiOutlineLeft/></button>
+          <button><AiOutlineRight/></button>
         </ArrowDiv>
       </div>
 
