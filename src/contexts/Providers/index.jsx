@@ -7,13 +7,13 @@ import { UserProvider } from "../UserContext";
 const Providers = ({ children }) => {
   return (
     <UserProvider>
-      <LoginProvider>
-        <LoadingProvider>
+      <LoadingProvider>
+        <LoginProvider>
           <ProductsProvider>
             <MusicProvider>{children}</MusicProvider>
           </ProductsProvider>
-        </LoadingProvider>
-      </LoginProvider>
+        </LoginProvider>
+      </LoadingProvider>
     </UserProvider>
   );
 };

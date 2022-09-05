@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 export const LoadingContext = createContext({});
 
 export const LoadingProvider = ({ children }) => {
-  const [isLoanding, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
-    <LoadingContext.Provider value={{ isLoanding, setIsLoading }}>
+    <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
       {children}
     </LoadingContext.Provider>
   );

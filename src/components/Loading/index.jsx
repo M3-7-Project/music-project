@@ -3,9 +3,9 @@ import { LoadingContext } from "../../contexts/LoandingContext";
 import { LoadingStyled } from "./styles";
 
 const Loading = () => {
-  const { inLoanding } = useContext(LoadingContext);
+  const { isLoading } = useContext(LoadingContext);
   return (
-    inLoanding && (
+    isLoading && (
       <LoadingStyled>
         <div class="container">
           <div class="column column1"></div>
