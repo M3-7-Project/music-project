@@ -3,13 +3,20 @@ import styled from "styled-components";
 export const Player = styled.footer`
     width: 100vw;
     height: 150px;
-    background-color: #272C31;
+    background-color: var(--grey-01);
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
     bottom: 0;
     padding:  0 90px;
+
+    @media screen and (max-width:800px){
+        &{
+            padding:  0 25px;
+            height: 80px;
+        }
+    }
 `
 export const ContentPlayer = styled.div`
     display: flex;
@@ -22,12 +29,27 @@ export const ContentPlayer = styled.div`
         font-size: 20px;
         margin-bottom: 10px;
     }
+
+    @media screen and (max-width:800px){
+        & h4{
+            font-size: 14px;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+    }
 `
 
 export const Img = styled.img`
     height: 100px;
     width: 100px;
     border-radius : 50%;
+
+    @media screen and (max-width:800px){
+        &{
+            height: 55px;
+            width: 55px;
+        }
+    }
 `
 
 export const Button = styled.button`
@@ -37,6 +59,20 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    & svg {
+        height: 20px;
+        width: 20px;
+        color: var(--grey-03);
+    }
+
+    @media screen and (max-width:800px){
+
+        & svg {
+            height: 15px;
+            width: 15px;
+        }
+    }
 `
 export const MusicTimer = styled.div`
     display: flex;
@@ -51,6 +87,12 @@ export const MusicNavigate = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width:1200px){
+        &{
+            width: 50vw;
+        }
+    }
 `
 export const MusicBar = styled.div`
     width: ${({width}) => width}%;
@@ -66,6 +108,13 @@ export const CircleNavigate = styled.div`
     border-radius: 50%;
     position: relative;
     left: -5px;
+
+    @media screen and (max-width:800px){
+        &{
+            height: 8px;
+            width: 8px;
+        }
+    }
 `
 
 export const TimerDiv = styled.div`
@@ -76,11 +125,29 @@ export const TimerDiv = styled.div`
     font-size: 13px;
     font-weight: 500;
     box-sizing: border-box;
+
+    @media screen and (max-width:800px){
+        &{
+            font-size: 10px;
+        }
+    }
 `
 
 export const Constrols = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 10px;
+
+    
+    @media screen and (max-width:800px){
+        &{
+            position: relative;
+            top: -15px;
+        }
+
+        & svg {
+            size: 10px;
+        }
+    }
 `
