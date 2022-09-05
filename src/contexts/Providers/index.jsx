@@ -1,5 +1,5 @@
 import { LoginProvider } from "../LoginContext";
-import { MusicProvider } from "../MusicContext/MusicContext";
+import { MusicProvider } from "../MusicContext/Index";
 import { ProductsProvider } from "../ProductsContext";
 import { UserProvider } from "../UserContext";
 

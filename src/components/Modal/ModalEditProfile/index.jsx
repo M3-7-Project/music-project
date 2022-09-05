@@ -9,7 +9,7 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { IoMdCloseCircle } from "react-icons/Io";
+import { IoMdCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { getProfileRequest, updateProfileRequest } from "../../../services/api";
 import { useContext } from "react";

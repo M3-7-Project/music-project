@@ -17,7 +17,9 @@ export const MusicProvider = ({children}) => {
     const audioElemt = useRef()
 
     useEffect(()=>{
-        isPlaying ? audioElemt.current.play() : audioElemt.current.pause()
+        if (audioElemt.current) {
+            isPlaying ? audioElemt.current.play() : audioElemt.current.pause()
+        }
     }, [isPlaying])
 
     const play = () => {
