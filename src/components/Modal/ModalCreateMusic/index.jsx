@@ -1,10 +1,17 @@
 import { useState } from "react";
-import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/Io";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import ModalExample from "..";
 import * as yup from "yup";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { productsContext } from "../../../contexts/ProductsContext";
+import {
+  getProductionRequest,
+  updateProductionRequest,
+} from "../../../services/api";
 import {
   ButtonCriar,
   ButtonModal,
@@ -13,13 +20,6 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import {
-  getProductionRequest,
-  updateProductionRequest,
-} from "../../../services/api";
-import toast from "react-hot-toast";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
 
 const CreateMusic = ({ id }) => {
   const [isMusic, setIsMusic] = useState(false);
@@ -38,7 +38,9 @@ const CreateMusic = ({ id }) => {
   });
 
   const request = async (data) => {
-    const musics = await getProductionRequest(id).then((res) => res.data.musics);
+    const musics = await getProductionRequest(id).then(
+      (res) => res.data.musics
+    );
 
     await updateProductionRequest(
       id,
@@ -66,7 +68,7 @@ const CreateMusic = ({ id }) => {
             <div>
               <img src={Logo} alt="" />
               <ButtonModal onClick={() => setIsMusic(false)}>
-                <IoMdCloseCircle size={23} />
+                <RiCloseCircleFill size={23} />
               </ButtonModal>
             </div>
             <TitleModal>Adicionar música</TitleModal>

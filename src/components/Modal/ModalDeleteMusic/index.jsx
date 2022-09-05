@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/Io";
 import Logo from "../../../assets/logoRedonda.svg";
+import { productsContext } from "../../../contexts/ProductsContext";
 import { ButtonDelete, ButtonModal } from "../ComponentsModal/styles";
 import {
   getProductionRequest,
   updateProductionRequest,
 } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
 
 const DeleteMusic = ({ id, name }) => {
   const [isDelete, setIsDelete] = useState(false);
@@ -46,7 +46,7 @@ const DeleteMusic = ({ id, name }) => {
             <div>
               <img src={Logo} alt="" />
               <ButtonModal onClick={() => setIsDelete(false)}>
-                <IoMdCloseCircle size={23} />
+                <RiCloseCircleFill size={23} />
               </ButtonModal>
             </div>
             <section>
