@@ -28,7 +28,7 @@ const Footer = () => {
                 </MusicTimer>
                 <Constrols>
                     <Button onClick={skipBack}>
-                        <BsSkipBackwardFill color='var(--grey-03)' size={24}/>
+                        <BsSkipBackwardFill />
                     </Button>
                     <CircleButton radius={50} onClick={play}>
                         {
@@ -40,7 +40,7 @@ const Footer = () => {
                         }  
                     </CircleButton>
                     <Button onClick={skipNext}>
-                        <BsSkipForwardFill color='var(--grey-03)' size={24}/>
+                        <BsSkipForwardFill/>
                     </Button>
                 </Constrols>
             </ContentPlayer>
