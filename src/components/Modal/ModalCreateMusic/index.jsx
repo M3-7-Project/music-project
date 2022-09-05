@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/Io";
+import { IoMdCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
