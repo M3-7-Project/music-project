@@ -6,6 +6,7 @@ export const Container = styled.section`
   margin: 50px auto;
 
   div {
+    width: 100%;
     display: flex;
     justify-content: space-between;
   }
@@ -17,7 +18,7 @@ export const Title = styled.h3`
   color: #FFFFFF;
 `
 
-export const ArrowDiv = styled.div`
+export const ArrowDiv = styled.span`
   display: flex;
   gap: 15px;
 
