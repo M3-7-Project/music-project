@@ -15,4 +15,18 @@ export const ButtonStyle = styled.button`
     font-size: 22;
     font-weight: 500;
     color: var(--grey-03);
+    transition: 0.5s;
+
+    &:hover {
+        background-color: ${({backgroundColor}) => backgroundColor === '--emphasis-0' ? 'var(--emphasis-1)' : 'var(--emphasis-0)'};
+        transform: scale(1.05);
+        transition: 0.5s;
+    }
+
+    @media screen and (max-width:800px){
+        &{
+            height: ${({heigth}) => heigth/1.2}px;
+            width: ${({width}) => width/1.5}px;
+        }
+    }
 `

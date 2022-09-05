@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoMdCloseCircle } from "react-icons/Io";
+import { IoMdCloseCircle } from "react-icons/io";
 import Logo from "../../../assets/logoRedonda.svg";
 import {
   ButtonCriar,

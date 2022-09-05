@@ -3,7 +3,7 @@ import CircleButton from '../CircleButton/index'
 import Imagem from '../../assets/loginImage.jpg'
 import { BsFillPlayFill , BsHeart, BsSkipBackwardFill, BsSkipForwardFill, BsPauseFill} from "react-icons/bs";
 import { useContext } from 'react';
-import { MusicContext } from '../../contexts/MusicContext/MusicContext';
+import { MusicContext } from '../../contexts/MusicContext/Index';
 
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
                 </MusicTimer>
                 <Constrols>
                     <Button onClick={skipBack}>
-                        <BsSkipBackwardFill color='var(--grey-03)' size={24}/>
+                        <BsSkipBackwardFill />
                     </Button>
                     <CircleButton radius={50} onClick={play}>
                         {
@@ -40,7 +40,7 @@ const Footer = () => {
                         }  
                     </CircleButton>
                     <Button onClick={skipNext}>
-                        <BsSkipForwardFill color='var(--grey-03)' size={24}/>
+                        <BsSkipForwardFill/>
                     </Button>
                 </Constrols>
             </ContentPlayer>
