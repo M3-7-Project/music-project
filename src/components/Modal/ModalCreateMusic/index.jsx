@@ -1,6 +1,3 @@
-import ModalExample from "..";
-import { useState } from "react";
-import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ModalExample from "..";
@@ -9,10 +6,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
 import { productsContext } from "../../../contexts/ProductsContext";
-import {
-  getProductionRequest,
-  updateProductionRequest,
-} from "../../../services/api";
+import { RiCloseCircleFill } from "react-icons/ri";
 import {
   ButtonCriar,
   ButtonModal,
@@ -23,8 +17,9 @@ import {
 } from "../ComponentsModal/styles";
 import {
   getProductionRequest,
-  updateProductionRequest,
+  updateProductionRequest
 } from "../../../services/api";
+
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const CreateMusic = () => {
@@ -71,7 +66,7 @@ const CreateMusic = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsMusic(false)}>
-            <IoMdCloseCircle size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Adicionar música</TitleModal>

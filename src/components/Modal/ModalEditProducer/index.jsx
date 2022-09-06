@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ModalExample from "..";
-import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../../assets/logoRedonda.svg";
 import { verification } from "./verification";
 import { productsContext } from "../../../contexts/ProductsContext";

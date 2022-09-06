@@ -6,20 +6,17 @@ import { ProductsProvider } from "../ProductsContext";
 import { UserProvider } from "../UserContext";
 
 const Providers = ({ children }) => {
-
-    <ModalProvider>
-      <UserProvider>
+  <ModalProvider>
+    <UserProvider>
       <LoadingProvider>
         <LoginProvider>
           <ProductsProvider>
             <MusicProvider>{children}</MusicProvider>
           </ProductsProvider>
         </LoginProvider>
-       </LoadingProvider>
-      </UserProvider>
-    </ModalProvider>
-
-  );
+      </LoadingProvider>
+    </UserProvider>
+  </ModalProvider>;
 };
 
 export default Providers;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -67,7 +66,7 @@ const ModalSingle = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsCreateSingle(false)}>
-            <IoMdCloseCircle size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Criar Single</TitleModal>

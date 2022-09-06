@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useContext } from "react";
 import toast from "react-hot-toast";
@@ -44,7 +43,7 @@ const DeleteMusic = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => SetIsDeleteMusic(false)}>
-            <IoMdCloseCircle size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <section>

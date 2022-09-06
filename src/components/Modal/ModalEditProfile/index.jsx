@@ -71,7 +71,7 @@ const EditProfile = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsEditProfile(false)}>
-            <IoMdCloseCircle size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Editar Perfil</TitleModal>

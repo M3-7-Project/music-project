@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -64,7 +63,7 @@ const EditAlbum = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsEditAlbum(false)}>
-            <IoMdCloseCircle size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Editar Álbum</TitleModal>
