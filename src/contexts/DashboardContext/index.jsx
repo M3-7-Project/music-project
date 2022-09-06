@@ -25,7 +25,7 @@ export const DashboardProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await getProductionRequest("", { _embed: "score", _page: productionPage, _limit: 4 });
+      const response = await getProductionRequest("", { _embed: "score", _page: productionPage, _limit: 4, _sort: "id", _order: "desc" });
       sethotProduction(response.data);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ export const DashboardProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await getProfileRequest("", { type: "producer", _order: "desc", _limit: 4 });
+      const response = await getProfileRequest("", { type: "producer", _order: "desc", _limit: 4, _sort: "id" });
       setFeaturedProducers(response.data);
     } catch (error) {
       console.log(error);
@@ -52,7 +52,7 @@ export const DashboardProvider = ({ children }) => {
     }
     try {
       const userId = localStorage.getItem("@onflow:id");
-      const response = await getVoteRequest("", { userId: userId, _order: "desc", _limit: 4 });
+      const response = await getVoteRequest("", { userId: userId, _order: "desc", _limit: 4, _sort: "id" });
 
       const newProductionPromises = response.data.map(async (prodInfo) => {
         const production = await getProductionRequest(prodInfo.productionId);
@@ -70,9 +70,6 @@ export const DashboardProvider = ({ children }) => {
   };
 
   const getProductionBySearch = async (searchInput) => {
-    if (searchedProductions.length > 0) {
-      return;
-    }
     try {
       const response = await getProductionRequest("");
       const filteredProductions = response.data.filter((production) => {
@@ -86,7 +83,7 @@ export const DashboardProvider = ({ children }) => {
 
       const filteredWithProducers = filteredProductions.map(async (production) => {
         const producer = await getProfileRequest(production?.profileId);
-        production.producer = producer;
+        production.producer = producer.data;
         return production;
       });
 
@@ -99,9 +96,6 @@ export const DashboardProvider = ({ children }) => {
   };
 
   const getProducerBySearch = async (searchInput) => {
-    if (searchedProducer.length > 0) {
-      return;
-    }
     try {
       const response = await getAllProfilesByTypeRequest("producer");
       const filteredProducer = response.data.filter((producer) => {

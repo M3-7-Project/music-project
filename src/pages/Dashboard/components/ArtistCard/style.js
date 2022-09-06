@@ -10,15 +10,26 @@ export const ProducerCard = styled.li`
     color: var(--grey-03);
     transition: all 0.3s;
 
-    img {
+    .imageWrapper {
+      width: 180px;
+      height: 180px;
+      overflow: hidden;
       border-radius: 100%;
+    }
+
+    img {
       width: 180px;
       height: 180px;
       object-fit: cover;
+      transition: all 0.3s;
     }
 
     &:hover {
       color: var(--emphasis-1);
+
+      img {
+        transform: scale(110%);
+      }
     }
   }
 `;

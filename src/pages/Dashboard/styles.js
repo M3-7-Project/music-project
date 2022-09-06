@@ -15,10 +15,21 @@ export const DashboardWrapper = styled.div`
 
 export const DashboardHeader = styled.header`
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
   padding: 1rem 5rem;
+
+  @media screen and (max-width: 840px) {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    padding: 1rem;
+    max-width: 100%;
+  }
 `;
 
 export const HeaderNavigation = styled.nav`
@@ -49,6 +60,11 @@ export const HeaderNavigation = styled.nav`
       filter: brightness(135%);
     }
   }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const HeaderNavigationInput = styled.div`
@@ -71,6 +87,12 @@ export const HeaderNavigationInput = styled.div`
       &:focus {
         outline: none;
         border: none;
+      }
+    }
+
+    @media screen and (max-width: 450px) {
+      input {
+        width: 100%;
       }
     }
 
@@ -116,6 +138,10 @@ export const DashboardMain = styled.main`
   flex-direction: column;
   gap: 3rem;
   padding: 2rem 5rem;
+
+  @media screen and (max-width: 580px) {
+    padding: 1rem;
+  }
 `;
 
 export const DashboardHottest = styled.section`
@@ -128,6 +154,12 @@ export const HottestTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 545px) {
+    text-align: center;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 `;
 
 export const ArrowButtonGroup = styled.div`
@@ -148,15 +180,24 @@ export const ArrowButtonGroup = styled.div`
   svg {
     color: var(--grey-03);
   }
+
+  @media screen and (max-width: 545px) {
+    gap: 2rem;
+  }
 `;
 
 export const HottestProductionList = styled.ul`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1.5rem;
 
   list-style: none;
+
+  @media screen and (max-width: 545px) {
+    justify-content: center;
+  }
 `;
 
 export const HottestProductionCard = styled.li`
@@ -169,11 +210,18 @@ export const HottestProductionCard = styled.li`
     width: 180px;
     color: var(--grey-03);
 
-    img {
+    .imageWrapper {
+      width: 180px;
+      height: 180px;
+      overflow: hidden;
       border-radius: 8px;
+    }
+
+    img {
       width: 180px;
       height: 180px;
       object-fit: cover;
+      transition: all 0.3s;
     }
 
     p {
@@ -181,14 +229,25 @@ export const HottestProductionCard = styled.li`
       padding: 0.2rem;
       overflow: hidden;
     }
+
+    &:hover {
+      img {
+        transform: scale(110%);
+      }
+    }
   }
 `;
 
 export const DashboardInfo = styled.section`
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   gap: 2rem;
   color: var(--grey-03);
+
+  @media screen and (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 
 export const VotedMusics = styled.div`
@@ -196,6 +255,14 @@ export const VotedMusics = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 55%;
+
+  @media screen and (max-width: 980px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 545px) {
+    text-align: center;
+  }
 `;
 
 export const VotedMusicList = styled.ul`
@@ -216,6 +283,7 @@ export const VotedMusicList = styled.ul`
   gap: 0.7rem;
 
   small {
+    padding: 0.5rem 0;
     color: #a5a5a5;
     font-size: 0.85rem;
   }
@@ -234,6 +302,8 @@ export const MusicCard = styled.li`
 
   img {
     width: 50px;
+    height: 50px;
+    object-fit: cover;
     border-radius: 8px;
   }
 `;
@@ -291,6 +361,14 @@ export const FeaturedArtists = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 400px;
+
+  @media screen and (max-width: 980px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 545px) {
+    text-align: center;
+  }
 `;
 
 export const ArtistList = styled.ul`
@@ -298,6 +376,10 @@ export const ArtistList = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1.5rem;
+
+  @media screen and (max-width: 545px) {
+    justify-content: center;
+  }
 `;
 
 export const ArtistCard = styled.li`
@@ -308,6 +390,12 @@ export const ArtistCard = styled.li`
     gap: 0.7rem;
     color: var(--grey-03);
     text-decoration: none;
+
+    &:hover {
+      img {
+        transform: scale(110%);
+      }
+    }
   }
 `;
 
@@ -322,6 +410,7 @@ export const ArtistImage = styled.figure`
     width: 100%;
     object-fit: cover;
     height: 100%;
+    transition: all 0.3s;
   }
 `;
 
@@ -334,6 +423,10 @@ export const DashboardSearchProduction = styled.section`
     color: #a5a5a5;
     font-size: 0.85rem;
   }
+
+  @media screen and (max-width: 545px) {
+    text-align: center;
+  }
 `;
 
 export const DashboardSearchArtist = styled.section`
@@ -344,5 +437,9 @@ export const DashboardSearchArtist = styled.section`
   small {
     color: #a5a5a5;
     font-size: 0.85rem;
+  }
+
+  @media screen and (max-width: 545px) {
+    text-align: center;
   }
 `;

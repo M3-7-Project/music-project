@@ -1,24 +1,22 @@
 import { BiPlay } from "react-icons/bi";
-import { MusicButtons, MusicCard, MusicCardDetails, MusicCardInfo } from "../../styles";
 import { Link } from "react-router-dom";
+import { SearchedProductionCard, SearchedProductionDetails, SearchedProductionInfo } from "./styles";
 
 export const ProductionCard = ({ id, cover, name, preview, artist, type }) => {
   return (
-    <MusicCard>
-      <MusicCardInfo>
+    <SearchedProductionCard>
+      <SearchedProductionInfo>
         <Link to={`/${type}/${id}`}>
           <img src={cover} alt={`Imagem do álbum ${name}`} />
           <p>{name}</p>
         </Link>
-      </MusicCardInfo>
-      <MusicCardDetails>
+      </SearchedProductionInfo>
+      <SearchedProductionDetails>
         <p>{artist}</p>
-        <MusicButtons>
-          <button>
-            <BiPlay />
-          </button>
-        </MusicButtons>
-      </MusicCardDetails>
-    </MusicCard>
+        <button>
+          <BiPlay />
+        </button>
+      </SearchedProductionDetails>
+    </SearchedProductionCard>
   );
 };

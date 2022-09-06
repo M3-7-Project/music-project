@@ -5,7 +5,9 @@ export const HottestCard = ({ name, cover, id, type }) => {
   return (
     <HottestProductionCard>
       <Link to={`/${type}/${id}`}>
-        <img src={cover} alt={`Imagem do álbum ${name}`} />
+        <div className="imageWrapper">
+          <img src={cover} alt={`Imagem do álbum ${name}`} />
+        </div>
         <p>{name}</p>
       </Link>
     </HottestProductionCard>

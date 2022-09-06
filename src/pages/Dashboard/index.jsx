@@ -1,6 +1,5 @@
 import {
   ArrowButtonGroup,
-  ArtistList,
   DashboardHeader,
   DashboardHottest,
   DashboardInfo,
@@ -51,13 +50,16 @@ const Dashboard = () => {
   const [shouldSearch, setShouldSearch] = useState(false);
 
   const handleSearch = (e) => {
+    if (userSearch === "") {
+      setShouldSearch(false);
+    }
     e.preventDefault();
     setSearchParams(createSearchParams({ search: userSearch }));
   };
 
   useEffect(() => {
     const queryParams = searchParams.get("search");
-    if (queryParams === null) {
+    if (queryParams === null || queryParams === "") {
       getProductions();
       getVotedProductions();
       getFeaturedArtists();
@@ -139,7 +141,5 @@ const Dashboard = () => {
     </DashboardWrapper>
   );
 };
-
-//abrir modal de perfil na gear, add pesquisa no input
 
 export default Dashboard;

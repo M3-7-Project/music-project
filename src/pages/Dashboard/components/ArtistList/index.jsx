@@ -5,7 +5,6 @@ import { ProducerUl } from "./style";
 
 export const ProducerList = () => {
   const { searchedProducer } = useContext(DashboardContext);
-  console.log("~ searchedProducer", searchedProducer);
 
   return (
     <ProducerUl>

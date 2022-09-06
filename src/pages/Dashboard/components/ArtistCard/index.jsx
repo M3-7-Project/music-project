@@ -5,7 +5,9 @@ export const ArtistCard = ({ name, image, id }) => {
   return (
     <ProducerCard>
       <Link to={`/producer/${id}`}>
-        <img src={image} alt={`Imagem do(a) ${name}`} />
+        <div className="imageWrapper">
+          <img src={image} alt={`Imagem do(a) ${name}`} />
+        </div>
         <p>{name}</p>
       </Link>
     </ProducerCard>

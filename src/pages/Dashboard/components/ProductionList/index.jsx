@@ -18,7 +18,7 @@ export const ProductionList = () => {
               name={production.name}
               preview={production.preview}
               type={production.type}
-              artist={production?.producer.artistic_name}
+              artist={production.producer.artistic_name}
             />
           );
         })
