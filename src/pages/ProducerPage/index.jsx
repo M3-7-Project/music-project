@@ -7,6 +7,7 @@ import { AiOutlineMenu, AiOutlinePlus, AiFillInstagram } from "react-icons/ai";
 import { BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs";
 import cover from '../../assets/cover.png'
 import LaunchCard from './LaunchCard';
+import NextLaunch from './NextLaunch';
 
 const ProducerPage = () => {
     const {userInfo} = useContext(UserContext)
@@ -86,6 +87,7 @@ const ProducerPage = () => {
                     </Contact>
                 </Bio>
                 <LaunchCard/>
+                <NextLaunch/>
             </Main>
             <Footer/>
         </>
