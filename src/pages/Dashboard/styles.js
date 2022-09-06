@@ -19,7 +19,7 @@ export const DashboardHeader = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  padding: 1rem 5rem;
+  padding: 1rem 10rem;
 
   @media screen and (max-width: 840px) {
     flex-direction: column-reverse;
@@ -137,10 +137,14 @@ export const DashboardMain = styled.main`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 2rem 5rem;
+  padding: 2rem 10rem;
 
   @media screen and (max-width: 580px) {
     padding: 1rem;
+  }
+
+  @media screen and (max-width: 840px) {
+    padding: 2rem 8rem;
   }
 `;
 
