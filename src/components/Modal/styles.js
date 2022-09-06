@@ -42,6 +42,7 @@ export const ModalStyled = styled.div`
 
     > div {
       width: 30rem;
+      max-width: 95%;
       background-color: #212529;
       border-radius: 0.625rem;
 
@@ -71,6 +72,20 @@ export const ModalStyled = styled.div`
           align-items: center;
 
           margin-top: 0.625rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 545px){
+    >div{
+      >div{
+        >div{
+          >div{
+            >img{
+              display: none;
+            }
+          }
         }
       }
     }
