@@ -24,6 +24,12 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width:950px){
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
   div {
     display: flex;
     gap: 40px;

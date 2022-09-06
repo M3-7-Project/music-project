@@ -8,10 +8,23 @@ export const MainContainer = styled.div`
   align-items: center;
   position: relative;
 
+  @media (max-width:424px) {
+    margin: 40px auto;
+  }
+
+  @media (max-width:950px) {
+    flex-direction: column;
+  }
+
   img {
     position: absolute;
     left: 50%;
     margin-left: -201px;
+
+    @media (max-width: 425px) {
+    width: 320px;
+    margin-left: -160px;
+    }
   }
 `
 
@@ -21,11 +34,30 @@ export const TextContainer = styled.div`
   color: #F8F9FA;
   font-family: 'Roboto';
 
+  @media (max-width:950px) {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 600px;
+  }
+
   h1 {
     font-size: 80px;
     font-weight: 700;
     text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
     line-height: 94px;
+
+    @media (max-width:424px) {
+      font-size: 40px;
+      line-height: 55px;
+    }
+
+    @media (min-width: 425px) and (max-width:950px) {
+      font-size: 65px;
+      line-height: 76px;
+    }
   }
 
   p {
@@ -34,6 +66,16 @@ export const TextContainer = styled.div`
     font-size: 12px;
     font-weight: 300;
     line-height: 18px;
+
+    @media (max-width:424px) {
+      
+    }
+
+    @media (max-width:950px) {
+      width: 80%;
+      text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+      margin: auto;
+    }
   }
 `
 
@@ -45,6 +87,12 @@ export const BaloonsContainer = styled.div`
   margin: 0 auto;
   gap: 57px;
   z-index: 1;
+
+  @media (max-width: 950px) {
+    width: 100%;
+    align-items: center;
+    gap: 0;
+  }
 
   div {
     width: 370px;
@@ -58,12 +106,22 @@ export const BaloonsContainer = styled.div`
     color: #F8F9FA;
 
     padding: 5px;
-     
+    
+    @media (max-width: 950px) {
+      width: 320px;
+      height: 90px;
+      margin-top: 15px;
+    }
+
      p {
       font-family: 'Roboto';
       font-size: 22px;
       line-height: 33px;
       text-align: center;
+
+      @media (max-width: 950px) {
+        font-size: 18px;
+      }
      }   
   }
 
@@ -78,17 +136,28 @@ export const BaloonsContainer = styled.div`
     color: #F8F9FA;
     border: none;
 
+    padding: 5px;
+
     cursor: pointer;
 
-
-
-    padding: 5px;
+    &:hover {
+      background: rgba(167, 108, 178, 0.75);
+    }
      
+    @media (max-width: 950px) {
+      width: 320px;
+      height: 90px;
+      margin-top: 15px;
+    }
      p {
       font-family: 'Roboto';
       font-size: 22px;
       line-height: 33px;
       text-align: center;
+
+      @media (max-width: 950px) {
+        font-size: 18px;
+      }
      }   
   }
   `

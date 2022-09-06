@@ -27,11 +27,20 @@ export const HeaderContainer = styled.header`
   img {
     position: relative;
     top: 30px;
+
+    @media (max-width: 424px) {
+      position: static;
+      width: 90px;
+    }
   }
 
   div {
     display: flex;
     gap: 42px;
+
+    @media (max-width: 424px) {
+      gap: 10px;
+    }
 
     a {
       cursor: pointer;

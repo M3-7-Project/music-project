@@ -16,6 +16,10 @@ export const Title = styled.h3`
   font-size: 40px;
   font-weight: 700;
   color: #FFFFFF;
+
+  @media (max-width:950px) {
+    font-size: 28px;
+  }
 `
 
 export const ArrowDiv = styled.span`
