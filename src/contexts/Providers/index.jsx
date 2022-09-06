@@ -1,3 +1,5 @@
+import { DashboardProvider } from "../DashboardContext";
+import { DropdownProvider } from "../DropdownContext";
 import { LoginProvider } from "../LoginContext";
 import { MusicProvider } from "../MusicContext/Index";
 import { ProductsProvider } from "../ProductsContext";
@@ -8,10 +10,12 @@ const Providers = ({ children }) => {
     <UserProvider>
       <LoginProvider>
         <ProductsProvider>
+          <DropdownProvider>
             <MusicProvider>
-              {children} 
+              <DashboardProvider>{children}</DashboardProvider>
             </MusicProvider>
-          </ProductsProvider>
+          </DropdownProvider>
+        </ProductsProvider>
       </LoginProvider>
     </UserProvider>
   );

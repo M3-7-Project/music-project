@@ -6,9 +6,11 @@ import { FormStyled } from "./styles";
 import Button from "../../../../components/Button";
 import { useContext } from "react";
 import { LoginContext } from "../../../../contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
   const { handleLogin } = useContext(LoginContext);
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Insira um email válido."),
@@ -23,8 +25,11 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  const doLogin = (data) => {
-    handleLogin(data);
+  const doLogin = async (data) => {
+    const isLoginSucessful = await handleLogin(data);
+    if (isLoginSucessful) {
+      navigate("/dashboard", { replace: true });
+    }
   };
 
   return (
