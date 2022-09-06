@@ -1,18 +1,7 @@
-import ReleasesContainer from '../../components/ReleasesContainer';
-import Header from './components/Header';
-import LandingFooter from './components/LandingFooter';
-import MainContent from './components/MainContent';
-import { Body } from './styles';
+import {} from "./styles";
 
 const Landing = () => {
-    return (
-        <Body>
-            <Header/>
-                <MainContent/>
-                <ReleasesContainer/>
-            <LandingFooter/>
-        </Body>
-    )
-}
+  return <></>;
+};
 
 export default Landing;
