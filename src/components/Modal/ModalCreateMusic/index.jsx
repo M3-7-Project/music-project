@@ -1,9 +1,18 @@
 import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/io";
+import { useState } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import ModalExample from "..";
 import * as yup from "yup";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { productsContext } from "../../../contexts/ProductsContext";
+import {
+  getProductionRequest,
+  updateProductionRequest,
+} from "../../../services/api";
 import {
   ButtonCriar,
   ButtonModal,
@@ -16,9 +25,6 @@ import {
   getProductionRequest,
   updateProductionRequest,
 } from "../../../services/api";
-import toast from "react-hot-toast";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const CreateMusic = () => {

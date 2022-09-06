@@ -30,11 +30,11 @@ export const ModalStyled = styled.div`
       margin: 1.875rem 0 2.5rem 0;
     }
   }
-
-  > div {
-    width: 30rem;
-    background-color: #212529;
-    border-radius: 0.625rem;
+    > div {
+      width: 30rem;
+      max-width: 95%;
+      background-color: #212529;
+      border-radius: 0.625rem;
 
     > div {
       > div {
@@ -62,6 +62,20 @@ export const ModalStyled = styled.div`
         align-items: center;
 
         margin-top: 0.625rem;
+      }
+    }
+  }
+
+  @media (max-width: 545px){
+    >div{
+      >div{
+        >div{
+          >div{
+            >img{
+              display: none;
+            }
+          }
+        }
       }
     }
   }

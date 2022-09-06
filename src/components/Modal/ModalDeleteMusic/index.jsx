@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/io";
 import Logo from "../../../assets/logoRedonda.svg";
+import { productsContext } from "../../../contexts/ProductsContext";
 import { ButtonDelete, ButtonModal } from "../ComponentsModal/styles";
 import {
   getProductionRequest,
   updateProductionRequest,
 } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const DeleteMusic = () => {

@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
-import { IoMdCloseCircle } from "react-icons/io";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ModalExample from "..";
 import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { createProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonModal,
@@ -14,8 +16,6 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { createProductionRequest } from "../../../services/api";
-import { productsContext } from "../../../contexts/ProductsContext";
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const ModalAlbum = () => {

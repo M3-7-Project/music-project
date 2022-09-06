@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import ModalExample from "..";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../../assets/logoRedonda.svg";
-import { IoMdCloseCircle } from "react-icons/io";
+import { verification } from "./verification";
+import { productsContext } from "../../../contexts/ProductsContext";
+import { updateProfileRequest } from "../../../services/api";
 import {
   ButtonCriar,
   ButtonModal,
@@ -11,34 +16,39 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import Select from "react-select";
-import { useForm } from "react-hook-form";
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditProducer = () => {
   const { setIsEditProducer } = useContext(ModalContext);
-
-  const options = [
-    { value: "teste1", label: "teste1" },
-    { value: "teste2", label: "teste2" },
-    { value: "teste3", label: "teste3" },
-  ];
+  const { getInfos, productProfile, productToken } =
+    useContext(productsContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const request = (data) => {
-    let newData = {};
-    Object.keys(data).forEach((item) => {
-      if (!data[item] === "") {
-        newData = { ...newData, item: data[item] };
-      }
-      // console.log(item + " " + data[item])
-    });
-    console.log(newData);
+  
+  const request = async (data) => {
+    const infos = await getInfos();
+    const newData = await verification(data, infos);
+    if (Object.keys(newData).length === 0) {
+      toast.error("Preencha pelo menos um campo");
+    } else {
+      await updateProfileRequest(
+        await productProfile(),
+        newData,
+        productToken()
+      )
+        .then((res) => {
+          console.log(res);
+          toast.success("Perfil atualizado com sucesso");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Ocorreu um erro");
+        });
+    }
   };
 
   return (
@@ -47,7 +57,7 @@ const EditProducer = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsEditProducer(false)}>
-            <IoMdCloseCircle size={23} />
+            < RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Editar perfil</TitleModal>
@@ -92,12 +102,18 @@ const EditProducer = () => {
             {...register("profile_picture")}
           />
           <SpanModal></SpanModal>
-          <Select
-            options={options}
-            isMulti
-            className="basic-multi-select"
-            classNamePrefix="select"
-          />
+          <select
+                multiple
+                id="multi-select"
+                className="styled-input"
+                {...register("genre")}
+              >
+                <option value="rock">Rock</option>
+                <option value="sertanejo">Sertenejo</option>
+                <option value="pagode">Pagode</option>
+                <option value="axe">Axé</option>
+                <option value="mpb">MPB</option>
+              </select>
           <ButtonCriar>Editar</ButtonCriar>
         </FormModal>
       </div>

@@ -1,7 +1,14 @@
 import { useState } from "react";
-import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/io";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import * as yup from "yup";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import ModalExample from "..";
+import { updateProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonDelete,
@@ -11,13 +18,6 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { updateProductionRequest } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
 import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditAlbum = () => {
@@ -84,8 +84,8 @@ const EditAlbum = () => {
           <div>
             <ButtonCriar type="submit">Editar</ButtonCriar>
             <ButtonDelete>Excluir</ButtonDelete>
-          </div>
-        </FormModal>
+           </div>
+         </FormModal>
       </div>
     </ModalExample>
   );
