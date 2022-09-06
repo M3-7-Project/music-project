@@ -21,7 +21,7 @@ const DeleteMusic = () => {
     );
 
     await updateProductionRequest(
-      id,
+      infosDeleteMusic.idAlbum,
       {
         musics: musics.filter((elem) => elem != infosDeleteMusic.idMusic),
       },

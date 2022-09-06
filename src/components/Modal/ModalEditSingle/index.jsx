@@ -19,7 +19,7 @@ import {
 } from "../ComponentsModal/styles";
 import { ModalContext } from "../../../contexts/ModalContext";
 
-const EditSingle = ({ id }) => {
+const EditSingle = () => {
   const { setIsEditSingle, infosEditSingle } = useContext(ModalContext);
   const { productToken, parseDate } = useContext(productsContext);
 
