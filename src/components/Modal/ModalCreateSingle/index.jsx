@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { IoMdCloseCircle } from "react-icons/io";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import ModalExample from "..";
+import * as yup from "yup";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { createProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonModal,
@@ -9,14 +17,6 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import ModalExample from "..";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { createProductionRequest } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
 
 const ModalSingle = () => {
   const [isSingle, setIsSingle] = useState(false);
@@ -50,14 +50,14 @@ const ModalSingle = () => {
       },
       productToken()
     )
-    .then(res => {
-      console.log(res.data)
-      toast.success("Single criado com sucesso!")
-    })
-    .catch(err => {
-      console.log(err)
-      toast.error("Ocorreu um erro")
-    })
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Single criado com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (
@@ -69,7 +69,7 @@ const ModalSingle = () => {
             <div>
               <img src={Logo} alt="" />
               <ButtonModal onClick={() => setIsSingle(false)}>
-                <IoMdCloseCircle size={23} />
+                <RiCloseCircleFill size={23} />
               </ButtonModal>
             </div>
             <TitleModal>Criar Single</TitleModal>

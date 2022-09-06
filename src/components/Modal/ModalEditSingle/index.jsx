@@ -1,7 +1,14 @@
 import { useState } from "react";
-import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/io";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RiCloseCircleFill } from "react-icons/ri";
+import * as yup from "yup";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import ModalExample from "..";
+import { updateProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
+import { useContext } from "react";
 import {
   ButtonCriar,
   ButtonDelete,
@@ -11,13 +18,6 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { updateProductionRequest } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
 
 const EditSingle = ({ id }) => {
   const [isEditSingle, setIsEdit] = useState(false);
@@ -65,7 +65,7 @@ const EditSingle = ({ id }) => {
             <div>
               <img src={Logo} alt="" />
               <ButtonModal onClick={() => setIsEdit(false)}>
-                <IoMdCloseCircle size={23} />
+                <RiCloseCircleFill size={23} />
               </ButtonModal>
             </div>
             <TitleModal>Editar Single</TitleModal>

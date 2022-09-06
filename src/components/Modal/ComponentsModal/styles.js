@@ -52,24 +52,38 @@ export const FormModal = styled.form`
 
   margin: 0 auto;
 
-    .css-1s2u09g-control{
-      width: 100%;
+  #multi-select {
+    border-radius: 8px 0 0 8px;
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      border-radius: 50%;
       background-color: #272c31;
-      margin-bottom: .9375rem;
     }
-    .css-1pahdxg-control{
-      width: 100%;
-      background-color: #272c31;
-      margin-bottom: .9375rem;
+    ::-webkit-scrollbar-thumb {
+      position: relative;
+      left: 100px;
+      border-radius: 2px;
+      background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
     }
+  }
 
-    .css-1rhbuit-multiValue{
-      background-color: #6C757D;
-    }
+  .styled-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 9px 8px;
+    background-color: #272c31;
+    border-radius: 10px;
+    border: 0;
+    color: #6c757d;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+  }
 
-    .css-12jo7m5{
-      color: #fff;
-    }
+  .styled-input:focus {
+    outline: 0;
+  }
 `;
 
 export const ButtonModal = styled.button`
@@ -97,7 +111,7 @@ export const ButtonDelete = styled.button`
   width: 100%;
   height: 2.5rem;
 
-  background-color: #A76CB2;
+  background-color: #a76cb2;
   cursor: pointer;
 
   border: none;
@@ -108,4 +122,4 @@ export const ButtonDelete = styled.button`
   color: #f8f9fa;
 
   margin-bottom: 0.87rem;
-`
+`;
