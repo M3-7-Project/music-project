@@ -1,4 +1,15 @@
 import styled from "styled-components";
+import {motion} from "framer-motion"
+
+export const Motion = styled(motion.div)`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(18, 18, 20, 0.5);
+`
 
 export const ButtonCriar = styled.button`
   width: 100%;

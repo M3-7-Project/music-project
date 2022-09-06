@@ -3,6 +3,7 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ModalExample from "..";
+import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../../assets/logoRedonda.svg";
 import { verification } from "./verification";
 import { productsContext } from "../../../contexts/ProductsContext";
@@ -15,9 +16,10 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditProducer = () => {
-  const [isProducer, setIsProducer] = useState(false);
+  const { setIsEditProducer } = useContext(ModalContext);
   const { getInfos, productProfile, productToken } =
     useContext(productsContext);
 
@@ -26,7 +28,7 @@ const EditProducer = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  
   const request = async (data) => {
     const infos = await getInfos();
     const newData = await verification(data, infos);
@@ -50,64 +52,57 @@ const EditProducer = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => setIsProducer(true)}>Modal Editar Producer</button>
-      {isProducer && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsProducer(false)}>
-                <RiCloseCircleFill size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Editar perfil</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Nome artístico"
-                {...register("artistic_name")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")} />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Instagram"
-                {...register("instagram")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Página do facebook"
-                {...register("facebook")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Twitter"
-                {...register("twitter")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="YouTube"
-                {...register("youtube")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Foto do perfil"
-                {...register("profile_picture")}
-              />
-              <SpanModal></SpanModal>
-              <select
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsEditProducer(false)}>
+            < RiCloseCircleFill size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Editar perfil</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Nome artístico"
+            {...register("artistic_name")}
+          />
+          <SpanModal></SpanModal>
+          <InputModal type="text" placeholder="Bio" {...register("bio")} />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Instagram"
+            {...register("instagram")}
+          />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Página do facebook"
+            {...register("facebook")}
+          />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Twitter"
+            {...register("twitter")}
+          />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="YouTube"
+            {...register("youtube")}
+          />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Foto do perfil"
+            {...register("profile_picture")}
+          />
+          <SpanModal></SpanModal>
+          <select
                 multiple
                 id="multi-select"
                 className="styled-input"
@@ -119,12 +114,10 @@ const EditProducer = () => {
                 <option value="axe">Axé</option>
                 <option value="mpb">MPB</option>
               </select>
-              <ButtonCriar>Editar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+          <ButtonCriar>Editar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 

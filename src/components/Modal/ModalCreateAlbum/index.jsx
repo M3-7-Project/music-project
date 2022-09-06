@@ -16,9 +16,10 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const ModalAlbum = () => {
-  const [isAlbum, setIsAlbum] = useState(false);
+  const { setIsCreateAlbum } = useContext(ModalContext);
   const { parseDate, productToken, productTokenId, productProfile } =
     useContext(productsContext);
 
@@ -58,47 +59,34 @@ const ModalAlbum = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => setIsAlbum(true)}>Modal Álbum</button>
-      {isAlbum && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsAlbum(false)}>
-                <RiCloseCircleFill size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Criar Álbum</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Música"
-                {...register("preview")}
-              />
-              <SpanModal>{errors.preview?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" name="" id="" {...register("date")} />
-              <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")} />
-              <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Imagem"
-                {...register("cover")}
-              />
-              <SpanModal>{errors.cover?.message}</SpanModal>
-              <ButtonCriar type="submit">Criar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsCreateAlbum(false)}>
+            <IoMdCloseCircle size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Criar Álbum</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal
+            type="text"
+            placeholder="Música"
+            {...register("preview")}
+          />
+          <SpanModal>{errors.preview?.message}</SpanModal>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal>{errors.name?.message}</SpanModal>
+          <InputModal type="date" name="" id="" {...register("date")} />
+          <SpanModal>{errors.date?.message}</SpanModal>
+          <InputModal type="text" placeholder="Bio" {...register("bio")} />
+          <SpanModal>{errors.bio?.message}</SpanModal>
+          <InputModal type="text" placeholder="Imagem" {...register("cover")} />
+          <SpanModal>{errors.cover?.message}</SpanModal>
+          <ButtonCriar type="submit">Criar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 
