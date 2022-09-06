@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ModalExample from "..";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
@@ -20,9 +19,10 @@ import {
 import toast from "react-hot-toast";
 import { useContext } from "react";
 import { productsContext } from "../../../contexts/ProductsContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 
-const CreateMusic = ({ id }) => {
-  const [isMusic, setIsMusic] = useState(false);
+const CreateMusic = () => {
+  const { setIsAddMusic, infosAddMusic } = useContext(ModalContext);
   const { productToken } = useContext(productsContext);
 
   const schema = yup.object().shape({
@@ -38,7 +38,9 @@ const CreateMusic = ({ id }) => {
   });
 
   const request = async (data) => {
-    const musics = await getProductionRequest(id).then((res) => res.data.musics);
+    const musics = await getProductionRequest(infosAddMusic).then(
+      (res) => res.data.musics
+    );
 
     await updateProductionRequest(
       id,
@@ -58,31 +60,22 @@ const CreateMusic = ({ id }) => {
   };
 
   return (
-    <div>
-      <button onClick={() => setIsMusic(true)}>Modal Adicionar Música</button>
-      {isMusic && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsMusic(false)}>
-                <IoMdCloseCircle size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Adicionar música</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal>{errors.name?.message}</SpanModal>
-              <ButtonCriar type="submit">Criar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsMusic(false)}>
+            <IoMdCloseCircle size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Adicionar música</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal>{errors.name?.message}</SpanModal>
+          <ButtonCriar type="submit">Criar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 

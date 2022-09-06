@@ -16,9 +16,10 @@ import { useContext } from "react";
 import { productsContext } from "../../../contexts/ProductsContext";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditProfile = () => {
-  const [isProfile, setIsProfile] = useState(false);
+  const { setIsEditProfile } = useContext(ModalContext);
   const { productToken, productTokenId, productProfile } =
     useContext(productsContext);
   const [infos, setInfos] = useState({});
@@ -65,37 +66,28 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => setIsProfile(true)}>Modal Editar Perfil</button>
-      {isProfile && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsProfile(false)}>
-                <IoMdCloseCircle size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Editar Perfil</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal></SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Foto do perfil"
-                {...register("profile_picture")}
-              />
-              <SpanModal></SpanModal>
-              <ButtonCriar type="submit">Editar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsEditProfile(false)}>
+            <IoMdCloseCircle size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Editar Perfil</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal></SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Foto do perfil"
+            {...register("profile_picture")}
+          />
+          <SpanModal></SpanModal>
+          <ButtonCriar type="submit">Editar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 

@@ -1,77 +1,67 @@
 import styled from "styled-components";
 
 export const ModalStyled = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background-color: rgba(18, 18, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+
+  section {
+    width: 85%;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    h2 {
+      font-weight: 300;
+      font-size: 1.125rem;
+      color: #f8f9fa;
+      text-align: center;
+
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 1.375rem;
+      color: #f8f9fa;
+      text-align: center;
+
+      margin: 1.875rem 0 2.5rem 0;
+    }
+  }
 
   > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: inherit;
+    width: 30rem;
+    background-color: #212529;
+    border-radius: 0.625rem;
 
-    section {
-      width: 85%;
-      max-width: 100%;
+    > div {
+      > div {
+        position: relative;
+        > img {
+          width: 4.375rem;
+          position: absolute;
+          left: -30px;
+          top: -28px;
+        }
 
-      margin: 0 auto;
-
-      h2 {
-        font-weight: 300;
-        font-size: 1.125rem;
-        color: #f8f9fa;
-        text-align: center;
-
-        margin-top: 2.5rem;
-      }
-
-      h3 {
-        font-weight: 500;
-        font-size: 1.375rem;
-        color: #f8f9fa;
-        text-align: center;
-
-        margin: 1.875rem 0 2.5rem 0;
+        > button {
+          position: absolute;
+          right: 0;
+          top: 4px;
+        }
+        display: flex;
       }
     }
 
-    > div {
-      width: 30rem;
-      background-color: #212529;
-      border-radius: 0.625rem;
-
+    form {
       > div {
-        > div {
-          position: relative;
-          > img {
-            width: 4.375rem;
-            position: absolute;
-            left: -30px;
-            top: -28px;
-          }
+        width: 100%;
+        display: flex;
+        align-items: center;
 
-          > button {
-            position: absolute;
-            right: 0;
-            top: 4px;
-          }
-          display: flex;
-        }
-      }
-
-      form {
-        > div {
-          width: 100%;
-          display: flex;
-          align-items: center;
-
-          margin-top: 0.625rem;
-        }
+        margin-top: 0.625rem;
       }
     }
   }

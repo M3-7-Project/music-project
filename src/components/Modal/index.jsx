@@ -1,12 +1,10 @@
-import {ModalStyled } from "./styles";
+import { ModalStyled } from "./styles";
 
-const ModalExample = ({children }) => {
+const ModalExample = ({ children }) => {
   return (
-        <ModalStyled>
-          <div>
-            <div>{children}</div>
-          </div>
-        </ModalStyled>
+    <ModalStyled>
+      <div>{children}</div>
+    </ModalStyled>
   );
 };
 

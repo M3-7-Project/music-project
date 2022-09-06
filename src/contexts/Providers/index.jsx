@@ -1,19 +1,20 @@
 import { LoginProvider } from "../LoginContext";
+import { ModalProvider } from "../ModalContext";
 import { MusicProvider } from "../MusicContext/Index";
 import { ProductsProvider } from "../ProductsContext";
 import { UserProvider } from "../UserContext";
 
 const Providers = ({ children }) => {
   return (
-    <UserProvider>
-      <LoginProvider>
-        <ProductsProvider>
-            <MusicProvider>
-              {children} 
-            </MusicProvider>
+    <ModalProvider>
+      <UserProvider>
+        <LoginProvider>
+          <ProductsProvider>
+            <MusicProvider>{children}</MusicProvider>
           </ProductsProvider>
-      </LoginProvider>
-    </UserProvider>
+        </LoginProvider>
+      </UserProvider>
+    </ModalProvider>
   );
 };
 
