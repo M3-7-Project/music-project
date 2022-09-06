@@ -1,8 +1,8 @@
 import {ButtonStyle} from './styles'
 
-const CircleButton = ({children, radius}) => {
+const CircleButton = ({children, radius, onClick}) => {
     return (
-        <ButtonStyle radius = {radius}>
+        <ButtonStyle radius = {radius} onClick={onClick}>
             {children}
         </ButtonStyle>
     )

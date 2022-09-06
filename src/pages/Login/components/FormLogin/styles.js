@@ -22,7 +22,7 @@ export const FormStyled = styled.form`
     &::placeholder {
       font-weight: 300;
       font-size: 0.875rem;
-      color: #6c757d;
+      color: var(--grey-02);
     }
   }
 
@@ -34,10 +34,15 @@ export const FormStyled = styled.form`
     border: none;
     border-radius: 3.125rem;
 
-    font-weight: 500;
-    font-size: 1.375rem;
+    font-size: 1rem;
     color: #f8f9fa;
     cursor: pointer;
+
+    transition: all 0.5s;
+
+    &:hover {
+      filter: brightness(135%);
+    }
   }
 
   span {

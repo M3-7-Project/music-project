@@ -46,11 +46,17 @@ export const LoginStyled = styled.div`
       a {
         font-weight: 300;
         font-size: 0.875rem;
+        text-decoration: none;
         color: #f8f9fa;
 
         margin-top: 1.188rem;
 
         cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          color: var(--emphasis-1);
+        }
       }
     }
   }

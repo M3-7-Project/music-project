@@ -1,6 +1,7 @@
 import { LoginStyled } from "./styles";
 import FormLogin from "./components/FormLogin";
 import Logo from "../../assets/Subtract.svg";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -10,7 +11,7 @@ const Login = () => {
           <img src={Logo} alt="" />
           <h2>Tenha acesso a essa experiência!</h2>
           <FormLogin />
-          <a>Ainda não possui conta?</a>
+          <Link to="/register">Ainda não possui conta?</Link>
         </div>
       </section>
     </LoginStyled>
