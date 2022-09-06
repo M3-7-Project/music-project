@@ -46,6 +46,7 @@ export const Global = createGlobalStyle`
     }
     body, input {
         font-family: 'Poppins', sans-serif;
+        background-color: var(--grey-00);
     }
     article, aside, details, figcaption, figure, 
     footer, header, hgroup, menu, nav, section {
