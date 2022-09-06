@@ -1,7 +1,13 @@
-import { useState } from "react";
-import ModalExample from "..";
-import { IoMdCloseCircle } from "react-icons/io";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import * as yup from "yup";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import ModalExample from "..";
+import { updateProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonDelete,
@@ -11,16 +17,10 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { updateProductionRequest } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
+import { ModalContext } from "../../../contexts/ModalContext";
 
-const EditAlbum = ({ id }) => {
-  const [isEditAlbum, setEditAlbum] = useState(false);
+const EditAlbum = () => {
+  const { setIsEditAlbum, infosEditAlbum } = useContext(ModalContext);
   const { productToken, parseDate } = useContext(productsContext);
 
   const schema = yup.object().shape({
@@ -40,7 +40,7 @@ const EditAlbum = ({ id }) => {
 
   const request = async (data) => {
     await updateProductionRequest(
-      id,
+      infosEditAlbum,
       {
         ...data,
         date: parseDate(data.date),
@@ -58,44 +58,35 @@ const EditAlbum = ({ id }) => {
   };
 
   return (
-    <div>
-      <button onClick={() => setEditAlbum(true)}>Modal editar Album</button>
-      {isEditAlbum && (
-        <ModalExample>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsEditAlbum(false)}>
+            <RiCloseCircleFill size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Editar Álbum</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal>{errors.name?.message}</SpanModal>
+          <InputModal type="date" {...register("date")} />
+          <SpanModal>{errors.date?.message}</SpanModal>
+          <InputModal type="text" placeholder="Bio" {...register("bio")} />
+          <SpanModal>{errors.bio?.message}</SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Imagem de capa"
+            {...register("image")}
+          />
+          <SpanModal>{errors.image?.message}</SpanModal>
           <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setEditAlbum(false)}>
-                <IoMdCloseCircle size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Editar Álbum</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" {...register("date")} />
-              <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")} />
-              <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Imagem de capa"
-                {...register("image")}
-              />
-              <SpanModal>{errors.image?.message}</SpanModal>
-              <div>
-                <ButtonCriar type="submit">Editar</ButtonCriar>
-                <ButtonDelete>Excluir</ButtonDelete>
-              </div>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+            <ButtonCriar type="submit">Editar</ButtonCriar>
+            <ButtonDelete>Excluir</ButtonDelete>
+           </div>
+         </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 
