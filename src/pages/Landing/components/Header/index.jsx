@@ -1,5 +1,6 @@
 import { HeaderContainer, HeaderSection } from './styles'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -7,6 +8,8 @@ const Header = () => {
     const handleRedirect = (destiny) => {
         navigate(`/${destiny}`, {replace: true})
     }
+
+    
 
     return (
         <>
