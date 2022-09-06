@@ -13,13 +13,10 @@ import toast from "react-hot-toast";
 
 const FormLogin = () => {
   const { setIsLoading, isLoading } = useContext(LoadingContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      .required("Email obrigatório")
-      .email("Insira um email válido."),
+    email: yup.string().required("Email obrigatório").email("Insira um email válido."),
     password: yup.string().required("Senha obrigatória"),
   });
 
@@ -59,19 +56,9 @@ const FormLogin = () => {
 
   return (
     <FormStyled onSubmit={handleSubmit(doLogin)}>
-      <input
-        type="text"
-        id="email"
-        placeholder="E-mail"
-        {...register("email")}
-      />
+      <input type="text" id="email" placeholder="E-mail" {...register("email")} />
       <span>{errors.email?.message}</span>
-      <input
-        type="password"
-        id="password"
-        placeholder="Senha"
-        {...register("password")}
-      />
+      <input type="password" id="password" placeholder="Senha" {...register("password")} />
       <span>{errors.password?.message}</span>
       <Button type="submit" content="Login" />
     </FormStyled>
