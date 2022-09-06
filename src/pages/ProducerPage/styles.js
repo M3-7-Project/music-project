@@ -117,3 +117,55 @@ export const Triangle = styled.div`
     border-right: 20px solid transparent;
     border-top: 30px solid var(--grey-00);
 `
+
+export const Main = styled.main`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 90px 170px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+`
+
+export const Bio = styled.section`
+    display: flex;
+    width: 100%;
+    gap: 25px;
+
+    & > p {
+        flex: 3;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: justify;
+        color: var(--grey-03);
+    }
+`
+
+export const Contact = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    & > p{
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: justify;
+        color: var(--grey-03);
+    }
+
+    & > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    & a {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+`
