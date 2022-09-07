@@ -54,6 +54,9 @@ export const List = styled.ul`
         padding: 0;
         background-color: transparent;
         border: none;
+        border-radius: 10px;
+        outline: 0;
+        overflow: hidden;
     }
 
     & img {
@@ -63,6 +66,12 @@ export const List = styled.ul`
         border-radius: 10px;
         object-fit: cover;
         cursor: pointer;
+        transition: 0.3s;
+    }
+
+    & img:hover{
+        transform: scale(110%);
+        transition: 0.3s;
     }
 
     & h4 {

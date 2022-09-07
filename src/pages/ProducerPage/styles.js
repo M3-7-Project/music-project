@@ -23,7 +23,6 @@ export const Header = styled.header`
 
 export const Cover = styled.img`
     position: absolute;
-    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
@@ -34,6 +33,7 @@ export const Cover = styled.img`
 
 export const HeaderImage = styled.div`
    flex: 1;
+   z-index: 2;
    height: 100%;
    display: flex;
    flex-direction: column;
@@ -58,6 +58,7 @@ export const HeaderImage = styled.div`
 export const HeaderContent = styled.div`
    flex: 4;
    margin-bottom: 25px;
+   z-index: 2;
 
    & > h1 {
     font-family: 'Roboto';
@@ -91,6 +92,7 @@ export const HeaderContent = styled.div`
 `
 export const HeaderButton = styled.div`
     flex: 1;
+    z-index: 2;
     position: relative;
     height: 100%;
     display: flex;
