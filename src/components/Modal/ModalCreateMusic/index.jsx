@@ -44,7 +44,7 @@ const CreateMusic = () => {
     );
 
     await updateProductionRequest(
-      id,
+      infosAddMusic,
       {
         musics: [...musics, data.name],
       },
@@ -65,7 +65,7 @@ const CreateMusic = () => {
       <div>
         <div>
           <img src={Logo} alt="" />
-          <ButtonModal onClick={() => setIsMusic(false)}>
+          <ButtonModal onClick={() => setIsAddMusic(false)}>
             <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
