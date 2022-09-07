@@ -199,6 +199,11 @@ export const HottestProductionList = styled.ul`
 
   list-style: none;
 
+  small {
+    color: #a5a5a5;
+    font-size: 0.85rem;
+  }
+
   @media screen and (max-width: 545px) {
     justify-content: center;
   }
