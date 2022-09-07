@@ -36,6 +36,7 @@ import TransitionPage from "../../components/TransitionPage";
 import { LoadingContext } from "../../contexts/LoandingContext";
 import { ModalContext } from "../../contexts/ModalContext";
 import { AnimatePresence } from "framer-motion";
+import { DropdownButton } from "../../components/DropdownButton";
 
 const Dashboard = () => {
   const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
@@ -65,9 +66,7 @@ const Dashboard = () => {
   };
 
   const editProfile = () => {
-    userInfo.type === "producer"
-      ? setIsEditProducer(true)
-      : setIsEditProfile(true);
+    userInfo.type === "producer" ? setIsEditProducer(true) : setIsEditProfile(true);
   };
 
   useEffect(() => {
@@ -91,16 +90,10 @@ const Dashboard = () => {
         <AnimatePresence>{showMenu && <HeaderDropdown />}</AnimatePresence>
         <DashboardHeader>
           <HeaderNavigation>
-            <button id="menu-button" onClick={() => handleDropdownOpening()}>
-              <BiMenu size={30} />
-            </button>
+            <DropdownButton />
             <HeaderNavigationInput>
               <form>
-                <input
-                  type="text"
-                  placeholder="Insira sua pesquisa"
-                  onChange={(e) => setUserSearch(e.target.value)}
-                />
+                <input type="text" placeholder="Insira sua pesquisa" onChange={(e) => setUserSearch(e.target.value)} />
                 <button onClick={(e) => handleSearch(e)}>
                   <BsSearch />
                 </button>
@@ -108,16 +101,9 @@ const Dashboard = () => {
             </HeaderNavigationInput>
           </HeaderNavigation>
           <HeaderProfile>
-            <p>
-              {userInfo.type === "producer"
-                ? userInfo?.artistic_name
-                : userInfo?.name}
-            </p>
+            <p>{userInfo.type === "producer" ? userInfo?.artistic_name : userInfo?.name}</p>
             <HeaderProfilePicture>
-              <img
-                src={userInfo?.profile_picture}
-                alt={`Imagem de perfil do ${userInfo?.artistic_name}`}
-              />
+              <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
             </HeaderProfilePicture>
             <button onClick={editProfile}>
               <BsFillGearFill size={30} />
