@@ -6,6 +6,14 @@ import { HottestCard } from "../HottestCard";
 export const HottestList = () => {
   const { hotProduction } = useContext(DashboardContext);
 
+  if (hotProduction.length <= 0) {
+    return (
+      <HottestProductionList>
+        <small>Nada encontrado!</small>
+      </HottestProductionList>
+    );
+  }
+
   return (
     <HottestProductionList>
       {hotProduction.map((production) => {
