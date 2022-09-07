@@ -24,7 +24,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 const CreateMusic = () => {
   const { setIsAddMusic, infosAddMusic } = useContext(ModalContext);
-  const { productToken } = useContext(productsContext);
+  const { productToken, album, setAlbum } = useContext(productsContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
@@ -51,12 +51,11 @@ const CreateMusic = () => {
       productToken()
     )
       .then((res) => {
-        console.log(res);
         toast.success("Música adiconada com sucesso!");
+        setAlbum({...album, musics: res.data.musics})
         setIsAddMusic(false)
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Ocorreu um erro");
       });
   };

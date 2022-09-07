@@ -32,13 +32,14 @@ import {
 import { LoadingModal } from "../Register/styles";
 import { UserContext } from "../../contexts/UserContext";
 import { ModalContext } from "../../contexts/ModalContext";
+import { productsContext } from "../../contexts/ProductsContext";
 
 const Production = () => {
   const { userInfo } = useContext(UserContext);
-  const { openEditAlbum, openEditSingle, openAddMusic } =
+  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct} =
     useContext(ModalContext);
+  const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
-  const [album, setAlbum] = useState({});
   const [albumUser, setAlbumUser] = useState({});
   const [comments, setComments] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -120,6 +121,8 @@ const Production = () => {
                           </button>
                         )}
                         <Line></Line>
+                        <button onClick={()=> openDeleteProduct(album.name, album.id)}>Apagar</button>
+                        <Line></Line>
                         <button onClick={editProduct}>Editar</button>
                         <Triangle />
                       </DropDown>
@@ -164,6 +167,8 @@ const Production = () => {
                       ).toLocaleDateString()}
                       artist={albumUser}
                       key={id}
+                      id={id}
+                      album={album.id}
                     />
                   );
                 })}

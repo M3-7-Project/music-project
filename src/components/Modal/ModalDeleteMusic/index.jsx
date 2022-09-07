@@ -13,7 +13,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 const DeleteMusic = () => {
   const { SetIsDeleteMusic, infosDeleteMusic } = useContext(ModalContext);
-  const { productToken } = useContext(productsContext);
+  const { productToken, album, setAlbum } = useContext(productsContext);
 
   const request = async () => {
     const musics = await getProductionRequest(infosDeleteMusic.idAlbum).then(
@@ -23,16 +23,23 @@ const DeleteMusic = () => {
     await updateProductionRequest(
       infosDeleteMusic.idAlbum,
       {
-        musics: musics.filter((elem) => elem != infosDeleteMusic.idMusic),
+        musics: musics.filter(
+          (elem, index) => index != infosDeleteMusic.idMusic && elem
+        ),
       },
       productToken()
     )
       .then((res) => {
-        console.log(res.data);
         toast.success("Música deletada com sucesso!");
+        setAlbum({
+          ...album,
+          musics: album.musics.filter(
+            (elem, index) => index != infosDeleteMusic.idMusic && elem
+          ),
+        });
+        SetIsDeleteMusic(false);
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Ocorreu um erro");
       });
   };
@@ -48,7 +55,7 @@ const DeleteMusic = () => {
         </div>
         <section>
           <h2>Você deseja mesmo excluir esta música?</h2>
-          <h3>Nome da música aqui...</h3>
+          <h3>{infosDeleteMusic.name}</h3>
           <ButtonDelete onClick={request}>Excluir</ButtonDelete>
         </section>
       </div>

@@ -169,7 +169,7 @@ export const MusicList = styled.ul`
 
 export const DropDown = styled.div`
   width: 250px;
-  height: 70px;
+  height: 100px;
   border-radius: 10px;
   background-color: var(--grey-00);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);

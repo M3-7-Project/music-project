@@ -12,15 +12,17 @@ export const ModalProvider = ({ children }) => {
   const [isDeleteMusic, SetIsDeleteMusic] = useState(false);
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [isEditProducer, setIsEditProducer] = useState(false);
+  const [isDeleteProduct, setIsDeleteProduct] = useState(false);
   const [infosEditAlbum, setInfosEditAlbum] = useState(0);
   const [infosEditSingle, setInfosEditSingle] = useState("");
   const [infosAddMusic, setInfosAddMusic] = useState("");
   const [infosDeleteMusic, setInfosDeleteMusic] = useState({});
+  const [infosDeleteProduct, setInfosDeleteProduct] = useState({});
 
   const openEditAlbum = (id) => {
     setIsEditAlbum(true);
     setInfosEditAlbum(id);
-    console.log(id)
+    console.log(id);
   };
 
   const openEditSingle = (id) => {
@@ -33,15 +35,20 @@ export const ModalProvider = ({ children }) => {
     setInfosAddMusic(id);
   };
 
-  const openDeleteMusic = (idAlbum, idMusic) => {
+  const openDeleteMusic = (idAlbum, idMusic, name) => {
     SetIsDeleteMusic(true);
-    setInfosDeleteMusic({ idAlbum, idMusic });
+    setInfosDeleteMusic({ idAlbum, idMusic, name });
+  };
+
+  const openDeleteProduct = (name, id) => {
+    setIsDeleteProduct(true);
+    setInfosDeleteProduct({ name, id });
   };
 
   return (
     <ModalContext.Provider
       value={{
-        isCreateAlbum,  
+        isCreateAlbum,
         setIsCreateAlbum,
         isEditAlbum,
         setIsEditAlbum,
@@ -65,6 +72,10 @@ export const ModalProvider = ({ children }) => {
         openEditSingle,
         openAddMusic,
         openDeleteMusic,
+        isDeleteProduct,
+        setIsDeleteProduct,
+        infosDeleteProduct,
+        openDeleteProduct,
       }}
     >
       {children}

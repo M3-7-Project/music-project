@@ -47,12 +47,10 @@ const EditSingle = () => {
       productToken()
     )
       .then((res) => {
-        console.log(res.data);
         toast.success("Single editado com sucesso");
-        setIsEditSingle(false)
+        setIsEditSingle(false);
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Ocorreu um erro");
       });
   };
@@ -74,10 +72,7 @@ const EditSingle = () => {
           <SpanModal>{errors.date?.message}</SpanModal>
           <InputModal type="text" placeholder="Bio" {...register("bio")} />
           <SpanModal>{errors.bio?.message}</SpanModal>
-          <div>
-            <ButtonCriar type="submit">Editar</ButtonCriar>
-            <ButtonDelete>Excluir</ButtonDelete>
-          </div>
+          <ButtonCriar type="submit">Editar</ButtonCriar>
         </FormModal>
       </div>
     </ModalExample>
