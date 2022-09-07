@@ -7,15 +7,15 @@ const Loading = () => {
   return (
     isLoading && (
       <LoadingStyled>
-        <div class="container">
-          <div class="column column1"></div>
-          <div class="column column2"></div>
-          <div class="column column3"></div>
-          <div class="column column4"></div>
-          <div class="column column5"></div>
-          <div class="column column6"></div>
-          <div class="column column7"></div>
-          <div class="column column8"></div>
+        <div className="container">
+          <div className="column column1"></div>
+          <div className="column column2"></div>
+          <div className="column column3"></div>
+          <div className="column column4"></div>
+          <div className="column column5"></div>
+          <div className="column column6"></div>
+          <div className="column column7"></div>
+          <div className="column column8"></div>
         </div>
       </LoadingStyled>
     )
