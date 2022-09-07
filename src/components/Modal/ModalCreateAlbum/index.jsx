@@ -44,7 +44,7 @@ const ModalAlbum = () => {
       {
         ...data,
         userId: productTokenId(),
-        profileId: productProfile(),
+        profileId: await productProfile(),
         date: parseDate(data.date),
         type: "album",
         musics: [],

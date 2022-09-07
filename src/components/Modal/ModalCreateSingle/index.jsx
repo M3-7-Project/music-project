@@ -44,7 +44,7 @@ const ModalSingle = () => {
       {
         ...data,
         userId: productTokenId(),
-        profileId: productProfile(),
+        profileId: await productProfile(),
         date: parseDate(data.date),
         type: "single",
       },
