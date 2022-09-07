@@ -49,6 +49,7 @@ const EditSingle = () => {
       .then((res) => {
         console.log(res.data);
         toast.success("Single editado com sucesso");
+        setIsEditSingle(false)
       })
       .catch((err) => {
         console.log(err);

@@ -39,6 +39,7 @@ const EditAlbum = () => {
   });
 
   const request = async (data) => {
+    console.log(infosEditAlbum)
     await updateProductionRequest(
       infosEditAlbum,
       {
@@ -50,6 +51,7 @@ const EditAlbum = () => {
       .then((res) => {
         console.log(res.data);
         toast.success("Álbum editado com sucesso!");
+        setIsEditAlbum(false)
       })
       .catch((err) => {
         console.log(err);

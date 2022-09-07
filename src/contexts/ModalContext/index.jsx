@@ -12,27 +12,28 @@ export const ModalProvider = ({ children }) => {
   const [isDeleteMusic, SetIsDeleteMusic] = useState(false);
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [isEditProducer, setIsEditProducer] = useState(false);
-  const [infosEditAlbum, setInfosEditAlbum] = useState("");
+  const [infosEditAlbum, setInfosEditAlbum] = useState(0);
   const [infosEditSingle, setInfosEditSingle] = useState("");
   const [infosAddMusic, setInfosAddMusic] = useState("");
   const [infosDeleteMusic, setInfosDeleteMusic] = useState({});
 
-  const openEditAlbum = ({ id }) => {
+  const openEditAlbum = (id) => {
     setIsEditAlbum(true);
     setInfosEditAlbum(id);
+    console.log(id)
   };
 
-  const openEditSingle = ({ id }) => {
+  const openEditSingle = (id) => {
     setIsEditSingle(true);
     setInfosEditSingle(id);
   };
 
-  const openAddMusic = ({ id }) => {
+  const openAddMusic = (id) => {
     setIsAddMusic(true);
     setInfosAddMusic(id);
   };
 
-  const openDeleteMusic = ({ idAlbum, idMusic }) => {
+  const openDeleteMusic = (idAlbum, idMusic) => {
     SetIsDeleteMusic(true);
     setInfosDeleteMusic({ idAlbum, idMusic });
   };
@@ -40,7 +41,7 @@ export const ModalProvider = ({ children }) => {
   return (
     <ModalContext.Provider
       value={{
-        isCreateAlbum,
+        isCreateAlbum,  
         setIsCreateAlbum,
         isEditAlbum,
         setIsEditAlbum,

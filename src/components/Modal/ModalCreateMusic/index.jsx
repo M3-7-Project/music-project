@@ -53,6 +53,7 @@ const CreateMusic = () => {
       .then((res) => {
         console.log(res);
         toast.success("Música adiconada com sucesso!");
+        setIsAddMusic(false)
       })
       .catch((err) => {
         console.log(err);
