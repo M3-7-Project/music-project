@@ -26,7 +26,7 @@ export const DashboardHeader = styled.header`
     gap: 1.5rem;
   }
 
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 550px) {
     padding: 1rem;
     max-width: 100%;
   }
