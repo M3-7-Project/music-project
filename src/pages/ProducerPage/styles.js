@@ -7,6 +7,18 @@ export const Header = styled.header`
     display: flex;
     padding: 20px 90px;
     align-items: flex-end;
+
+    @media screen and (max-width: 1000px) {
+        & {
+            padding: 20px 50px;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        & {
+            height: 350px;
+            padding: 20px 25px
+        }
+    }
 `
 
 export const Cover = styled.img`
@@ -34,6 +46,13 @@ export const HeaderImage = styled.div`
         object-fit: cover;
         box-shadow: 8px 3px 22px 10px rgba(0, 0, 0, 0.13);
     }
+
+    @media screen and (max-width: 800px) {
+        & > img{
+            height: 95px;
+            width: 95px;
+        }
+    }
 `
 
 export const HeaderContent = styled.div`
@@ -53,13 +72,39 @@ export const HeaderContent = styled.div`
     font-size: 18px;
     color: var(--grey-03);
    }
+
+   @media screen and (max-width: 800px) {
+        & {
+            flex: 3;
+            margin-bottom: 20px;
+        }
+        & > h1{
+            font-size: 32px;
+            white-space: nowrap;
+        }
+        & > h4 {
+            font-size: 14px;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+    }
 `
 export const HeaderButton = styled.div`
     flex: 1;
     position: relative;
+    height: 100%;
     display: flex;
+    align-items: flex-end;
     justify-content: end;
     margin-bottom: 40px;
+
+    @media screen and (max-width: 800px) {
+        & > button{
+            position: absolute;
+            top: 40px;
+            right: 25px;
+        }
+    }
 `
 
 export const DropDown = styled.div`
@@ -102,6 +147,14 @@ export const DropDown = styled.div`
             opacity: 0;
         }
     }
+
+    @media screen and (max-width: 800px) {
+        & {
+            width: 150px;
+            height: 120px;
+            bottom: 135px;
+        }
+    }
 `
 
 export const Line = styled.div` 
@@ -116,6 +169,16 @@ export const Triangle = styled.div`
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 30px solid var(--grey-00);
+
+    @media screen and (max-width: 800px) {
+        & {
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid var(--grey-00);
+            transform: rotateX(180deg);
+            bottom: 115px;
+        }
+    }
 `
 
 export const Main = styled.main`
@@ -125,6 +188,17 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     gap: 25px;
+
+    @media screen and (max-width: 1000px) {
+        & {
+            padding: 20px 50px 170px;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        & {
+            padding: 20px 25px 100px;
+        }
+    }
 `
 
 export const Bio = styled.section`
@@ -139,6 +213,16 @@ export const Bio = styled.section`
         line-height: 25px;
         text-align: justify;
         color: var(--grey-03);
+    }
+
+    @media screen and (max-width: 800px) {
+        &{
+            flex-direction: column;
+        }
+        & p{
+            font-size: 14px;
+            line-height: 18px;
+        }
     }
 `
 
@@ -167,5 +251,19 @@ export const Contact = styled.div`
         background-color: transparent;
         border: none;
         cursor: pointer;
+    }
+
+    @media screen and (max-width: 800px) {
+        & {
+            gap: 20px;
+        }
+        & p{
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        & > div {
+            justify-content: space-around;
+        }
     }
 `

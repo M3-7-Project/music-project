@@ -9,6 +9,27 @@ export const Launch = styled.section`
     padding: 20px;
     display: flex;
     gap: 20px;
+
+    @media screen and (max-width: 1000px) {
+        & {
+            height: 50vw;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        & {
+            flex-direction: column;
+            align-items: center;
+            min-height: 550px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        & {
+
+            min-height: 800px;
+        }
+    }
 `
 export const ImageDiv = styled.div`
     flex: 3;
@@ -29,6 +50,20 @@ export const ImageDiv = styled.div`
     & > img {
         height: 100%;
     }
+
+    @media screen and (max-width: 800px) {
+        & {
+            width: 100%;
+            max-width: 100%;
+            height: 200px;
+            min-height: 200px;
+        }
+        & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 `
 
 export const Content = styled.div`
@@ -46,9 +81,16 @@ export const Content = styled.div`
     & > p {
         font-weight: 300;
         font-size: 16px;
-        line-height: 20px;
+        line-height: 22px;
         text-align: justify;
         color: var(--grey-03);
+    }
+
+    @media screen and (max-width: 800px) {
+        & > p{
+            font-size: 14px;
+            line-height: 20px;
+        }
     }
 
 `
@@ -66,6 +108,16 @@ export const Title = styled.div`
         font-weight: 400;
         font-size: 16px;
         color: var(--grey-03);
+    }
+
+    @media screen and (max-width: 800px) {
+        & > h2{
+            font-size: 28px;
+        }
+        & > h4 {
+            font-size: 14px;
+            margin-top: 5px;
+        }
     }
 `
 

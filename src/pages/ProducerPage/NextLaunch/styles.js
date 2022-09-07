@@ -16,6 +16,12 @@ export const Launchs = styled.section`
         font-size: 40px;
         color: var(--grey-03);
     }
+
+    @media screen and (max-width: 800px) {
+        & h3{
+            font-size: 28px;
+        }
+    }
 `
 
 export const Controls = styled.div`
@@ -31,9 +37,12 @@ export const Controls = styled.div`
 `
 export const List = styled.ul`
     margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
 
     & li {
         display: flex;
@@ -48,7 +57,8 @@ export const List = styled.ul`
     }
 
     & img {
-        width: 240px;
+        width: 20vw;
+        max-width: 240px;
         height: 240px;
         border-radius: 10px;
         object-fit: cover;
@@ -60,5 +70,21 @@ export const List = styled.ul`
         font-size: 14px;
         line-height: 32px;
         color: var(--grey-03);
+    }
+
+    @media screen and (max-width: 1200px) {
+        & img {
+            width: 18vw;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        & {
+            flex-direction: column;
+        }
+
+        & img {
+            width: 100vw;
+        }
     }
 `
