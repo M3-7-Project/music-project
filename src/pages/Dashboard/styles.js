@@ -21,7 +21,7 @@ export const DashboardHeader = styled.header`
 
   padding: 1rem 10rem;
 
-  @media screen and (max-width: 840px) {
+  @media screen and (max-width: 960px) {
     flex-direction: column-reverse;
     gap: 1.5rem;
   }

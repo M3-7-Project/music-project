@@ -14,6 +14,9 @@ export const ProducerProvider = ({ children }) => {
   const { setIsLoading } = useContext(LoadingContext);
 
   const getProducer = async () => {
+    if (idToSearch === null) {
+      return;
+    }
     const profile = await getProfileRequest(idToSearch);
     const production = await getProductionRequest("", {
       _page: indexProductions,
@@ -24,7 +27,7 @@ export const ProducerProvider = ({ children }) => {
     const result = production.data.map((element) => {
       return {
         ...element,
-        date: new Date(element.date).toLocaleString(),
+        date: new Date(+element.date).toLocaleString(),
       };
     });
 
