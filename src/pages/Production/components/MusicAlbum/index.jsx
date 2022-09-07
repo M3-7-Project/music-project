@@ -1,9 +1,12 @@
 import CircleButton from "../../../../components/CircleButton";
 import { Buttons, Container, Content } from "./styles";
 import { BsPlayFill } from 'react-icons/bs';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlinePlus } from 'react-icons/ai';
+import { useContext } from "react";
+import { UserContext } from "../../../../contexts/UserContext";
 
-const MusicAlbum = ({music, date, artist}) => {
+const MusicAlbum = ({ music, date, artist }) => {
+    const { userInfo } = useContext(UserContext);
     return (
         <>
             <Container>
@@ -16,7 +19,12 @@ const MusicAlbum = ({music, date, artist}) => {
                             <BsPlayFill />
                         </CircleButton>
                         <CircleButton radius='50'>
-                            <AiOutlineHeart />
+                            {
+                                userInfo.userId == artist.userId ?
+                                    <AiOutlinePlus />
+                                    :
+                                    <AiOutlineHeart />
+                            }
                         </CircleButton>
                     </Buttons>
                 </Content>
