@@ -16,11 +16,13 @@ import {
   TitleModal,
 } from "../ComponentsModal/styles";
 import { ModalContext } from "../../../contexts/ModalContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 const EditProfile = () => {
   const { setIsEditProfile } = useContext(ModalContext);
   const { productToken, productTokenId, productProfile } =
     useContext(productsContext);
+    const { setUserInfo, userInfo } = useContext(UserContext);
   const [infos, setInfos] = useState({});
   const {
     register,
@@ -53,12 +55,16 @@ const EditProfile = () => {
         productToken()
       )
         .then((res) => {
-          console.log(res);
           setInfos(newData);
           toast.success("Perfil atualizado com sucesso");
+          setIsEditProfile(false)
+          setUserInfo({
+            ...userInfo,
+            name: res.data.name,
+            profile_picture: res.data.profile_picture,
+          })
         })
         .catch((err) => {
-          console.log(err);
           toast.error("Ocorreu um erro");
         });
     }

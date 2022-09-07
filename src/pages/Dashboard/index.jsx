@@ -65,7 +65,9 @@ const Dashboard = () => {
   };
 
   const editProfile = () => {
-    userInfo.type === "producer" ? setIsEditProducer(true) : setIsEditProfile(true);
+    userInfo.type === "producer"
+      ? setIsEditProducer(true)
+      : setIsEditProfile(true);
   };
 
   useEffect(() => {
@@ -86,9 +88,7 @@ const Dashboard = () => {
   return (
     <TransitionPage>
       <DashboardWrapper>
-        <AnimatePresence>
-          {showMenu && <HeaderDropdown />}
-        </AnimatePresence>
+        <AnimatePresence>{showMenu && <HeaderDropdown />}</AnimatePresence>
         <DashboardHeader>
           <HeaderNavigation>
             <button id="menu-button" onClick={() => handleDropdownOpening()}>
@@ -96,7 +96,11 @@ const Dashboard = () => {
             </button>
             <HeaderNavigationInput>
               <form>
-                <input type="text" placeholder="Insira sua pesquisa" onChange={(e) => setUserSearch(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder="Insira sua pesquisa"
+                  onChange={(e) => setUserSearch(e.target.value)}
+                />
                 <button onClick={(e) => handleSearch(e)}>
                   <BsSearch />
                 </button>
@@ -104,9 +108,16 @@ const Dashboard = () => {
             </HeaderNavigationInput>
           </HeaderNavigation>
           <HeaderProfile>
-            <p>{userInfo?.artistic_name}</p>
+            <p>
+              {userInfo.type === "producer"
+                ? userInfo?.artistic_name
+                : userInfo?.name}
+            </p>
             <HeaderProfilePicture>
-              <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
+              <img
+                src={userInfo?.profile_picture}
+                alt={`Imagem de perfil do ${userInfo?.artistic_name}`}
+              />
             </HeaderProfilePicture>
             <button onClick={editProfile}>
               <BsFillGearFill size={30} />
