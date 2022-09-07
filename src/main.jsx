@@ -9,7 +9,6 @@ import { Global } from "./styles/global";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Global />
-    <Toaster />
     <Providers>
       <BrowserRouter>
         <App />
