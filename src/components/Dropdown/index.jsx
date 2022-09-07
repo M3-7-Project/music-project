@@ -1,27 +1,34 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { AnchorDiv, Dropdown } from './styles'
+import React from "react";
+import { useRef } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { DropdownContext } from "../../contexts/DropdownContext";
+import { AnchorDiv, Dropdown } from "./styles";
 
-export const HeaderDropdown = ({setShow}) => {
-  const navigate = useNavigate()
+const HeaderDropdown = () => {
+  const navigate = useNavigate();
+  const { useOnClickOutside, setShowMenu } = useContext(DropdownContext);
 
   const handleProfile = () => {
-    navigate('/producer/:id', {replace: true})
-  }
+    navigate("/producer/:id");
+  };
 
   const handleHomepage = () => {
-    navigate('/dashboard', {replace: true})
-  }
+    navigate("/dashboard");
+  };
 
   const handleLogout = () => {
-    localStorage.clear()
-    navigate('/login', {replace: true})
-  }
+    localStorage.clear();
+    navigate("/login");
+  };
+
+  const menuRef = useRef();
+  useOnClickOutside(menuRef, () => setShowMenu(false));
 
   return (
     <>
-      <Dropdown>
-          <img src='../src/assets/logo.svg'/>
+      <Dropdown ref={menuRef}>
+        <img src="../src/assets/logo.svg" />
         <AnchorDiv>
           <a onClick={() => handleProfile()}>Perfil</a>
           <a onClick={() => handleHomepage()}>Home</a>
@@ -29,5 +36,7 @@ export const HeaderDropdown = ({setShow}) => {
         </AnchorDiv>
       </Dropdown>
     </>
-  )
-}
+  );
+};
+
+export default HeaderDropdown;

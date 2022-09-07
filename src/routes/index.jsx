@@ -20,7 +20,7 @@ const RoutesMain = () => {
         <Route path="/album" element={<Production />}>
           <Route path=":id" element={<Production />} />
         </Route>
-        <Route path="/music" element={<Production />}>
+        <Route path="/single" element={<Production />}>
           <Route path=":id" element={<Production />} />
         </Route>
       </Route>

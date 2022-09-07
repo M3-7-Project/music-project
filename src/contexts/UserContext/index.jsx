@@ -1,11 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { getProfileRequest, userRequest } from "../../services/api";
 
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [isFetching, setIsFetching] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
   const isTokenOnStorage = () => {
@@ -17,13 +16,13 @@ export const UserProvider = ({ children }) => {
     return true;
   };
 
-  const isTokenExistent = isTokenOnStorage();
+  const isTokenExistent = isTokenOnStorage() === true;
 
   useEffect(() => {
     if (!isTokenExistent) {
-      setIsFetching(false);
       return;
     }
+    setIsFetching(true);
 
     const userData = localStorage.getItem("@onflow:user");
     const { id } = JSON.parse(userData);
@@ -42,11 +41,7 @@ export const UserProvider = ({ children }) => {
     };
 
     fetchUser(id);
-  }, []);
+  }, [isTokenExistent]);
 
-  return (
-    <UserContext.Provider value={{ isTokenExistent, isFetching, userInfo }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ isTokenExistent, isFetching, userInfo, setIsFetching }}>{children}</UserContext.Provider>;
 };
