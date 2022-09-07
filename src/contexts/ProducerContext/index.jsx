@@ -30,7 +30,7 @@ export const ProducerProvider = ({ children }) => {
 
     setProductions(result);
     setProducer(profile.data);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const toNext = () => {
@@ -58,11 +58,6 @@ export const ProducerProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setIsLoading(true)
-    getProducer();
-  }, [indexProductions]);
-
-  useEffect(() => {
     if (animation == "open") {
       setIsOpen(true);
     } else {
@@ -83,6 +78,8 @@ export const ProducerProvider = ({ children }) => {
         toNext,
         toPrevious,
         animation,
+        indexProductions,
+        getProducer,
       }}
     >
       {children}
