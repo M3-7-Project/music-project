@@ -16,7 +16,7 @@ const ListenerForm = ({setIsLoading}) => {
         email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
         password: yup.string().required('Senha obrigatória'),
         confirmPassword: yup.string().required('Digite sua senha novamente').equals([yup.ref('password'), null], 'A senha não corresponde'),
-        image: yup.string().optional(),
+        profile_picture: yup.string().optional(),
     })
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -30,6 +30,7 @@ const ListenerForm = ({setIsLoading}) => {
             .then((res) => {
                 const{user: {id}, accessToken} = {...res.data}
                 const profileRequestObj = createProfileRequestObj(data, id);
+                console.log(profileRequestObj);
                 createProfileRequest(profileRequestObj, accessToken)
                     .then((res) => {
                         setIsLoading(false);
@@ -98,7 +99,7 @@ const ListenerForm = ({setIsLoading}) => {
                 <input type='password' id='confirm-password' className='styled-input' placeholder='Confirme sua senha' {...register('confirmPassword')} />
                 <span>{errors.confirmPassword?.message}</span>
 
-                <input type='text' id='image' className='styled-input' placeholder='Foto de perfil' {...register('image')} />
+                <input type='text' id='image' className='styled-input' placeholder='Foto de perfil' {...register('profile_picture')} />
                 <span></span>
 
                 <Button>Cadastrar</Button>
