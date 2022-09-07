@@ -2,6 +2,7 @@ import { Launchs, Controls, List } from './styles';
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { useContext } from 'react';
 import { ProducerContext } from '../../../contexts/ProducerContext';
+import { Link } from 'react-router-dom';
 
 const NextLaunch = () => {
     const {productions, toNext, toPrevious} = useContext(ProducerContext)
@@ -23,12 +24,14 @@ const NextLaunch = () => {
             {
                 productions.map(element =>{
                     return (
+                        <Link to={`/${element.type}/${element.id}`}>
                         <li key={element.id}>
                             <button>
                                 <img src={element.cover}/>
                             </button>
                             <h4>{element.name}</h4>
                         </li>
+                        </Link>
                     )
                 })
             }

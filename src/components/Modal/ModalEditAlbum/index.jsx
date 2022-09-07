@@ -21,7 +21,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditAlbum = () => {
   const { setIsEditAlbum, infosEditAlbum } = useContext(ModalContext);
-  const { productToken, parseDate } = useContext(productsContext);
+  const { productToken, parseDate, setAlbum } = useContext(productsContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Nome é obrigatório"),
@@ -48,11 +48,11 @@ const EditAlbum = () => {
       productToken()
     )
       .then((res) => {
-        console.log(res.data);
         toast.success("Álbum editado com sucesso!");
+        setAlbum(res.data)
+        setIsEditAlbum(false)
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Ocorreu um erro");
       });
   };
@@ -80,10 +80,7 @@ const EditAlbum = () => {
             {...register("image")}
           />
           <SpanModal>{errors.image?.message}</SpanModal>
-          <div>
             <ButtonCriar type="submit">Editar</ButtonCriar>
-            <ButtonDelete>Excluir</ButtonDelete>
-           </div>
          </FormModal>
       </div>
     </ModalExample>

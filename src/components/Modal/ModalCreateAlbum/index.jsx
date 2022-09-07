@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,11 +17,13 @@ import {
   TitleModal,
 } from "../ComponentsModal/styles";
 import { ModalContext } from "../../../contexts/ModalContext";
+import { ProducerContext } from "../../../contexts/ProducerContext";
 
 const ModalAlbum = () => {
   const { setIsCreateAlbum } = useContext(ModalContext);
   const { parseDate, productToken, productTokenId, productProfile } =
     useContext(productsContext);
+  const { productions, setProductions } = useContext(ProducerContext);
 
   const schema = yup.object().shape({
     preview: yup.string().required("Música é obrigatório"),
@@ -52,10 +54,15 @@ const ModalAlbum = () => {
       productToken()
     )
       .then((res) => {
-        console.log(res);
         toast.success("Álbum criado com sucesso!");
+        productions.pop();
+        const result = {...res.data, date: new Date(res.date).toLocaleString()}
+        setProductions([...productions, result]);
+        setIsCreateAlbum(false);
       })
-      .catch(() => toast.error("Ocorreu um erro"));
+      .catch((err) => {
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (

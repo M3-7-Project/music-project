@@ -11,6 +11,7 @@ import LaunchCard from "./LaunchCard";
 import NextLaunch from "./NextLaunch";
 import { ProducerContext } from "../../contexts/ProducerContext";
 import { LoadingContext } from "../../contexts/LoandingContext";
+import { ModalContext } from "../../contexts/ModalContext";
 import { DropdownButton } from "../../components/DropdownButton";
 import { AnimatePresence } from "framer-motion";
 import { DropdownContext } from "../../contexts/DropdownContext";
@@ -25,6 +26,8 @@ const ProducerPage = () => {
   const { showMenu } = useContext(DropdownContext);
 
   const { id } = useParams();
+  const { setIsEditProducer, setIsCreateSingle, setIsCreateAlbum } =
+    useContext(ModalContext);
 
   useEffect(() => {
     setIdToSearch(id);
@@ -48,11 +51,17 @@ const ProducerPage = () => {
         <HeaderButton>
           {isOpen && (
             <DropDown animation={animation}>
-              <button>Editar Perfil</button>
+              <button onClick={() => setIsEditProducer(true)}>
+                Editar Perfil
+              </button>
               <Line></Line>
-              <button>Criar Single</button>
+              <button onClick={() => setIsCreateSingle(true)}>
+                Criar Single
+              </button>
               <Line></Line>
-              <button>Criar Álbum</button>
+              <button onClick={() => setIsCreateAlbum(true)}>
+                Criar Álbum
+              </button>
               <Triangle />
             </DropDown>
           )}

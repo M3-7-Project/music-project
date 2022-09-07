@@ -6,6 +6,7 @@ import ModalAlbum from "../ModalCreateAlbum";
 import CreateMusic from "../ModalCreateMusic";
 import ModalSingle from "../ModalCreateSingle";
 import DeleteMusic from "../ModalDeleteMusic";
+import DeleteProduct from "../ModalDeleteProduct";
 import EditAlbum from "../ModalEditAlbum";
 import EditProducer from "../ModalEditProducer";
 import EditProfile from "../ModalEditProfile";
@@ -21,6 +22,7 @@ const GeneralModal = () => {
     isDeleteMusic,
     isEditProfile,
     isEditProducer,
+    isDeleteProduct,
   } = useContext(ModalContext);
   const {} = useContext(ModalContext);
 
@@ -64,6 +66,11 @@ const GeneralModal = () => {
       {isEditProducer && (
         <AnimationDiv>
           <EditProducer />
+        </AnimationDiv>
+      )}
+      {isDeleteProduct && (
+        <AnimationDiv>
+          <DeleteProduct />
         </AnimationDiv>
       )}
     </AnimatePresence>

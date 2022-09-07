@@ -10,38 +10,70 @@ import {
   AlbumImageContentTop,
   Container,
   Content,
+  DropDown,
   FlexContent,
+  Line,
   MidContent,
   MusicList,
   PeopleWaiting,
   SocialMedia,
   SocialMedias,
+  Triangle,
 } from "./styles";
 import MusicAlbum from "./components/MusicAlbum";
 import Comments from "./components/Comments";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { getCommentRequest, getProductionRequest, getProfileRequest } from "../../services/api";
+import {
+  getCommentRequest,
+  getProductionRequest,
+  getProfileRequest,
+} from "../../services/api";
 import { LoadingModal } from "../Register/styles";
 import { AnimatePresence } from "framer-motion";
 import HeaderDropdown from "../../components/Dropdown";
 import { DropdownContext } from "../../contexts/DropdownContext";
 import { DropdownButton } from "../../components/DropdownButton";
 import { UserContext } from "../../contexts/UserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+import { productsContext } from "../../contexts/ProductsContext";
 
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
+  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } =
+    useContext(ModalContext);
+  const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
-  const [album, setAlbum] = useState({});
   const [albumUser, setAlbumUser] = useState({});
   const [comments, setComments] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [animation, setAnimation] = useState("close");
 
   useEffect(() => {
     updateMusics();
     updateComments();
   }, []);
+
+  useEffect(() => {
+    if (animation == "open") {
+      setIsOpen(true);
+    } else {
+      setAnimation("close");
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 600);
+    }
+  }, [animation]);
+
+  const onpenDropDown = () => {
+    if (animation == "open") {
+      setAnimation("close");
+    } else {
+      setAnimation("open");
+    }
+  };
 
   const updateMusics = () => {
     getProductionRequest(id, {}).then((res) => {
@@ -57,6 +89,10 @@ const Production = () => {
       setComments(res.data);
       setIsLoading(false);
     });
+  };
+
+  const editProduct = () => {
+    album.type === "album" ? openEditAlbum(album.id) : openEditSingle(album.id);
   };
 
   return (
@@ -75,9 +111,40 @@ const Production = () => {
                 <AlbumImageContentBottom>
                   <div>
                     <h1>{album?.name}</h1>
-                    <h3>Lançamento {new Date(parseInt(album?.date)).toLocaleDateString()}</h3>
+                    <h3>
+                      Lançamento{" "}
+                      {new Date(parseInt(album?.date)).toLocaleDateString()}
+                    </h3>
                   </div>
-                  <CircleButton radius="50">{userInfo.userId == album.userId ? <AiOutlinePlus /> : <AiOutlineHeart />}</CircleButton>
+                  <section>
+                    {isOpen && (
+                      <DropDown animation={animation}>
+                        {album.type === "album" && (
+                          <button onClick={() => openAddMusic(album.id)}>
+                            Adicionar música
+                          </button>
+                        )}
+                        <Line></Line>
+                        <button
+                          onClick={() =>
+                            openDeleteProduct(album.name, album.id)
+                          }
+                        >
+                          Apagar
+                        </button>
+                        <Line></Line>
+                        <button onClick={editProduct}>Editar</button>
+                        <Triangle />
+                      </DropDown>
+                    )}
+                    <CircleButton radius="50" onClick={onpenDropDown}>
+                      {userInfo.userId == album.userId ? (
+                        <AiOutlinePlus />
+                      ) : (
+                        <AiOutlineHeart />
+                      )}
+                    </CircleButton>
+                  </section>
                 </AlbumImageContentBottom>
               </AlbumImageContent>
             </AlbumImageContainer>
@@ -103,12 +170,26 @@ const Production = () => {
               <MusicList>
                 {album?.musics?.map((music, id) => {
                   return (
-                    <MusicAlbum music={music} date={new Date(parseInt(album?.date)).toLocaleDateString()} artist={albumUser} key={id} />
+                    <MusicAlbum
+                      music={music}
+                      date={new Date(
+                        parseInt(album?.date)
+                      ).toLocaleDateString()}
+                      artist={albumUser}
+                      key={id}
+                      id={id}
+                      album={album.id}
+                    />
                   );
                 })}
               </MusicList>
             </FlexContent>
-            <Comments comments={comments} updateComments={updateComments} setIsLoading={setIsLoading} productionId={id} />
+            <Comments
+              comments={comments}
+              updateComments={updateComments}
+              setIsLoading={setIsLoading}
+              productionId={id}
+            />
           </Content>
         </Container>
       )}
