@@ -120,15 +120,15 @@ export const HeaderProfile = styled.div`
   svg {
     color: var(--grey-02);
 
-    &:hover{
+    &:hover {
       transition: 400ms;
       color: var(--grey-03);
     }
   }
 
-  button{
+  button {
     background-color: transparent;
-    
+
     border: none;
 
     cursor: pointer;
@@ -156,7 +156,7 @@ export const DashboardMain = styled.main`
     padding: 1rem;
   }
 
-  @media screen and (max-width: 840px) {
+  @media screen and (max-width: 840px) and (min-width: 580px) {
     padding: 2rem 8rem;
   }
 `;
@@ -314,7 +314,8 @@ export const VotedMusicList = styled.ul`
 export const MusicCard = styled.li`
   display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
+  width: 100%;
 
   padding: 0.5rem;
   border-radius: 8px;
@@ -328,22 +329,49 @@ export const MusicCard = styled.li`
     object-fit: cover;
     border-radius: 8px;
   }
+
+  @media screen and (min-width: 400px) {
+    gap: 1.5rem;
+  }
 `;
 
 export const MusicCardInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-transform: capitalize;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: capitalize;
+  }
+
+  p {
+    width: 50px;
+    font-size: 0.6rem;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 400px) {
+    gap: 1rem;
+    p {
+      width: initial;
+      font-size: initial;
+    }
+  }
 `;
 
 export const MusicCardDetails = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.4rem;
 
   p {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+  }
+
+  @media screen and (min-width: 400px) {
+    gap: 1rem;
+    p {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -357,8 +385,8 @@ export const MusicButtons = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
     border: 0;
     outline: 0;
@@ -374,6 +402,13 @@ export const MusicButtons = styled.div`
 
     &:hover {
       filter: brightness(135%);
+    }
+  }
+
+  @media screen and (min-width: 400px) {
+    button {
+      width: 40px;
+      height: 40px;
     }
   }
 `;
