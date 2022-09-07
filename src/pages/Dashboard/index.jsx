@@ -34,6 +34,7 @@ import { ProductionList } from "./components/ProductionList";
 import { ProducerList } from "./components/ArtistList";
 import TransitionPage from "../../components/TransitionPage";
 import { LoadingContext } from "../../contexts/LoandingContext";
+import { ModalContext } from "../../contexts/ModalContext";
 
 const Dashboard = () => {
   const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
@@ -49,6 +50,7 @@ const Dashboard = () => {
     productionPage,
   } = useContext(DashboardContext);
   const { setIsLoading } = useContext(LoadingContext);
+  const { setIsEditProfile, setIsEditProducer } = useContext(ModalContext);
   const [userSearch, setUserSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [shouldSearch, setShouldSearch] = useState(false);
@@ -59,6 +61,10 @@ const Dashboard = () => {
     }
     e.preventDefault();
     setSearchParams(createSearchParams({ search: userSearch }));
+  };
+
+  const editProfile = () => {
+    userInfo.type === "producer" ? setIsEditProducer(true) : setIsEditProfile(true);
   };
 
   useEffect(() => {
@@ -99,7 +105,9 @@ const Dashboard = () => {
             <HeaderProfilePicture>
               <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
             </HeaderProfilePicture>
-            <BsFillGearFill size={30} />
+            <button onClick={editProfile}>
+              <BsFillGearFill size={30} />
+            </button>
           </HeaderProfile>
         </DashboardHeader>
 
