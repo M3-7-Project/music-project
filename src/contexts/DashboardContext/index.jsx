@@ -44,23 +44,19 @@ export const DashboardProvider = ({ children }) => {
   };
 
   const getVotedProductions = async () => {
-    if (votedProductions.length > 0) {
-      return;
-    }
     try {
       const userId = localStorage.getItem("@onflow:id");
       const response = await getVoteRequest("", { userId: userId, _order: "desc", _limit: 4, _sort: "id" });
 
       const newProductionPromises = response.data.map(async (prodInfo) => {
-        console.log(prodInfo)
         const production = await getProductionRequest(prodInfo.productionId);
         const producer = await getProfileRequest(production.data.profileId);
         production.data.producer = producer.data;
+        production.data.scoreId = prodInfo.id;
         return production.data;
       });
 
       const returnData = await Promise.all(newProductionPromises);
-      console.log("~ returnData", returnData);
       setVotedProductions(returnData);
     } catch (error) {
       console.log(error);

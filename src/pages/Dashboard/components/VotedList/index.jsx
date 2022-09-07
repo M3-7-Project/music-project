@@ -20,6 +20,7 @@ export const VotedList = () => {
         return (
           <VotedCard
             id={production.id}
+            scoreId={production.scoreId}
             key={production.id}
             name={production.name}
             cover={production.cover}

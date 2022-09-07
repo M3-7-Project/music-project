@@ -7,9 +7,9 @@ import { MusicButtons, MusicCard, MusicCardDetails, MusicCardInfo } from "../../
 import { Link } from "react-router-dom";
 import { MusicContext } from "../../../../contexts/MusicContext/Index";
 
-export const VotedCard = ({ id, cover, name, preview, artist, type }) => {
+export const VotedCard = ({ id, scoreId, cover, name, preview, artist, type }) => {
   const { deleteVote } = useContext(DashboardContext);
-  const {selectMusic, currentMusic, isPlaying} = useContext(MusicContext)
+  const { selectMusic, currentMusic, isPlaying } = useContext(MusicContext);
 
   return (
     <MusicCard>
@@ -22,17 +22,10 @@ export const VotedCard = ({ id, cover, name, preview, artist, type }) => {
       <MusicCardDetails>
         <p>{artist}</p>
         <MusicButtons>
-          <button onClick={() => selectMusic({name: name, cover: cover, song: preview, productionId: id})}>
-            {
-              currentMusic?.productionId == id && isPlaying ? (
-                <BsPauseFill color='var(--grey-03)' size={30}/>
-              ) : (
-                <BiPlay />
-              )
-            }
-            
+          <button onClick={() => selectMusic({ name: name, cover: cover, song: preview, productionId: id })}>
+            {currentMusic?.productionId == id && isPlaying ? <BsPauseFill color="var(--grey-03)" size={30} /> : <BiPlay />}
           </button>
-          <button id="remove-button" onClick={() => deleteVote(id)}>
+          <button id="remove-button" onClick={() => deleteVote(scoreId)}>
             <IoMdHeartDislike />
           </button>
         </MusicButtons>
