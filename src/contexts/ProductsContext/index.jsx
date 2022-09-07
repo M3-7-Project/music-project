@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { createContext } from "react";
 import { getProfileRequest } from "../../services/api";
 
@@ -12,6 +13,11 @@ export const ProductsProvider = ({ children }) => {
     );
   };
 
+ const getInfos = async ()=> {
+    return await getProfileRequest("", {userId:  productTokenId()})
+    .then(res => res.data)
+  }
+
   const parseDate = (data) => {
     const date = data.split("-");
     return Date.parse(new Date(date[0], date[1], date[2]));
@@ -19,7 +25,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <productsContext.Provider
-      value={{ parseDate, productToken, productTokenId, productProfile }}
+      value={{ parseDate, productToken, productTokenId, productProfile, getInfos }}
     >
       {children}
     </productsContext.Provider>

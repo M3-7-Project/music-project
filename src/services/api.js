@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const flowApi = axios.create({
-  baseURL: 'https://json-server-onflow.herokuapp.com/',
+  baseURL: "https://json-server-onflow.herokuapp.com/",
   timeout: 10000,
 });
 
@@ -11,27 +11,27 @@ export const userRequest = async (token, id) => {
 };
 
 export const registerRequest = async (registerData) => {
-  const response = await flowApi.post('/register/', { ...registerData });
+  const response = await flowApi.post("/register/", { ...registerData });
   return response;
 };
 
 export const loginRequest = async (loginData) => {
-  const response = await flowApi.post('/login/', { ...loginData });
+  const response = await flowApi.post("/login/", { ...loginData });
   return response;
 };
 
 export const createProfileRequest = async (profileData, token) => {
-  const response = await flowApi.post('/profiles/', profileData, { headers: { Authorization: `Bearer ${token}` } });
+  const response = await flowApi.post("/profiles/", profileData, { headers: { Authorization: `Bearer ${token}` } });
   return response;
 };
 
-export const getProfileRequest = async (id = '', params = {}) => {
+export const getProfileRequest = async (id = "", params = {}) => {
   const response = await flowApi.get(`/profiles/${id}`, { params: params });
   return response;
 };
 
 export const updateProfileRequest = async (id, updateData, token) => {
-  const response = await flowApi.patch(`/profiles/${id}`, updateData,{ headers: { Authorization: `Bearer ${token}` }});
+  const response = await flowApi.patch(`/profiles/${id}`, updateData, { headers: { Authorization: `Bearer ${token}` } });
   return response;
 };
 
@@ -40,7 +40,7 @@ export const createProductionRequest = async (productionData, token) => {
   return response;
 };
 
-export const getProductionRequest = async (id = '', params = {}) => {
+export const getProductionRequest = async (id = "", params = {}) => {
   const response = await flowApi.get(`/production/${id}`, { params: params });
   return response;
 };
@@ -65,13 +65,13 @@ export const createVoteRequest = async (voteData, token) => {
   return response;
 };
 
-export const getCommentRequest = async (id = '') => {
+export const getCommentRequest = async (id = "") => {
   const response = await flowApi.get(`/comments/${id}`);
   return response;
 };
 
-export const getVoteRequest = async (id = '') => {
-  const response = await flowApi.get(`/score/${id}`);
+export const getVoteRequest = async (id = "", params = {}) => {
+  const response = await flowApi.get(`/score/${id}`, { params: params });
   return response;
 };
 
@@ -90,10 +90,10 @@ export const getAllProfilesByTypeRequest = async (type) => {
   return response;
 };
 
-export const getProductionWithStatsRequest = async (id = '') => {
+export const getProductionWithStatsRequest = async (id = "") => {
   const params = new URLSearchParams();
-  params.append('_embed', 'comments');
-  params.append('_embed', 'score');
+  params.append("_embed", "comments");
+  params.append("_embed", "score");
 
   const response = await flowApi.get(`/production/${id}`, { params: params });
   return response;
@@ -101,8 +101,8 @@ export const getProductionWithStatsRequest = async (id = '') => {
 
 export const getProfilesWithProductionsRequest = async (id) => {
   const params = new URLSearchParams();
-  params.append('_embed', 'production');
-  params.append('userId', id);
+  params.append("_embed", "production");
+  params.append("userId", id);
 
   const response = await flowApi.get(`/profiles/`, { params: params });
   return response;
@@ -110,9 +110,9 @@ export const getProfilesWithProductionsRequest = async (id) => {
 
 export const getProfilesWithInteractionsRequest = async (id) => {
   const params = new URLSearchParams();
-  params.append('_embed', 'comments');
-  params.append('_embed', 'score');
-  params.append('userId', id);
+  params.append("_embed", "comments");
+  params.append("_embed", "score");
+  params.append("userId", id);
 
   const response = await flowApi.get(`/profiles/`, { params: params });
   return response;

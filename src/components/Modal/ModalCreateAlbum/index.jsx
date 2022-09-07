@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
-import { IoMdCloseCircle } from "react-icons/io";
+import { useContext} from "react";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ModalExample from "..";
 import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { createProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonModal,
@@ -14,11 +16,10 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import { createProductionRequest } from "../../../services/api";
-import { productsContext } from "../../../contexts/ProductsContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const ModalAlbum = () => {
-  const [isAlbum, setIsAlbum] = useState(false);
+  const { setIsCreateAlbum } = useContext(ModalContext);
   const { parseDate, productToken, productTokenId, productProfile } =
     useContext(productsContext);
 
@@ -43,7 +44,7 @@ const ModalAlbum = () => {
       {
         ...data,
         userId: productTokenId(),
-        profileId: productProfile(),
+        profileId: await productProfile(),
         date: parseDate(data.date),
         type: "album",
         musics: [],
@@ -58,47 +59,34 @@ const ModalAlbum = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => setIsAlbum(true)}>Modal Álbum</button>
-      {isAlbum && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsAlbum(false)}>
-                <IoMdCloseCircle size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Criar Álbum</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Música"
-                {...register("preview")}
-              />
-              <SpanModal>{errors.preview?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" name="" id="" {...register("date")} />
-              <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")} />
-              <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Imagem"
-                {...register("cover")}
-              />
-              <SpanModal>{errors.cover?.message}</SpanModal>
-              <ButtonCriar type="submit">Criar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsCreateAlbum(false)}>
+            <RiCloseCircleFill size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Criar Álbum</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal
+            type="text"
+            placeholder="Música"
+            {...register("preview")}
+          />
+          <SpanModal>{errors.preview?.message}</SpanModal>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal>{errors.name?.message}</SpanModal>
+          <InputModal type="date" name="" id="" {...register("date")} />
+          <SpanModal>{errors.date?.message}</SpanModal>
+          <InputModal type="text" placeholder="Bio" {...register("bio")} />
+          <SpanModal>{errors.bio?.message}</SpanModal>
+          <InputModal type="text" placeholder="Imagem" {...register("cover")} />
+          <SpanModal>{errors.cover?.message}</SpanModal>
+          <ButtonCriar type="submit">Criar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 

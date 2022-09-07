@@ -1,6 +1,13 @@
-import { useState } from "react";
-import { IoMdCloseCircle } from "react-icons/io";
+import { RiCloseCircleFill } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import ModalExample from "..";
+import * as yup from "yup";
+import toast from "react-hot-toast";
 import Logo from "../../../assets/logoRedonda.svg";
+import { createProductionRequest } from "../../../services/api";
+import { productsContext } from "../../../contexts/ProductsContext";
 import {
   ButtonCriar,
   ButtonModal,
@@ -9,17 +16,10 @@ import {
   SpanModal,
   TitleModal,
 } from "../ComponentsModal/styles";
-import ModalExample from "..";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { createProductionRequest } from "../../../services/api";
-import { useContext } from "react";
-import { productsContext } from "../../../contexts/ProductsContext";
-import toast from "react-hot-toast";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const ModalSingle = () => {
-  const [isSingle, setIsSingle] = useState(false);
+  const { setIsCreateSingle } = useContext(ModalContext);
   const { parseDate, productToken, productTokenId, productProfile } =
     useContext(productsContext);
 
@@ -44,64 +44,55 @@ const ModalSingle = () => {
       {
         ...data,
         userId: productTokenId(),
-        profileId: productProfile(),
+        profileId: await productProfile(),
         date: parseDate(data.date),
         type: "single",
       },
       productToken()
     )
-    .then(res => {
-      console.log(res.data)
-      toast.success("Single criado com sucesso!")
-    })
-    .catch(err => {
-      console.log(err)
-      toast.error("Ocorreu um erro")
-    })
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Single criado com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (
-    <div>
-      <button onClick={() => setIsSingle(true)}>Modal Criar Single</button>
-      {isSingle && (
-        <ModalExample>
-          <div>
-            <div>
-              <img src={Logo} alt="" />
-              <ButtonModal onClick={() => setIsSingle(false)}>
-                <IoMdCloseCircle size={23} />
-              </ButtonModal>
-            </div>
-            <TitleModal>Criar Single</TitleModal>
-            <FormModal onSubmit={handleSubmit(request)}>
-              <InputModal
-                type="text"
-                placeholder="Música"
-                {...register("preview")}
-              />
-              <SpanModal>{errors.preview?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Nome"
-                {...register("name")}
-              />
-              <SpanModal>{errors.name?.message}</SpanModal>
-              <InputModal type="date" {...register("date")} />
-              <SpanModal>{errors.date?.message}</SpanModal>
-              <InputModal type="text" placeholder="Bio" {...register("bio")} />
-              <SpanModal>{errors.bio?.message}</SpanModal>
-              <InputModal
-                type="text"
-                placeholder="Imagem de capa"
-                {...register("cover")}
-              />
-              <SpanModal>{errors.cover?.message}</SpanModal>
-              <ButtonCriar type="submit">Criar</ButtonCriar>
-            </FormModal>
-          </div>
-        </ModalExample>
-      )}
-    </div>
+    <ModalExample>
+      <div>
+        <div>
+          <img src={Logo} alt="" />
+          <ButtonModal onClick={() => setIsCreateSingle(false)}>
+            <RiCloseCircleFill size={23} />
+          </ButtonModal>
+        </div>
+        <TitleModal>Criar Single</TitleModal>
+        <FormModal onSubmit={handleSubmit(request)}>
+          <InputModal
+            type="text"
+            placeholder="Música"
+            {...register("preview")}
+          />
+          <SpanModal>{errors.preview?.message}</SpanModal>
+          <InputModal type="text" placeholder="Nome" {...register("name")} />
+          <SpanModal>{errors.name?.message}</SpanModal>
+          <InputModal type="date" {...register("date")} />
+          <SpanModal>{errors.date?.message}</SpanModal>
+          <InputModal type="text" placeholder="Bio" {...register("bio")} />
+          <SpanModal>{errors.bio?.message}</SpanModal>
+          <InputModal
+            type="text"
+            placeholder="Imagem de capa"
+            {...register("cover")}
+          />
+          <SpanModal>{errors.cover?.message}</SpanModal>
+          <ButtonCriar type="submit">Criar</ButtonCriar>
+        </FormModal>
+      </div>
+    </ModalExample>
   );
 };
 
