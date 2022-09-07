@@ -30,6 +30,7 @@ import { DropdownButton } from "../../components/DropdownButton";
 
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
+  const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   const [album, setAlbum] = useState({});
   const [albumUser, setAlbumUser] = useState({});
@@ -75,9 +76,7 @@ const Production = () => {
                     <h1>{album?.name}</h1>
                     <h3>Lançamento {new Date(parseInt(album?.date)).toLocaleDateString()}</h3>
                   </div>
-                  <CircleButton radius="50">
-                    <AiOutlineHeart />
-                  </CircleButton>
+                  <CircleButton radius="50">{userInfo.userId == album.userId ? <AiOutlinePlus /> : <AiOutlineHeart />}</CircleButton>
                 </AlbumImageContentBottom>
               </AlbumImageContent>
             </AlbumImageContainer>
