@@ -37,30 +37,6 @@ export const HeaderNavigation = styled.nav`
   align-items: center;
   gap: 1.5rem;
 
-  svg {
-    color: var(--grey-03);
-    cursor: pointer;
-  }
-
-  #menu-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 40px;
-    height: 40px;
-    background-color: var(--emphasis-0);
-    outline: 0;
-    border: 0;
-    border-radius: 100%;
-
-    transition: all 0.5s;
-
-    &:hover {
-      filter: brightness(135%);
-    }
-  }
-
   @media screen and (max-width: 450px) {
     width: 100%;
     justify-content: center;
