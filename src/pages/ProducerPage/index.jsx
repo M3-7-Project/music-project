@@ -24,7 +24,6 @@ const ProducerPage = () => {
   const { userInfo } = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
   const { showMenu } = useContext(DropdownContext);
-
   const { id } = useParams();
   const { setIsEditProducer, setIsCreateSingle, setIsCreateAlbum } =
     useContext(ModalContext);
@@ -78,18 +77,18 @@ const ProducerPage = () => {
         <Bio>
           <p>{producer?.description}</p>
           <Contact>
-            <p>Acompanhe Também nossas redes sociais:</p>
+            <p>Acompanhe também nas redes sociais:</p>
             <div>
-              <a href={"producer?.social_media[1]"} target="_blank">
+              <a href={producer.social_media?.instagram} target="_blank">
                 <AiFillInstagram size={45} color="var(--grey-03)" />
               </a>
-              <a href={"producer?.social_media[0]"} target="_blank">
+              <a href={producer.social_media?.facebook} target="_blank">
                 <BsFacebook size={38} color="var(--grey-03)" />
               </a>
-              <a href={"producer?.social_media[2]"} target="_blank">
+              <a href={producer.social_media?.twitter} target="_blank">
                 <BsTwitter size={40} color="var(--grey-03)" />
               </a>
-              <a href={"producer?.social_media[3]"} target="_blank">
+              <a href={producer.social_media?.youtube} target="_blank">
                 <BsYoutube size={40} color="var(--grey-03)" />
               </a>
             </div>

@@ -60,6 +60,7 @@ export const DashboardProvider = ({ children }) => {
       });
 
       const returnData = await Promise.all(newProductionPromises);
+      console.log("~ returnData", returnData);
       setVotedProductions(returnData);
     } catch (error) {
       console.log(error);
