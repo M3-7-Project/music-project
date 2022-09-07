@@ -31,6 +31,7 @@ export const ProducerProvider = ({ children }) => {
     setProductions(result);
     setProducer(profile.data);
     setIsLoading(false);
+    console.log(producer)
   };
 
   const toNext = () => {
@@ -80,6 +81,8 @@ export const ProducerProvider = ({ children }) => {
         animation,
         indexProductions,
         getProducer,
+        setProductions,
+        setProducer
       }}
     >
       {children}
