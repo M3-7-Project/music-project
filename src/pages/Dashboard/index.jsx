@@ -34,6 +34,7 @@ import { ProductionList } from "./components/ProductionList";
 import { ProducerList } from "./components/ArtistList";
 import TransitionPage from "../../components/TransitionPage";
 import { LoadingContext } from "../../contexts/LoandingContext";
+import { ModalContext } from "../../contexts/ModalContext";
 import { AnimatePresence } from "framer-motion";
 
 const Dashboard = () => {
@@ -47,8 +48,10 @@ const Dashboard = () => {
     getFeaturedArtists,
     getProductionBySearch,
     getProducerBySearch,
+    productionPage,
   } = useContext(DashboardContext);
   const { setIsLoading } = useContext(LoadingContext);
+  const { setIsEditProfile, setIsEditProducer } = useContext(ModalContext);
   const [userSearch, setUserSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [shouldSearch, setShouldSearch] = useState(false);
@@ -59,6 +62,10 @@ const Dashboard = () => {
     }
     e.preventDefault();
     setSearchParams(createSearchParams({ search: userSearch }));
+  };
+
+  const editProfile = () => {
+    userInfo.type === "producer" ? setIsEditProducer(true) : setIsEditProfile(true);
   };
 
   useEffect(() => {
@@ -74,7 +81,7 @@ const Dashboard = () => {
       getProducerBySearch(queryParams);
     }
     setIsLoading(false);
-  }, [searchParams]);
+  }, [searchParams, productionPage]);
 
   return (
     <TransitionPage>
@@ -89,11 +96,7 @@ const Dashboard = () => {
             </button>
             <HeaderNavigationInput>
               <form>
-                <input
-                  type="text"
-                  placeholder="Insira sua pesquisa"
-                  onChange={(e) => setUserSearch(e.target.value)}
-                />
+                <input type="text" placeholder="Insira sua pesquisa" onChange={(e) => setUserSearch(e.target.value)} />
                 <button onClick={(e) => handleSearch(e)}>
                   <BsSearch />
                 </button>
@@ -103,12 +106,11 @@ const Dashboard = () => {
           <HeaderProfile>
             <p>{userInfo?.artistic_name}</p>
             <HeaderProfilePicture>
-              <img
-                src={userInfo?.profile_picture}
-                alt={`Imagem de perfil do ${userInfo?.artistic_name}`}
-              />
+              <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
             </HeaderProfilePicture>
-            <BsFillGearFill size={30} />
+            <button onClick={editProfile}>
+              <BsFillGearFill size={30} />
+            </button>
           </HeaderProfile>
         </DashboardHeader>
 

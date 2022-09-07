@@ -3,15 +3,17 @@ import { useRef } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DropdownContext } from "../../contexts/DropdownContext";
+import { UserContext } from "../../contexts/UserContext";
 import { AnchorDiv, Dropdown } from "./styles";
 import { motion } from 'framer-motion'
 
 const HeaderDropdown = () => {
   const navigate = useNavigate();
   const { useOnClickOutside, setShowMenu } = useContext(DropdownContext);
+  const { userInfo } = useContext(UserContext);
 
   const handleProfile = () => {
-    navigate("/producer/:id");
+    navigate(`/producer/${userInfo.id}`);
   };
 
   const handleHomepage = () => {

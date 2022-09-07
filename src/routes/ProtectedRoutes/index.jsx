@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 const ProtectedRoutes = () => {
   const { isTokenExistent, isFetching } = useContext(UserContext);
 
-  if (!isTokenExistent) {
+  if (!isTokenExistent && !isFetching) {
     return <Navigate to="/login" />;
   }
 

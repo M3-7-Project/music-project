@@ -21,9 +21,6 @@ export const DashboardProvider = ({ children }) => {
   const [searchedProducer, setSearchedProducer] = useState([]);
 
   const getProductions = async () => {
-    if (hotProduction.length > 0) {
-      return;
-    }
     try {
       const response = await getProductionRequest("", { _embed: "score", _page: productionPage, _limit: 4, _sort: "id", _order: "desc" });
       sethotProduction(response.data);
@@ -150,6 +147,7 @@ export const DashboardProvider = ({ children }) => {
         searchedProductions,
         searchedProducer,
         getProducerBySearch,
+        productionPage,
       }}
     >
       {children}
