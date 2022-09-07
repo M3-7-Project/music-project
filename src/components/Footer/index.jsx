@@ -56,8 +56,7 @@ const Footer = () => {
                     </Button>
                 </Constrols>
             </ContentPlayer>
-            {
-                votedProductions.find(element => element.productionId == currentMusic.productionId) ? (
+            {   currentMusic.isLiked ? (
                     <CircleButton radius={50} onClick={() => deleteVote(currentMusic.prductionId)}>
                         <IoMdHeartDislike color='var(--grey-03)' size={24}/>
                     </CircleButton>

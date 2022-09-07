@@ -31,11 +31,14 @@ export const MusicProvider = ({children}) => {
             song: files.find(element => {
                 return element.split("../../assets/music/").join('') == production.preview
             }) || files[0],
-            productionId: production.productionId
+            productionId: production.productionId,
+            isLiked: votedProductions.find(element => element.productionId == production.Id)
         }
 
-        SetMusics(result)
+        SetMusics([result])
         SetCurrentMusic(result)
+
+        play()
     }
 
     useEffect(()=>{
