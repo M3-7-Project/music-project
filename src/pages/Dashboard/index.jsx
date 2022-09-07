@@ -33,6 +33,7 @@ import { useEffect } from "react";
 import { ProductionList } from "./components/ProductionList";
 import { ProducerList } from "./components/ArtistList";
 import TransitionPage from "../../components/TransitionPage";
+import { LoadingContext } from "../../contexts/LoandingContext";
 
 const Dashboard = () => {
   const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
@@ -46,6 +47,7 @@ const Dashboard = () => {
     getProductionBySearch,
     getProducerBySearch,
   } = useContext(DashboardContext);
+  const { setIsLoading } = useContext(LoadingContext);
   const [userSearch, setUserSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [shouldSearch, setShouldSearch] = useState(false);
@@ -59,6 +61,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const queryParams = searchParams.get("search");
     if (queryParams === null || queryParams === "") {
       getProductions();
@@ -69,6 +72,7 @@ const Dashboard = () => {
       getProductionBySearch(queryParams);
       getProducerBySearch(queryParams);
     }
+    setIsLoading(false);
   }, [searchParams]);
 
   return (
