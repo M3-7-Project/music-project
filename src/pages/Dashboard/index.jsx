@@ -34,6 +34,7 @@ import { ProductionList } from "./components/ProductionList";
 import { ProducerList } from "./components/ArtistList";
 import TransitionPage from "../../components/TransitionPage";
 import { LoadingContext } from "../../contexts/LoandingContext";
+import { AnimatePresence } from "framer-motion";
 
 const Dashboard = () => {
   const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
@@ -78,7 +79,9 @@ const Dashboard = () => {
   return (
     <TransitionPage>
       <DashboardWrapper>
-        {showMenu && <HeaderDropdown />}
+        <AnimatePresence>
+          {showMenu && <HeaderDropdown />}
+        </AnimatePresence>
         <DashboardHeader>
           <HeaderNavigation>
             <button id="menu-button" onClick={() => handleDropdownOpening()}>

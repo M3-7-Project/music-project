@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DropdownContext } from "../../contexts/DropdownContext";
 import { AnchorDiv, Dropdown } from "./styles";
+import { motion } from 'framer-motion'
 
 const HeaderDropdown = () => {
   const navigate = useNavigate();
@@ -26,7 +27,10 @@ const HeaderDropdown = () => {
   useOnClickOutside(menuRef, () => setShowMenu(false));
 
   return (
-    <>
+    <motion.div 
+      initial={{x: -200, opacity: 0, zIndex: 5, position: "absolute"}}
+      animate={{x: 0, opacity: 1, zIndex: 5}}
+      exit={{x: -200, opacity: 0, zIndex: 5}}>
       <Dropdown ref={menuRef}>
         <img src="../src/assets/logo.svg" />
         <AnchorDiv>
@@ -35,7 +39,7 @@ const HeaderDropdown = () => {
           <a onClick={() => handleLogout()}>Logout</a>
         </AnchorDiv>
       </Dropdown>
-    </>
+    </motion.div>
   );
 };
 
