@@ -119,6 +119,19 @@ export const HeaderProfile = styled.div`
 
   svg {
     color: var(--grey-02);
+
+    &:hover{
+      transition: 400ms;
+      color: var(--grey-03);
+    }
+  }
+
+  button{
+    background-color: transparent;
+    
+    border: none;
+
+    cursor: pointer;
   }
 `;
 
