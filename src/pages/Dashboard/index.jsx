@@ -32,6 +32,7 @@ import { createSearchParams, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { ProductionList } from "./components/ProductionList";
 import { ProducerList } from "./components/ArtistList";
+import TransitionPage from "../../components/TransitionPage";
 
 const Dashboard = () => {
   const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
@@ -71,74 +72,83 @@ const Dashboard = () => {
   }, [searchParams]);
 
   return (
-    <DashboardWrapper>
-      {showMenu && <HeaderDropdown />}
-      <DashboardHeader>
-        <HeaderNavigation>
-          <button id="menu-button" onClick={() => handleDropdownOpening()}>
-            <BiMenu size={30} />
-          </button>
-          <HeaderNavigationInput>
-            <form>
-              <input type="text" placeholder="Insira sua pesquisa" onChange={(e) => setUserSearch(e.target.value)} />
-              <button onClick={(e) => handleSearch(e)}>
-                <BsSearch />
-              </button>
-            </form>
-          </HeaderNavigationInput>
-        </HeaderNavigation>
-        <HeaderProfile>
-          <p>{userInfo?.artistic_name}</p>
-          <HeaderProfilePicture>
-            <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
-          </HeaderProfilePicture>
-          <BsFillGearFill size={30} />
-        </HeaderProfile>
-      </DashboardHeader>
+    <TransitionPage>
+      <DashboardWrapper>
+        {showMenu && <HeaderDropdown />}
+        <DashboardHeader>
+          <HeaderNavigation>
+            <button id="menu-button" onClick={() => handleDropdownOpening()}>
+              <BiMenu size={30} />
+            </button>
+            <HeaderNavigationInput>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Insira sua pesquisa"
+                  onChange={(e) => setUserSearch(e.target.value)}
+                />
+                <button onClick={(e) => handleSearch(e)}>
+                  <BsSearch />
+                </button>
+              </form>
+            </HeaderNavigationInput>
+          </HeaderNavigation>
+          <HeaderProfile>
+            <p>{userInfo?.artistic_name}</p>
+            <HeaderProfilePicture>
+              <img
+                src={userInfo?.profile_picture}
+                alt={`Imagem de perfil do ${userInfo?.artistic_name}`}
+              />
+            </HeaderProfilePicture>
+            <BsFillGearFill size={30} />
+          </HeaderProfile>
+        </DashboardHeader>
 
-      <DashboardMain>
-        {shouldSearch ? (
-          <>
-            <DashboardSearchProduction>
-              <h2>Produções</h2>
-              <ProductionList />
-            </DashboardSearchProduction>
-            <DashboardSearchArtist>
-              <h2>Artistas</h2>
-              <ProducerList />
-            </DashboardSearchArtist>
-          </>
-        ) : (
-          <>
-            <DashboardHottest>
-              <HottestTitle>
-                <h2>Nossos lançamentos mais aguardados</h2>
-                <ArrowButtonGroup>
-                  <button onClick={() => loadPrevAlbuns()}>
-                    <AiOutlineLeft size={20} />
-                  </button>
-                  <button onClick={() => loadNextAlbuns()}>
-                    <AiOutlineRight size={20} />
-                  </button>
-                </ArrowButtonGroup>
-              </HottestTitle>
-              <HottestList />
-            </DashboardHottest>
-            <DashboardInfo>
-              <VotedMusics>
-                <h2>Produções votadas</h2>
-                <VotedList />
-              </VotedMusics>
-              <FeaturedArtists>
-                <h2>Você também pode gostar</h2>
-                <FeaturedList />
-              </FeaturedArtists>
-            </DashboardInfo>
-          </>
-        )}
-      </DashboardMain>
-      <Footer />
-    </DashboardWrapper>
+        <DashboardMain>
+          {shouldSearch ? (
+            <>
+              <DashboardSearchProduction>
+                <h2>Produções</h2>
+                <ProductionList />
+              </DashboardSearchProduction>
+              <DashboardSearchArtist>
+                <h2>Artistas</h2>
+                <ProducerList />
+              </DashboardSearchArtist>
+            </>
+          ) : (
+            <>
+              <DashboardHottest>
+                <HottestTitle>
+                  <h2>Nossos lançamentos mais aguardados</h2>
+                  <ArrowButtonGroup>
+                    <button onClick={() => loadPrevAlbuns()}>
+                      <AiOutlineLeft size={20} />
+                    </button>
+                    <button onClick={() => loadNextAlbuns()}>
+                      <AiOutlineRight size={20} />
+                    </button>
+                  </ArrowButtonGroup>
+                </HottestTitle>
+                <HottestList />
+              </DashboardHottest>
+              <DashboardInfo>
+                <VotedMusics>
+                  <h2>Produções votadas</h2>
+                  <VotedList />
+                </VotedMusics>
+                <FeaturedArtists>
+                  <h2>Você também pode gostar</h2>
+                  <FeaturedList />
+                </FeaturedArtists>
+              </DashboardInfo>
+            </>
+          )}
+        </DashboardMain>
+        <Footer />
+      </DashboardWrapper>
+    </TransitionPage>
   );
 };
 
