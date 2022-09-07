@@ -39,7 +39,7 @@ import { AnimatePresence } from "framer-motion";
 import { DropdownButton } from "../../components/DropdownButton";
 
 const Dashboard = () => {
-  const { handleDropdownOpening, showMenu } = useContext(DropdownContext);
+  const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
   const {
     loadNextAlbuns,

@@ -1,5 +1,5 @@
 import { FaBars } from "react-icons/fa";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlinePlus } from "react-icons/ai";
 import { BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs";
 import CircleButton from "../../components/CircleButton";
 import {
@@ -27,6 +27,7 @@ import { AnimatePresence } from "framer-motion";
 import HeaderDropdown from "../../components/Dropdown";
 import { DropdownContext } from "../../contexts/DropdownContext";
 import { DropdownButton } from "../../components/DropdownButton";
+import { UserContext } from "../../contexts/UserContext";
 
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
