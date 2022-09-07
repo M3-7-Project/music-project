@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -16,18 +16,20 @@ import {
   TitleModal,
 } from "../ComponentsModal/styles";
 import { ModalContext } from "../../../contexts/ModalContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 const EditProducer = () => {
   const { setIsEditProducer } = useContext(ModalContext);
   const { getInfos, productProfile, productToken } =
     useContext(productsContext);
+  const { setUserInfo, userInfo } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const request = async (data) => {
     const infos = await getInfos();
     const newData = await verification(data, infos);
@@ -40,11 +42,15 @@ const EditProducer = () => {
         productToken()
       )
         .then((res) => {
-          console.log(res);
           toast.success("Perfil atualizado com sucesso");
+          setIsEditProducer(false);
+          setUserInfo({
+            ...userInfo,
+            artistic_name: res.data.artistic_name,
+            profile_picture: res.data.profile_picture,
+          });
         })
         .catch((err) => {
-          console.log(err);
           toast.error("Ocorreu um erro");
         });
     }
@@ -56,7 +62,7 @@ const EditProducer = () => {
         <div>
           <img src={Logo} alt="" />
           <ButtonModal onClick={() => setIsEditProducer(false)}>
-            < RiCloseCircleFill size={23} />
+            <RiCloseCircleFill size={23} />
           </ButtonModal>
         </div>
         <TitleModal>Editar perfil</TitleModal>
@@ -102,17 +108,17 @@ const EditProducer = () => {
           />
           <SpanModal></SpanModal>
           <select
-                multiple
-                id="multi-select"
-                className="styled-input"
-                {...register("genre")}
-              >
-                <option value="rock">Rock</option>
-                <option value="sertanejo">Sertenejo</option>
-                <option value="pagode">Pagode</option>
-                <option value="axe">Axé</option>
-                <option value="mpb">MPB</option>
-              </select>
+            multiple
+            id="multi-select"
+            className="styled-input"
+            {...register("genre")}
+          >
+            <option value="rock">Rock</option>
+            <option value="sertanejo">Sertenejo</option>
+            <option value="pagode">Pagode</option>
+            <option value="axe">Axé</option>
+            <option value="mpb">MPB</option>
+          </select>
           <ButtonCriar>Editar</ButtonCriar>
         </FormModal>
       </div>
