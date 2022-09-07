@@ -8,13 +8,16 @@ import { BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs";
 import cover from '../../assets/cover.png'
 import LaunchCard from './LaunchCard';
 import NextLaunch from './NextLaunch';
+import ModalSingle from '../../components/Modal/ModalCreateSingle';
+import ModalAlbum from '../../components/Modal/ModalCreateAlbum';
+import { getProductionWithStatsRequest } from '../../services/api';
 
 const ProducerPage = () => {
     const {userInfo} = useContext(UserContext)
     const [isOpen, setIsOpen] = useState(false)
     const [animation, setAnimation] = useState('close')
 
-    console.log(userInfo)
+    // console.log(userInfo)
 
     const onpenDropDown = () => {
         if(animation == 'open'){
@@ -34,6 +37,20 @@ const ProducerPage = () => {
             }, 800)
         } 
     }, [animation])
+
+    const Tentativa = async () => {
+        try{
+            const result = await getProductionWithStatsRequest("",{_limit: 4, userId: 4})
+            console.log(result.data)
+        }
+        catch{
+            console.log('erro')
+        }
+    }
+
+    useEffect(() => {
+        Tentativa()
+    }, [])
 
     return (
         <>
@@ -88,6 +105,8 @@ const ProducerPage = () => {
                 </Bio>
                 <LaunchCard/>
                 <NextLaunch/>
+                <ModalAlbum />
+                <ModalSingle />
             </Main>
             <Footer/>
         </>
