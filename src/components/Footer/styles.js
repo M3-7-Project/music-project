@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Player = styled.footer`
+    z-index: 10;
     width: 100vw;
     height: 150px;
     background-color: var(--grey-01);
@@ -10,6 +11,14 @@ export const Player = styled.footer`
     position: fixed;
     bottom: 0;
     padding:  0 90px;
+
+    & h3 {
+        font-size: 25px;
+        font-family: 'Roboto';
+        font-weight: 700;
+        color: var(--grey-03);
+        margin: 0 auto;
+    }
 
     @media screen and (max-width:800px){
         &{
