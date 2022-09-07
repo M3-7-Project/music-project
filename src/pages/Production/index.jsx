@@ -7,84 +7,103 @@ import MusicAlbum from './components/MusicAlbum';
 import Comments from './components/Comments';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCommentRequest, getProductionRequest } from '../../services/api';
+import { getCommentRequest, getProductionRequest, getProfileRequest } from '../../services/api';
+import { LoadingModal } from '../Register/styles';
 
 const Production = () => {
     const { id } = useParams();
     const [album, setAlbum] = useState({});
+    const [albumUser, setAlbumUser] = useState({});
     const [comments, setComments] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log('carregando');
+        updateMusics();
+        updateComments();
+    }, []);
+
+    const updateMusics = () => {
         getProductionRequest(id, {})
             .then((res) => {
-                console.log(res.data);
                 setAlbum(res.data);
-            });
+                getProfileRequest(res.data.userId, {})
+                    .then((res) => {
+                        setAlbumUser(res.data);
+                    });
+            })
+    }
 
-        getCommentRequest('')
+    const updateComments = () => {
+        getCommentRequest(`?productionId=${id}`)
             .then(res => {
-                console.log(res.data);
-                setComments(res.data.filter(comment => comment.productionId == id));
+                setComments(res.data);
                 setIsLoading(false);
             })
-    }, []);
+    }
 
     return (
         <>
             {
-                !isLoading &&
-                <Container>
-                    <Content>
-                        <AlbumImageContainer url={album.cover}>
-                            <AlbumImageContent>
-                                <AlbumImageContentTop>
-                                    <CircleButton radius='50'>
-                                        <FaBars />
-                                    </CircleButton>
-                                </AlbumImageContentTop>
-                                <AlbumImageContentBottom>
-                                    <div>
-                                        <h1>{album?.name}</h1>
-                                        <h3>Lançamento {album?.date}</h3>
-                                    </div>
-                                    <CircleButton radius='50'>
-                                        <AiOutlineHeart />
-                                    </CircleButton>
-                                </AlbumImageContentBottom>
-                            </AlbumImageContent>
-                        </AlbumImageContainer>
-                        <FlexContent>
-                            <MidContent>
-                                <AlbumDescription>
-                                    <p>
-                                        {album?.bio}
-                                    </p>
-                                </AlbumDescription>
-                                <SocialMedia>
-                                    <p>Acompanhe também nossas redes sociais:</p>
-                                    <SocialMedias>
-                                        <BsFacebook />
-                                        <BsInstagram />
-                                        <BsTwitter />
-                                        <BsYoutube />
-                                    </SocialMedias>
-                                </SocialMedia>
-                                <PeopleWaiting>
-                                    <h2>15k</h2>
-                                    <p>Pessoas estão esperando esse álbum</p>
-                                </PeopleWaiting>
-                            </MidContent>
-                            <MusicList>
-                                {
-                                    album?.musics?.map((music, id) => <MusicAlbum music={music} key={id} />)
-                                }
-                            </MusicList>
-                        </FlexContent>
-                        <Comments comments={comments} />
-                    </Content>
-                </Container>
+                isLoading ?
+                    <LoadingModal>Carregando</LoadingModal>
+                    :
+                    <Container>
+                        <Content>
+                            <AlbumImageContainer url={album.cover}>
+                                <AlbumImageContent>
+                                    <AlbumImageContentTop>
+                                        <CircleButton radius='50'>
+                                            <FaBars />
+                                        </CircleButton>
+                                    </AlbumImageContentTop>
+                                    <AlbumImageContentBottom>
+                                        <div>
+                                            <h1>{album?.name}</h1>
+                                            <h3>Lançamento {new Date(parseInt(album?.date)).toLocaleDateString()}</h3>
+                                        </div>
+                                        <CircleButton radius='50'>
+                                            <AiOutlineHeart />
+                                        </CircleButton>
+                                    </AlbumImageContentBottom>
+                                </AlbumImageContent>
+                            </AlbumImageContainer>
+                            <FlexContent>
+                                <MidContent>
+                                    <AlbumDescription>
+                                        <p>
+                                            {album?.bio}
+                                        </p>
+                                    </AlbumDescription>
+                                    <SocialMedia>
+                                        <p>Acompanhe também nossas redes sociais:</p>
+                                        <SocialMedias>
+                                            <BsFacebook />
+                                            <BsInstagram />
+                                            <BsTwitter />
+                                            <BsYoutube />
+                                        </SocialMedias>
+                                    </SocialMedia>
+                                    <PeopleWaiting>
+                                        <h2>15k</h2>
+                                        <p>Pessoas estão esperando esse álbum</p>
+                                    </PeopleWaiting>
+                                </MidContent>
+                                <MusicList>
+                                    {
+                                        album?.musics?.map((music, id) => {
+                                            return <MusicAlbum
+                                                music={music}
+                                                date={new Date(parseInt(album?.date)).toLocaleDateString()}
+                                                artist={albumUser}
+                                                key={id}
+                                            />
+                                        })
+                                    }
+                                </MusicList>
+                            </FlexContent>
+                            <Comments comments={comments} updateComments={updateComments} setIsLoading={setIsLoading} productionId={id} />
+                        </Content>
+                    </Container>
 
             }
 

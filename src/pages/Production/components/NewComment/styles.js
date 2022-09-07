@@ -27,4 +27,14 @@ export const Content = styled(DefaultComment)`
         color: white;
         font-family: inherit;
     }
+
+    button:hover {
+        cursor: pointer;
+    }
+`;
+
+export const NewCommentForm = styled.form`
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
 `;

@@ -30,15 +30,19 @@ export const DefaultComment = styled.div`
     background-color: var(--gray-01);
     box-shadow: 8px 3px 22px 10px rgba(0, 0, 0, 0.13);
     border-radius: 20px;
-    div {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: white;
+`;
 
-        @media (min-width: 800px) {
-            width: 70px;
-            height: 70px;
-        }
+export const CommentPhoto = styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url(${({url}) => url});
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @media (min-width: 800px) {
+        width: 70px;
+        height: 70px;
     }
 `;

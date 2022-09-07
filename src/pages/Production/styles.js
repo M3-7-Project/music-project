@@ -147,9 +147,5 @@ export const MusicList = styled.ul`
     width: 100%;
     padding: 0 15px;
     gap: 15px;
-
-    @media (min-width: 800px) {
-        padding: 0;
-    }
 `;
 

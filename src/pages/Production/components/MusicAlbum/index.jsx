@@ -3,14 +3,14 @@ import { Buttons, Container, Content } from "./styles";
 import { BsPlayFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
 
-const MusicAlbum = ({music}) => {
+const MusicAlbum = ({music, date, artist}) => {
     return (
         <>
             <Container>
                 <Content>
                     <h3>{music}</h3>
-                    <p>24 de setembro 2022</p>
-                    <p>Artista</p>
+                    <p>{date}</p>
+                    <p>{artist.artistic_name}</p>
                     <Buttons>
                         <CircleButton radius='50'>
                             <BsPlayFill />

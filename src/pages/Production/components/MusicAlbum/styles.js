@@ -17,6 +17,10 @@ export const Content = styled.div`
     font-size: 12px;
     color: white;
 
+    h3, p {
+        width: 15%;
+    }
+
     p:nth-child(2) {
         display: none;
     }
