@@ -50,12 +50,12 @@ const EditProducer = () => {
             ...userInfo,
             artistic_name: res.data.artistic_name,
             profile_picture: res.data.profile_picture,
-          })          
+          });
           setProducer({
             ...producer,
             artistic_name: res.data.artistic_name,
             profile_picture: res.data.profile_picture,
-          })
+          });
         })
         .catch((err) => {
           toast.error("Ocorreu um erro");

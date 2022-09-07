@@ -23,7 +23,7 @@ const ModalSingle = () => {
   const { setIsCreateSingle } = useContext(ModalContext);
   const { parseDate, productToken, productTokenId, productProfile } =
     useContext(productsContext);
-    const { productions, setProductions } = useContext(ProducerContext);
+  const { productions, setProductions } = useContext(ProducerContext);
 
   const schema = yup.object().shape({
     preview: yup.string().required("Música é obrigatório"),
@@ -55,8 +55,9 @@ const ModalSingle = () => {
       .then((res) => {
         console.log(res.data);
         toast.success("Single criado com sucesso!");
-        setProductions([...productions, res.data])
-        setIsCreateSingle(false)
+        productions.pop();
+        setProductions([...productions, res.data]);
+        setIsCreateSingle(false);
       })
       .catch((err) => {
         console.log(err);

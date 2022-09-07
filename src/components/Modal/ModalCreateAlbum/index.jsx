@@ -55,11 +55,13 @@ const ModalAlbum = () => {
     )
       .then((res) => {
         toast.success("Álbum criado com sucesso!");
-        setProductions([...productions, res.data])
-        setIsCreateAlbum(false)
+        productions.pop();
+        setProductions([...productions, res.data]);
+        setIsCreateAlbum(false);
       })
       .catch((err) => {
-        toast.error("Ocorreu um erro")});
+        toast.error("Ocorreu um erro");
+      });
   };
 
   return (
