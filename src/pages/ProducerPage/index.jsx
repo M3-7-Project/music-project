@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import CircleButton from "../../components/CircleButton";
 import Button from "../../components/Button";
@@ -15,17 +15,22 @@ import { DropdownButton } from "../../components/DropdownButton";
 import { AnimatePresence } from "framer-motion";
 import { DropdownContext } from "../../contexts/DropdownContext";
 import HeaderDropdown from "../../components/Dropdown";
+import { useParams } from "react-router-dom";
 
 const ProducerPage = () => {
-  const { isOpen, onpenDropDown, producer, animation, indexProductions, getProducer } = useContext(ProducerContext);
+  const { isOpen, onpenDropDown, producer, animation, indexProductions, getProducer, setIdToSearch, idToSearch } =
+    useContext(ProducerContext);
   const { userInfo } = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
   const { showMenu } = useContext(DropdownContext);
 
+  const { id } = useParams();
+
   useEffect(() => {
+    setIdToSearch(id);
     setIsLoading(true);
     getProducer();
-  }, [indexProductions]);
+  }, [indexProductions, idToSearch, id]);
 
   return (
     <>
