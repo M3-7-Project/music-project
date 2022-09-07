@@ -10,15 +10,15 @@ export const ProducerProvider = ({ children }) => {
   const [indexProductions, setIndexProductions] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [animation, setAnimation] = useState("close");
+  const [idToSearch, setIdToSearch] = useState(null);
   const { setIsLoading } = useContext(LoadingContext);
 
   const getProducer = async () => {
-    const id = window.location.pathname.split("/producer/")[1];
-    const profile = await getProfileRequest(id);
+    const profile = await getProfileRequest(idToSearch);
     const production = await getProductionRequest("", {
       _page: indexProductions,
       _limit: 4,
-      userId: id,
+      userId: idToSearch,
     });
 
     const result = production.data.map((element) => {
@@ -80,6 +80,8 @@ export const ProducerProvider = ({ children }) => {
         animation,
         indexProductions,
         getProducer,
+        setIdToSearch,
+        idToSearch,
         setProductions,
         setProducer
       }}

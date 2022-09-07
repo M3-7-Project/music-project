@@ -30,13 +30,18 @@ import {
   getProfileRequest,
 } from "../../services/api";
 import { LoadingModal } from "../Register/styles";
+import { AnimatePresence } from "framer-motion";
+import HeaderDropdown from "../../components/Dropdown";
+import { DropdownContext } from "../../contexts/DropdownContext";
+import { DropdownButton } from "../../components/DropdownButton";
 import { UserContext } from "../../contexts/UserContext";
 import { ModalContext } from "../../contexts/ModalContext";
 import { productsContext } from "../../contexts/ProductsContext";
 
 const Production = () => {
+  const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
-  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct} =
+  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } =
     useContext(ModalContext);
   const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
@@ -92,6 +97,7 @@ const Production = () => {
 
   return (
     <>
+      <AnimatePresence>{showMenu && <HeaderDropdown />}</AnimatePresence>
       {isLoading ? (
         <LoadingModal>Carregando</LoadingModal>
       ) : (
@@ -100,9 +106,7 @@ const Production = () => {
             <AlbumImageContainer url={album.cover}>
               <AlbumImageContent>
                 <AlbumImageContentTop>
-                  <CircleButton radius={50}>
-                    <FaBars />
-                  </CircleButton>
+                  <DropdownButton />
                 </AlbumImageContentTop>
                 <AlbumImageContentBottom>
                   <div>
@@ -121,7 +125,13 @@ const Production = () => {
                           </button>
                         )}
                         <Line></Line>
-                        <button onClick={()=> openDeleteProduct(album.name, album.id)}>Apagar</button>
+                        <button
+                          onClick={() =>
+                            openDeleteProduct(album.name, album.id)
+                          }
+                        >
+                          Apagar
+                        </button>
                         <Line></Line>
                         <button onClick={editProduct}>Editar</button>
                         <Triangle />

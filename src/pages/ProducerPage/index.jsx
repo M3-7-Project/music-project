@@ -1,21 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import CircleButton from "../../components/CircleButton";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import {
-  Cover,
-  DropDown,
-  Header,
-  HeaderButton,
-  HeaderContent,
-  HeaderImage,
-  Line,
-  Main,
-  Triangle,
-  Bio,
-  Contact,
-} from "./styles";
+import { Cover, DropDown, Header, HeaderButton, HeaderContent, HeaderImage, Line, Main, Triangle, Bio, Contact } from "./styles";
 import { AiOutlineMenu, AiOutlinePlus, AiFillInstagram } from "react-icons/ai";
 import { BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs";
 import cover from "../../assets/cover.png";
@@ -24,34 +12,36 @@ import NextLaunch from "./NextLaunch";
 import { ProducerContext } from "../../contexts/ProducerContext";
 import { LoadingContext } from "../../contexts/LoandingContext";
 import { ModalContext } from "../../contexts/ModalContext";
+import { DropdownButton } from "../../components/DropdownButton";
+import { AnimatePresence } from "framer-motion";
+import { DropdownContext } from "../../contexts/DropdownContext";
+import HeaderDropdown from "../../components/Dropdown";
+import { useParams } from "react-router-dom";
 
 const ProducerPage = () => {
-  const {
-    isOpen,
-    onpenDropDown,
-    producer,
-    animation,
-    indexProductions,
-    getProducer
-  } = useContext(ProducerContext);
+  const { isOpen, onpenDropDown, producer, animation, indexProductions, getProducer, setIdToSearch, idToSearch } =
+    useContext(ProducerContext);
   const { userInfo } = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
+  const { showMenu } = useContext(DropdownContext);
+
+  const { id } = useParams();
   const { setIsEditProducer, setIsCreateSingle, setIsCreateAlbum } =
     useContext(ModalContext);
 
   useEffect(() => {
+    setIdToSearch(id);
     setIsLoading(true);
     getProducer();
-  }, [indexProductions]);
+  }, [indexProductions, idToSearch, id]);
 
   return (
     <>
+      <AnimatePresence>{showMenu && <HeaderDropdown />}</AnimatePresence>
       <Header>
         <Cover src={cover} />
         <HeaderImage>
-          <CircleButton radius={60}>
-            <AiOutlineMenu size={25} color="var(--grey-03)" />
-          </CircleButton>
+          <DropdownButton />
           <img src={producer?.profile_picture}></img>
         </HeaderImage>
         <HeaderContent>
@@ -80,12 +70,7 @@ const ProducerPage = () => {
               <AiOutlinePlus size={30} color="var(--grey-03)" />
             </CircleButton>
           ) : (
-            <Button
-              width={170}
-              height={60}
-              color="--emphasis-0"
-              content="Seguir"
-            />
+            <Button width={170} height={60} color="--emphasis-0" content="Seguir" />
           )}
         </HeaderButton>
       </Header>
