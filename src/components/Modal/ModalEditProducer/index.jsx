@@ -17,12 +17,14 @@ import {
 } from "../ComponentsModal/styles";
 import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
+import { ProducerContext } from "../../../contexts/ProducerContext";
 
 const EditProducer = () => {
   const { setIsEditProducer } = useContext(ModalContext);
   const { getInfos, productProfile, productToken } =
     useContext(productsContext);
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const { setProducer, producer } = useContext(ProducerContext);
 
   const {
     register,
@@ -46,6 +48,11 @@ const EditProducer = () => {
           setIsEditProducer(false);
           setUserInfo({
             ...userInfo,
+            artistic_name: res.data.artistic_name,
+            profile_picture: res.data.profile_picture,
+          });
+          setProducer({
+            ...producer,
             artistic_name: res.data.artistic_name,
             profile_picture: res.data.profile_picture,
           });

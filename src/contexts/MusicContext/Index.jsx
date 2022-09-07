@@ -1,13 +1,19 @@
-import { useState, useRef, createContext, useEffect } from "react";
-import TrialMusic from '../../assets/music/Caslo.mp3'
-import TrialMusic2 from '../../assets/music/Jules.mp3'
+import { useState, useRef, createContext, useEffect, useContext } from "react";
+import TrialMusic from '../../assets/music/sound1.mp3'
+import TrialMusic2 from '../../assets/music/sound2.mp3'
+import TrialMusic3 from '../../assets/music/sound3.mp3'
+import TrialMusic4 from '../../assets/music/sound4.mp3'
+import { createVoteRequest } from "../../services/api";
+import toast from "react-hot-toast";
+import { DashboardContext } from "../DashboardContext";
 
 export const MusicContext = createContext({});
 
 export const MusicProvider = ({children}) => {
-    const [musics, SetMusics] = useState([TrialMusic, TrialMusic2])
+    const {votedProductions} = useContext(DashboardContext)
+    const [musics, SetMusics] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
-    const [currentMusic, SetCurrentMusic] = useState(musics[0])
+    const [currentMusic, SetCurrentMusic] = useState(null)
     const [progress, setProgress] = useState({
         progress: 0,
         time: 0,
@@ -15,6 +21,25 @@ export const MusicProvider = ({children}) => {
     })
 
     const audioElemt = useRef()
+
+    const selectMusic = (production) => {
+        const files = [TrialMusic, TrialMusic2, TrialMusic3, TrialMusic4]
+
+        const result = {
+            name : production.name,
+            cover: production.cover,
+            song: files.find(element => {
+                return element.split("../../assets/music/").join('') == production.preview
+            }) || files[0],
+            productionId: production.productionId,
+            isLiked: votedProductions.find(element => element.productionId == production.Id)
+        }
+
+        SetMusics([result])
+        SetCurrentMusic(result)
+
+        play()
+    }
 
     useEffect(()=>{
         if (audioElemt.current) {
@@ -83,10 +108,45 @@ export const MusicProvider = ({children}) => {
         }
         return '0:00'
     }
+
+    const likeSong = async (userId, productionId, name) => {
+        if(!votedProductions.find(element => element.productionId == productionId)){
+            try {
+                const response = await createVoteRequest({
+                    "userId": userId,
+                    "profileId": userId,
+                    "productionId": productionId,
+                    "name": name
+                }, window.localStorage.getItem('@onflow:token'))
+    
+                toast.success('Música adicionada à sua lista!')
+            } catch (err){
+                console.log(err)
+                toast.error("Houve um erro ao adicionar a música.");
+            }
+        }
+    }
     
 
     return (
-        <MusicContext.Provider value={{audioElemt, musics, play, isPlaying, currentMusic, onPlaying, progress, changeTime, musicTime, skipBack, skipNext, toMinute}}>
+        <MusicContext.Provider 
+            value={{
+                audioElemt,
+                musics,
+                play,
+                isPlaying,
+                currentMusic,
+                onPlaying,
+                progress,
+                changeTime,
+                musicTime,
+                skipBack,
+                skipNext,
+                toMinute,
+                likeSong,
+                selectMusic
+            }}
+        >
             {children}
         </MusicContext.Provider>
     )

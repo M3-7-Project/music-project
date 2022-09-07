@@ -85,6 +85,8 @@ export const ProducerProvider = ({ children }) => {
         getProducer,
         setIdToSearch,
         idToSearch,
+        setProductions,
+        setProducer
       }}
     >
       {children}
