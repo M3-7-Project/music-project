@@ -46,6 +46,7 @@ const Dashboard = () => {
     getFeaturedArtists,
     getProductionBySearch,
     getProducerBySearch,
+    productionPage,
   } = useContext(DashboardContext);
   const { setIsLoading } = useContext(LoadingContext);
   const [userSearch, setUserSearch] = useState("");
@@ -73,7 +74,7 @@ const Dashboard = () => {
       getProducerBySearch(queryParams);
     }
     setIsLoading(false);
-  }, [searchParams]);
+  }, [searchParams, productionPage]);
 
   return (
     <TransitionPage>
@@ -86,11 +87,7 @@ const Dashboard = () => {
             </button>
             <HeaderNavigationInput>
               <form>
-                <input
-                  type="text"
-                  placeholder="Insira sua pesquisa"
-                  onChange={(e) => setUserSearch(e.target.value)}
-                />
+                <input type="text" placeholder="Insira sua pesquisa" onChange={(e) => setUserSearch(e.target.value)} />
                 <button onClick={(e) => handleSearch(e)}>
                   <BsSearch />
                 </button>
@@ -100,10 +97,7 @@ const Dashboard = () => {
           <HeaderProfile>
             <p>{userInfo?.artistic_name}</p>
             <HeaderProfilePicture>
-              <img
-                src={userInfo?.profile_picture}
-                alt={`Imagem de perfil do ${userInfo?.artistic_name}`}
-              />
+              <img src={userInfo?.profile_picture} alt={`Imagem de perfil do ${userInfo?.artistic_name}`} />
             </HeaderProfilePicture>
             <BsFillGearFill size={30} />
           </HeaderProfile>
