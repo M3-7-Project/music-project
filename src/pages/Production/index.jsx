@@ -1,16 +1,18 @@
 import { FaBars } from 'react-icons/fa';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlinePlus } from 'react-icons/ai'
 import { BsFacebook, BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
 import CircleButton from '../../components/CircleButton'
 import { AlbumDescription, AlbumImageContainer, AlbumImageContent, AlbumImageContentBottom, AlbumImageContentTop, Container, Content, FlexContent, MidContent, MusicList, PeopleWaiting, SocialMedia, SocialMedias } from './styles';
 import MusicAlbum from './components/MusicAlbum';
 import Comments from './components/Comments';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getCommentRequest, getProductionRequest, getProfileRequest } from '../../services/api';
 import { LoadingModal } from '../Register/styles';
+import { UserContext } from '../../contexts/UserContext';
 
 const Production = () => {
+    const { userInfo } = useContext(UserContext);
     const { id } = useParams();
     const [album, setAlbum] = useState({});
     const [albumUser, setAlbumUser] = useState({});
@@ -38,7 +40,7 @@ const Production = () => {
             .then(res => {
                 setComments(res.data);
                 setIsLoading(false);
-            })
+            });
     }
 
     return (
@@ -62,7 +64,12 @@ const Production = () => {
                                             <h3>Lançamento {new Date(parseInt(album?.date)).toLocaleDateString()}</h3>
                                         </div>
                                         <CircleButton radius='50'>
-                                            <AiOutlineHeart />
+                                            {
+                                                userInfo.userId == album.userId?
+                                                    <AiOutlinePlus />
+                                                    :
+                                                    <AiOutlineHeart />
+                                            }
                                         </CircleButton>
                                     </AlbumImageContentBottom>
                                 </AlbumImageContent>
