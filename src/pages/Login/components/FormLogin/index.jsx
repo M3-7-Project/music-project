@@ -10,9 +10,11 @@ import { LoadingContext } from "../../../../contexts/LoandingContext";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../../../services/api";
 import toast from "react-hot-toast";
+import { UserContext } from "../../../../contexts/UserContext";
 
 const FormLogin = () => {
   const { setIsLoading, isLoading } = useContext(LoadingContext);
+  const { setIsFetching } = useContext(UserContext);
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -30,6 +32,7 @@ const FormLogin = () => {
 
   const doLogin = async (data) => {
     setIsLoading(true);
+    setIsFetching(true);
     try {
       const response = await loginRequest(data);
 
@@ -41,6 +44,7 @@ const FormLogin = () => {
       navigate("/dashboard", { replace: true });
       toast.success("Login bem-sucedido.");
       setIsLoading(false);
+      setIsFetching(false);
     } catch (error) {
       if (error?.response.data) {
         toast.error(error.response.data, {
@@ -51,6 +55,7 @@ const FormLogin = () => {
         toast.error("Houve um erro ao realizar o login.");
       }
       setIsLoading(false);
+      setIsFetching(false);
     }
   };
 
