@@ -38,7 +38,6 @@ import Footer from "../../components/Footer";
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
-  console.log("~ userInfo", userInfo);
   const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } = useContext(ModalContext);
   const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
