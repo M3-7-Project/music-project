@@ -3,6 +3,7 @@ import { getProfileRequest, userRequest } from "../../services/api";
 
 export const UserContext = createContext({});
 
+<<<<<<< HEAD
 export const UserProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [userInfo, setUserInfo] = useState({});
@@ -47,3 +48,12 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider value={{ isTokenExistent, isFetching, userInfo, setIsFetching, setUserInfo }}>{children}</UserContext.Provider>
   );
 };
+=======
+export const UserProvider = ({children}) => {
+    return (
+        <userContext.Provider value={{}}>
+            {children}
+        </userContext.Provider>
+    )
+}
+>>>>>>> cbe42ece44bc5fd2b3b934034713a81b35b6cd2c

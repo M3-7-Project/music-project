@@ -1,9 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { DarkTheme } from "./theme";
 
 export const Global = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, input, blockquote, pre,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
     del, dfn, em, img, ins, kbd, q, s, samp,
     small, strike, strong, sub, sup, tt, var,
@@ -27,7 +26,6 @@ export const Global = createGlobalStyle`
         height: 100%;
     }
     body {
-        min-height: 100%;
         line-height: 1;
         font-family: 'Poppins', sans-serif;
         ::-webkit-scrollbar {
@@ -66,8 +64,5 @@ export const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
-    }
-    :root{
-        ${DarkTheme}
     }
 `;

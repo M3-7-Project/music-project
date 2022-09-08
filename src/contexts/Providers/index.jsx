@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { DashboardProvider } from "../DashboardContext";
 import { DropdownProvider } from "../DropdownContext";
 import { LoadingProvider } from "../LoandingContext";
@@ -29,5 +30,16 @@ const Providers = ({ children }) => {
     </ModalProvider>
   );
 };
+=======
+import { UserProvider } from "../UserContext"
+
+const Providers = ({children}) => {
+    return (
+        <UserProvider>
+            {children}
+        </UserProvider>
+    )
+}
+>>>>>>> cbe42ece44bc5fd2b3b934034713a81b35b6cd2c
 
 export default Providers;
