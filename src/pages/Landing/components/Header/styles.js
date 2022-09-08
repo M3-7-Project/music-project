@@ -4,18 +4,18 @@ export const HeaderSection = styled.header`
   width: 100vw;
   height: 60px;
 
-  background: #272C31;
-  color: #FFFFFF;
+  background: #272c31;
+  color: #ffffff;
   box-shadow: 8px 3px 22px 10px rgba(0, 0, 0, 0.13);
 
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-weight: 500;
   font-size: 22px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const HeaderContainer = styled.header`
   width: 85%;
@@ -46,9 +46,9 @@ export const HeaderContainer = styled.header`
       cursor: pointer;
 
       &:hover {
-        color: rgba(255, 255, 255, .75);
+        color: rgba(255, 255, 255, 0.75);
         text-decoration: underline 0.75px;
       }
     }
   }
-`
+`;
