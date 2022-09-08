@@ -33,6 +33,7 @@ import { DropdownButton } from "../../components/DropdownButton";
 import { UserContext } from "../../contexts/UserContext";
 import { ModalContext } from "../../contexts/ModalContext";
 import { productsContext } from "../../contexts/ProductsContext";
+import Footer from "../../components/Footer";
 
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
@@ -157,11 +158,14 @@ const Production = () => {
                 {album?.musics?.map((music, id) => {
                   return (
                     <MusicAlbum
+                      cover={album?.cover}
+                      preview={album?.preview}
                       music={music}
                       date={new Date(parseInt(album?.date)).toLocaleDateString()}
                       artist={albumUser}
                       key={id}
                       id={id}
+                      productionId={album?.id}
                       album={album.id}
                     />
                   );
@@ -170,6 +174,7 @@ const Production = () => {
             </FlexContent>
             <Comments comments={comments} updateComments={updateComments} setIsLoading={setIsLoading} productionId={id} />
           </Content>
+          <Footer />
         </Container>
       )}
     </>

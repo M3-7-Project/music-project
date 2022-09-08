@@ -31,10 +31,11 @@ export const MusicProvider = ({ children }) => {
       cover: production.cover,
       song:
         files.find((element) => {
-          return element.split("../../assets/music/").join("") == production.song;
+          return element.split("/src/assets/music/").join("") == production.song;
         }) || files[0],
       productionId: production.productionId,
-      isLiked: votedProductions.find((element) => element.productionId == production.Id),
+      isLiked: votedProductions.find((element) => element.productionId == production.Id) || {},
+      id: production?.id,
     };
 
     SetMusics([result]);
