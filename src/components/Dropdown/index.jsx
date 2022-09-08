@@ -20,6 +20,7 @@ const HeaderDropdown = () => {
   const handleProfile = () => {
     if (userInfo.type !== "producer") {
       setIsEditProfile(true);
+      setShowMenu(false);
       return;
     }
     setIdToSearch(userInfo.id);
