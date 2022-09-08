@@ -56,7 +56,10 @@ const ModalAlbum = () => {
       .then((res) => {
         toast.success("Álbum criado com sucesso!");
         productions.pop();
-        const result = {...res.data, date: new Date(res.date).toLocaleString()}
+        const result = {
+          ...res.data,
+          date: new Date(res.data.date).toLocaleString(),
+        };
         setProductions([...productions, result]);
         setIsCreateAlbum(false);
       })

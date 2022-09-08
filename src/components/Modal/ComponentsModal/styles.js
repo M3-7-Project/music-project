@@ -57,7 +57,7 @@ export const SpanModal = styled.span`
 
 export const FormModal = styled.form`
   width: 85%;
-  height: 78vh;
+  max-height: 78vh;
   max-width: 100%;
   display: flex;
   flex-direction: column;
