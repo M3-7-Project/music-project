@@ -24,15 +24,18 @@ const HeaderDropdown = () => {
     }
     setIdToSearch(userInfo.id);
     navigate(`/producer/${userInfo.id}`);
+    setShowMenu(false);
   };
 
   const handleHomepage = () => {
     navigate("/dashboard");
+    setShowMenu(false);
   };
 
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
+    setShowMenu(false);
   };
 
   const menuRef = useRef();
