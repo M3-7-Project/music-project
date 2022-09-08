@@ -1,6 +1,7 @@
 import React from "react";
 import { BaloonsContainer, MainContainer, TextContainer } from "./styles";
 import { useNavigate } from "react-router-dom";
+import BackImg from "../../../../assets/landingPage-backimg.svg";
 
 const MainContent = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const MainContent = () => {
           familiares, disseminando e ampliando a visualização do seu material.
         </p>
       </TextContainer>
-      <img src="../../src/assets/landingPage-backimg.svg"></img>
+      <img src={BackImg}></img>
       <BaloonsContainer>
         <div>
           <p>Já ajudamos a fazer mais de 5k lançamentos musicais</p>
