@@ -33,9 +33,9 @@ const HeaderDropdown = () => {
 
   return (
     <motion.div
-      initial={{ x: -200, opacity: 0, zIndex: 5, position: "absolute" }}
-      animate={{ x: 0, opacity: 1, zIndex: 5 }}
-      exit={{ x: -200, opacity: 0, zIndex: 5 }}
+      initial={{ x: -200, opacity: 0, zIndex: 20, position: "absolute" }}
+      animate={{ x: 0, opacity: 1, zIndex: 20 }}
+      exit={{ x: -200, opacity: 0, zIndex: 20 }}
     >
       <Dropdown ref={menuRef}>
         <img src="../src/assets/logo.svg" />

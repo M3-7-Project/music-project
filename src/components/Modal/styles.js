@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {motion} from "framer-motion" 
+import { motion } from "framer-motion";
 
 export const ModalStyled = styled(motion.div)`
   display: flex;
@@ -31,11 +31,11 @@ export const ModalStyled = styled(motion.div)`
       margin: 1.875rem 0 2.5rem 0;
     }
   }
-    > div {
-      width: 30rem;
-      max-width: 95%;
-      background-color: #212529;
-      border-radius: 0.625rem;
+  > div {
+    width: 30rem;
+    max-width: 95%;
+    background-color: #212529;
+    border-radius: 0.625rem;
 
     > div {
       > div {
@@ -67,12 +67,12 @@ export const ModalStyled = styled(motion.div)`
     }
   }
 
-  @media (max-width: 545px){
-    >div{
-      >div{
-        >div{
-          >div{
-            >img{
+  @media (max-width: 545px) {
+    > div {
+      > div {
+        > div {
+          > div {
+            > img {
               display: none;
             }
           }
