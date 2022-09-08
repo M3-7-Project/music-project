@@ -1,22 +1,28 @@
-import React from 'react'
-import { BaloonsContainer, MainContainer, TextContainer } from './styles'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { BaloonsContainer, MainContainer, TextContainer } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const MainContent = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/register', {replace: true})
-  }
+    navigate("/register", { replace: true });
+  };
 
   return (
     <MainContainer>
       <TextContainer>
         <h1>Venha fazer parte dessa experiência!</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard book.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <p>
+          Cada álbum, cada música, cada acorde tem uma história dentro dele. Seus esforços de promoção devem dizer isso. Promover sua
+          própria música pode parecer agressivo ou complicado. Contar sua história torna-a mais pessoal e envolvente.
+        </p>
 
-        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry.  dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen</p>
+        <p>
+          O seu público está sempre esperando algo novo, que supere qualquer expectativa e seja uma novidade de mercado. Estar presente nas
+          redes através de divulgações do seu futuro trabalho faz com que as pessoas curtam, comentem e compartilhem com amigos e
+          familiares, disseminando e ampliando a visualização do seu material.
+        </p>
       </TextContainer>
       <img src="../../src/assets/landingPage-backimg.svg"></img>
       <BaloonsContainer>
@@ -27,7 +33,7 @@ const MainContent = () => {
           <p>São mais de 50K usuários ativos na plataforma</p>
         </div>
         <div>
-          <p>Lorem Ipsum is simply dummy text of the printing</p>
+          <p>Plataforma nᵒ 1 em lançamentos de álbuns e singles</p>
         </div>
         <button onClick={() => handleNavigate()}>
           <p>Cadastre-se agora</p>
@@ -35,6 +41,6 @@ const MainContent = () => {
       </BaloonsContainer>
     </MainContainer>
   );
-}
+};
 
 export default MainContent;
