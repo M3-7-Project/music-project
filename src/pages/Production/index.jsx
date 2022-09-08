@@ -24,11 +24,7 @@ import MusicAlbum from "./components/MusicAlbum";
 import Comments from "./components/Comments";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import {
-  getCommentRequest,
-  getProductionRequest,
-  getProfileRequest,
-} from "../../services/api";
+import { getCommentRequest, getProductionRequest, getProfileRequest } from "../../services/api";
 import { LoadingModal } from "../Register/styles";
 import { AnimatePresence } from "framer-motion";
 import HeaderDropdown from "../../components/Dropdown";
@@ -41,8 +37,7 @@ import { productsContext } from "../../contexts/ProductsContext";
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
-  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } =
-    useContext(ModalContext);
+  const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } = useContext(ModalContext);
   const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
   const [albumUser, setAlbumUser] = useState({});
@@ -111,38 +106,21 @@ const Production = () => {
                 <AlbumImageContentBottom>
                   <div>
                     <h1>{album?.name}</h1>
-                    <h3>
-                      Lançamento{" "}
-                      {new Date(parseInt(album?.date)).toLocaleDateString()}
-                    </h3>
+                    <h3>Lançamento {new Date(parseInt(album?.date)).toLocaleDateString()}</h3>
                   </div>
                   <section>
                     {isOpen && (
                       <DropDown animation={animation}>
-                        {album.type === "album" && (
-                          <button onClick={() => openAddMusic(album.id)}>
-                            Adicionar música
-                          </button>
-                        )}
+                        {album.type === "album" && <button onClick={() => openAddMusic(album.id)}>Adicionar música</button>}
                         <Line></Line>
-                        <button
-                          onClick={() =>
-                            openDeleteProduct(album.name, album.id)
-                          }
-                        >
-                          Apagar
-                        </button>
+                        <button onClick={() => openDeleteProduct(album.name, album.id)}>Apagar</button>
                         <Line></Line>
                         <button onClick={editProduct}>Editar</button>
                         <Triangle />
                       </DropDown>
                     )}
                     <CircleButton radius="50" onClick={onpenDropDown}>
-                      {userInfo.userId == album.userId ? (
-                        <AiOutlinePlus />
-                      ) : (
-                        <AiOutlineHeart />
-                      )}
+                      {userInfo.userId == album.userId ? <AiOutlinePlus /> : <AiOutlineHeart />}
                     </CircleButton>
                   </section>
                 </AlbumImageContentBottom>
@@ -156,10 +134,18 @@ const Production = () => {
                 <SocialMedia>
                   <p>Acompanhe também nossas redes sociais:</p>
                   <SocialMedias>
-                    <BsFacebook />
-                    <BsInstagram />
-                    <BsTwitter />
-                    <BsYoutube />
+                    <a href={userInfo?.social_media.facebook} target="_blank">
+                      <BsFacebook />
+                    </a>
+                    <a href={userInfo?.social_media.instagram} target="_blank">
+                      <BsInstagram />
+                    </a>
+                    <a href={userInfo?.social_media.twitter} target="_blank">
+                      <BsTwitter />
+                    </a>
+                    <a href={userInfo?.social_media.youtube} target="_blank">
+                      <BsYoutube />
+                    </a>
                   </SocialMedias>
                 </SocialMedia>
                 <PeopleWaiting>
@@ -172,9 +158,7 @@ const Production = () => {
                   return (
                     <MusicAlbum
                       music={music}
-                      date={new Date(
-                        parseInt(album?.date)
-                      ).toLocaleDateString()}
+                      date={new Date(parseInt(album?.date)).toLocaleDateString()}
                       artist={albumUser}
                       key={id}
                       id={id}
@@ -184,12 +168,7 @@ const Production = () => {
                 })}
               </MusicList>
             </FlexContent>
-            <Comments
-              comments={comments}
-              updateComments={updateComments}
-              setIsLoading={setIsLoading}
-              productionId={id}
-            />
+            <Comments comments={comments} updateComments={updateComments} setIsLoading={setIsLoading} productionId={id} />
           </Content>
         </Container>
       )}

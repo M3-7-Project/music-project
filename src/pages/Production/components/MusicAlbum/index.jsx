@@ -2,6 +2,7 @@ import CircleButton from "../../../../components/CircleButton";
 import { Buttons, Container, Content } from "./styles";
 import { BsPlayFill } from "react-icons/bs";
 import { AiOutlineHeart, AiOutlinePlus } from "react-icons/ai";
+import { BiTrashAlt } from "react-icons/bi";
 import { useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext";
 import { ModalContext } from "../../../../contexts/ModalContext";
@@ -11,8 +12,8 @@ const MusicAlbum = ({ music, date, artist, id, album }) => {
   const { openDeleteMusic } = useContext(ModalContext);
 
   const deleteMusic = () => {
-    openDeleteMusic(album, id, music)
-  }
+    openDeleteMusic(album, id, music);
+  };
 
   return (
     <>
@@ -26,11 +27,7 @@ const MusicAlbum = ({ music, date, artist, id, album }) => {
               <BsPlayFill />
             </CircleButton>
             <CircleButton radius="50" onClick={deleteMusic}>
-              {userInfo.userId == artist.userId ? (
-                <AiOutlinePlus />
-              ) : (
-                <AiOutlineHeart />
-              )}
+              {userInfo.userId == artist.userId ? <BiTrashAlt /> : <AiOutlineHeart />}
             </CircleButton>
           </Buttons>
         </Content>
