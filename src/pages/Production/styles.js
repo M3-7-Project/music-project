@@ -13,6 +13,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding-bottom: 10rem;
 `;
 
 const DefaultMargin = styled.div`
@@ -32,6 +33,7 @@ export const AlbumImageContainer = styled.div`
   height: 50vh;
   background-image: url(${({ url }) => url});
   background-position: 50% 50%;
+  box-shadow: inset 0 0 0 1000px #0000008f;
 
   @media (min-width: 800px) {
     height: 70vh;
@@ -137,10 +139,17 @@ export const SocialMedias = styled.div`
   width: 100%;
   justify-content: space-between;
   margin: 25px 0;
-  svg {
+  a {
     width: 15%;
     max-width: 43px;
     height: 15%;
+
+    svg {
+      color: var(--grey-03);
+      width: 100%;
+      max-width: 43px;
+      height: 15%;
+    }
   }
 `;
 
