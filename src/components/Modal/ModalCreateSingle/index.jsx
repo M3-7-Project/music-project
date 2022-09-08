@@ -56,7 +56,11 @@ const ModalSingle = () => {
         console.log(res.data);
         toast.success("Single criado com sucesso!");
         productions.pop();
-        setProductions([...productions, res.data]);
+        const result = {
+          ...res.data,
+          date: new Date(res.data.date).toLocaleString(),
+        };
+        setProductions([...productions, result]);
         setIsCreateSingle(false);
       })
       .catch((err) => {

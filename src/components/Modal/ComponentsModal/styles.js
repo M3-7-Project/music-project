@@ -7,7 +7,7 @@ export const Motion = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 10;
   background-color: rgba(18, 18, 20, 0.5);
 `
 
@@ -57,6 +57,7 @@ export const SpanModal = styled.span`
 
 export const FormModal = styled.form`
   width: 85%;
+  max-height: 78vh;
   max-width: 100%;
   display: flex;
   flex-direction: column;

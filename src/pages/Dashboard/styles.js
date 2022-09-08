@@ -51,6 +51,10 @@ export const HeaderNavigationInput = styled.div`
     padding: 0.5rem;
     border-radius: 8px;
 
+    svg{
+      color: white;
+    }
+
     input {
       background-color: transparent;
       color: var(--grey-03);

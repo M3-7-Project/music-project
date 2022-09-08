@@ -24,10 +24,10 @@ const EditAlbum = () => {
   const { productToken, parseDate, setAlbum } = useContext(productsContext);
 
   const schema = yup.object().shape({
-    name: yup.string().required("Nome é obrigatório"),
-    date: yup.string().required("Data é obrigatório"),
-    bio: yup.string().required("Bio é obrigatório"),
-    image: yup.string().required("Imagem é obrigatório"),
+    name: yup.string().optional("Nome é obrigatório"),
+    date: yup.string().optional("Data é obrigatório"),
+    bio: yup.string().optional("Bio é obrigatório"),
+    image: yup.string().optional("Imagem é obrigatório"),
   });
 
   const {
@@ -39,22 +39,34 @@ const EditAlbum = () => {
   });
 
   const request = async (data) => {
-    await updateProductionRequest(
-      infosEditAlbum,
-      {
-        ...data,
-        date: parseDate(data.date),
-      },
-      productToken()
-    )
-      .then((res) => {
-        toast.success("Álbum editado com sucesso!");
-        setAlbum(res.data)
-        setIsEditAlbum(false)
-      })
-      .catch((err) => {
-        toast.error("Ocorreu um erro");
-      });
+    console.log(data);
+    if (data.name === "") {
+      delete data.name;
+    }
+    if (data.date === "") {
+      delete data.date;
+    } else {
+      data = { ...data, date: parseDate(data.date) };
+    }
+    if (data.bio === "") {
+      delete data.bio;
+    }
+    if (data.image === "") {
+      delete data.image;
+    }
+    if (Object.keys(data).length === 0) {
+      toast.error("Preencha pelo menos um campo!");
+    } else {
+      await updateProductionRequest(infosEditAlbum, data, productToken())
+        .then((res) => {
+          toast.success("Álbum editado com sucesso!");
+          setAlbum(res.data);
+          setIsEditAlbum(false);
+        })
+        .catch((err) => {
+          toast.error("Ocorreu um erro");
+        });
+    }
   };
 
   return (
@@ -80,8 +92,8 @@ const EditAlbum = () => {
             {...register("image")}
           />
           <SpanModal>{errors.image?.message}</SpanModal>
-            <ButtonCriar type="submit">Editar</ButtonCriar>
-         </FormModal>
+          <ButtonCriar type="submit">Editar</ButtonCriar>
+        </FormModal>
       </div>
     </ModalExample>
   );
