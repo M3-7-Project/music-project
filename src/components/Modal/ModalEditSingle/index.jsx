@@ -21,12 +21,12 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 const EditSingle = () => {
   const { setIsEditSingle, infosEditSingle } = useContext(ModalContext);
-  const { productToken, parseDate } = useContext(productsContext);
+  const { productToken, parseDate, setAlbum } = useContext(productsContext);
 
   const schema = yup.object().shape({
-    name: yup.string().required("Nome é obrigatório"),
-    date: yup.string().required("Data é obrigatório"),
-    bio: yup.string().required("Bio é obrigatório"),
+    name: yup.string().optional("Nome é obrigatório"),
+    date: yup.string().optional("Data é obrigatório"),
+    bio: yup.string().optional("Bio é obrigatório"),
   });
 
   const {
@@ -38,21 +38,30 @@ const EditSingle = () => {
   });
 
   const request = async (data) => {
-    await updateProductionRequest(
-      infosEditSingle,
-      {
-        ...data,
-        date: parseDate(data.date),
-      },
-      productToken()
-    )
-      .then((res) => {
-        toast.success("Single editado com sucesso");
-        setIsEditSingle(false);
-      })
-      .catch((err) => {
-        toast.error("Ocorreu um erro");
-      });
+    if (data.name === "") {
+      delete data.name;
+    }
+    if (data.date === "") {
+      delete data.date;
+    } else {
+      data = { ...data, date: parseDate(data.date) };
+    }
+    if (data.bio === "") {
+      delete data.bio;
+    }
+    if (Object.keys(data).length === 0) {
+      toast.error("Preencha pelo menos um campo!");
+    } else {
+      await updateProductionRequest(infosEditSingle, data, productToken())
+        .then((res) => {
+          toast.success("Single editado com sucesso");
+          setAlbum(res.data);
+          setIsEditSingle(false);
+        })
+        .catch((err) => {
+          toast.error("Ocorreu um erro");
+        });
+    }
   };
 
   return (
