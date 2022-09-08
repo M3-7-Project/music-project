@@ -4,6 +4,9 @@ import TrialMusic2 from "../../assets/music/sound2.mp3";
 import TrialMusic3 from "../../assets/music/sound3.mp3";
 import TrialMusic4 from "../../assets/music/sound4.mp3";
 import CoopedUp from "../../assets/music/coopedup.mp3";
+import War from "../../assets/music/war.mp3";
+import Byob from "../../assets/music/byob.mp3";
+import Utopia from "../../assets/music/utopia.mp3";
 import { createVoteRequest } from "../../services/api";
 import toast from "react-hot-toast";
 import { DashboardContext } from "../DashboardContext";
@@ -24,7 +27,7 @@ export const MusicProvider = ({ children }) => {
   const audioElemt = useRef();
 
   const selectMusic = (production) => {
-    const files = [TrialMusic, TrialMusic2, TrialMusic3, TrialMusic4, CoopedUp];
+    const files = [TrialMusic, TrialMusic2, TrialMusic3, TrialMusic4, CoopedUp, War, Byob, Utopia];
 
     const result = {
       name: production.name,

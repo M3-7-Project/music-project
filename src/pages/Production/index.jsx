@@ -38,6 +38,7 @@ import Footer from "../../components/Footer";
 const Production = () => {
   const { showMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
+  console.log("~ userInfo", userInfo);
   const { openEditAlbum, openEditSingle, openAddMusic, openDeleteProduct } = useContext(ModalContext);
   const { album, setAlbum } = useContext(productsContext);
   const { id } = useParams();
@@ -135,16 +136,16 @@ const Production = () => {
                 <SocialMedia>
                   <p>Acompanhe também nossas redes sociais:</p>
                   <SocialMedias>
-                    <a href={userInfo?.social_media.facebook} target="_blank">
+                    <a href={albumUser?.social_media?.facebook} target="_blank">
                       <BsFacebook />
                     </a>
-                    <a href={userInfo?.social_media.instagram} target="_blank">
+                    <a href={albumUser?.social_media?.instagram} target="_blank">
                       <BsInstagram />
                     </a>
-                    <a href={userInfo?.social_media.twitter} target="_blank">
+                    <a href={albumUser?.social_media?.twitter} target="_blank">
                       <BsTwitter />
                     </a>
-                    <a href={userInfo?.social_media.youtube} target="_blank">
+                    <a href={albumUser?.social_media?.youtube} target="_blank">
                       <BsYoutube />
                     </a>
                   </SocialMedias>

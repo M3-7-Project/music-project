@@ -8,14 +8,20 @@ import { AnchorDiv, Dropdown } from "./styles";
 import { motion } from "framer-motion";
 import { ProducerContext } from "../../contexts/ProducerContext";
 import Logo from "../../assets/logo.svg";
+import { ModalContext } from "../../contexts/ModalContext";
 
 const HeaderDropdown = () => {
   const navigate = useNavigate();
   const { useOnClickOutside, setShowMenu } = useContext(DropdownContext);
   const { userInfo } = useContext(UserContext);
   const { setIdToSearch } = useContext(ProducerContext);
+  const { setIsEditProfile } = useContext(ModalContext);
 
   const handleProfile = () => {
+    if (userInfo.type !== "producer") {
+      setIsEditProfile(true);
+      return;
+    }
     setIdToSearch(userInfo.id);
     navigate(`/producer/${userInfo.id}`);
   };
