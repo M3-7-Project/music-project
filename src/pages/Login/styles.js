@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import styled from "styled-components";
 import loginImg from "../../assets/loginImage.jpg";
 
@@ -80,6 +79,3 @@ export const LoginStyled = styled.div`
     }
   }
 `;
-=======
-import styled from "styled-components";
->>>>>>> cbe42ece44bc5fd2b3b934034713a81b35b6cd2c
