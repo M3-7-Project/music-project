@@ -51,7 +51,7 @@ export const HeaderNavigationInput = styled.div`
     padding: 0.5rem;
     border-radius: 8px;
 
-    svg{
+    svg {
       color: white;
     }
 
@@ -123,6 +123,8 @@ export const HeaderProfilePicture = styled.div`
 
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

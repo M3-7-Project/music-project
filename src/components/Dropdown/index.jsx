@@ -7,6 +7,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { AnchorDiv, Dropdown } from "./styles";
 import { motion } from "framer-motion";
 import { ProducerContext } from "../../contexts/ProducerContext";
+import Logo from "../../assets/logo.svg";
 
 const HeaderDropdown = () => {
   const navigate = useNavigate();
@@ -17,15 +18,18 @@ const HeaderDropdown = () => {
   const handleProfile = () => {
     setIdToSearch(userInfo.id);
     navigate(`/producer/${userInfo.id}`);
+    setShowMenu(false);
   };
 
   const handleHomepage = () => {
     navigate("/dashboard");
+    setShowMenu(false);
   };
 
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
+    setShowMenu(false);
   };
 
   const menuRef = useRef();
@@ -38,7 +42,7 @@ const HeaderDropdown = () => {
       exit={{ x: -200, opacity: 0, zIndex: 20 }}
     >
       <Dropdown ref={menuRef}>
-        <img src="../src/assets/logo.svg" />
+        <img src={Logo} />
         <AnchorDiv>
           <a onClick={() => handleProfile()}>Perfil</a>
           <a onClick={() => handleHomepage()}>Home</a>
